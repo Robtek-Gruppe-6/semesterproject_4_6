@@ -1,0 +1,106 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x9F4449CBD6A61A2E",
+      "device": "xc7z020clg400-1",
+      "name": "design_motor_encoders",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.2"
+    },
+    "design_tree": {
+      "motor_encoders_0": "",
+      "system_ila_1": ""
+    },
+    "ports": {
+      "b_0": {
+        "direction": "I"
+      },
+      "a_0": {
+        "direction": "I"
+      },
+      "clk_0": {
+        "type": "clk",
+        "direction": "I"
+      }
+    },
+    "components": {
+      "motor_encoders_0": {
+        "vlnv": "xilinx.com:module_ref:motor_encoders:1.0",
+        "ip_revision": "1",
+        "xci_name": "design_motor_encoders_motor_encoders_0_0",
+        "xci_path": "ip\\design_motor_encoders_motor_encoders_0_0\\design_motor_encoders_motor_encoders_0_0.xci",
+        "inst_hier_path": "motor_encoders_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "motor_encoders",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "a": {
+            "direction": "I"
+          },
+          "b": {
+            "direction": "I"
+          },
+          "pulse": {
+            "direction": "O"
+          },
+          "dir": {
+            "direction": "O"
+          }
+        }
+      },
+      "system_ila_1": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "ip_revision": "19",
+        "xci_name": "design_motor_encoders_system_ila_1_0",
+        "xci_path": "ip\\design_motor_encoders_system_ila_1_0\\design_motor_encoders_system_ila_1_0.xci",
+        "inst_hier_path": "system_ila_1",
+        "parameters": {
+          "C_MON_TYPE": {
+            "value": "NATIVE"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "2"
+          },
+          "C_PROBE0_TYPE": {
+            "value": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "a_0_1": {
+        "ports": [
+          "a_0",
+          "motor_encoders_0/a"
+        ]
+      },
+      "b_0_1": {
+        "ports": [
+          "b_0",
+          "motor_encoders_0/b"
+        ]
+      },
+      "clk_0_1": {
+        "ports": [
+          "clk_0",
+          "system_ila_1/clk"
+        ]
+      },
+      "motor_encoders_0_dir": {
+        "ports": [
+          "motor_encoders_0/dir",
+          "system_ila_1/probe1"
+        ]
+      },
+      "pulse": {
+        "ports": [
+          "motor_encoders_0/pulse",
+          "system_ila_1/probe0"
+        ]
+      }
+    }
+  }
+}

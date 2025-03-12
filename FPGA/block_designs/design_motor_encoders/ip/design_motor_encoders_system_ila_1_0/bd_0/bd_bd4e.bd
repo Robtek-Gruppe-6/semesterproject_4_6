@@ -1,0 +1,31 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x1A5DB4A82500E3C9",
+      "design_src": "SBD",
+      "device": "xc7z020clg400-1",
+      "name": "bd_bd4e",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "scoped": "true",
+      "synth_flow_mode": "None",
+      "tool_version": "2024.2"
+    },
+    "design_tree": {},
+    "ports": {
+      "clk": {
+        "type": "clk",
+        "direction": "I"
+      },
+      "probe0": {
+        "direction": "I",
+        "left": "0",
+        "right": "0"
+      },
+      "probe1": {
+        "direction": "I",
+        "left": "0",
+        "right": "0"
+      }
+    }
+  }
+}
