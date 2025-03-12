@@ -4009,8 +4009,8 @@
     "boundary": {
       "ports": {
         "clk": [ { "direction": "in" } ],
-        "probe0": [ { "direction": "in", "size_left": "0", "size_right": "0" } ],
-        "probe1": [ { "direction": "in", "size_left": "0", "size_right": "0" } ]
+        "probe0": [ { "direction": "in", "size_left": "0", "size_right": "0", "driver_value": "0" } ],
+        "probe1": [ { "direction": "in", "size_left": "0", "size_right": "0", "driver_value": "0" } ]
       },
       "interfaces": {
         "CLK.clk": {
@@ -4021,7 +4021,7 @@
             "FREQ_HZ": [ { "value": "100000000", "value_permission": "bd", "resolve_type": "generated", "format": "long", "is_static_object": false } ],
             "FREQ_TOLERANCE_HZ": [ { "value": "0", "value_permission": "bd", "resolve_type": "generated", "format": "long", "is_static_object": false } ],
             "PHASE": [ { "value": "0.0", "value_permission": "bd", "resolve_type": "generated", "format": "float", "is_static_object": false } ],
-            "CLK_DOMAIN": [ { "value": "bd_bd4e_clk", "value_permission": "bd", "resolve_type": "generated", "is_static_object": false } ],
+            "CLK_DOMAIN": [ { "value": "design_motor_encoders_clk_0", "value_src": "default_prop", "value_permission": "bd", "resolve_type": "generated", "is_static_object": false } ],
             "ASSOCIATED_BUSIF": [ { "value": "", "value_permission": "bd", "resolve_type": "generated", "is_static_object": false } ],
             "ASSOCIATED_PORT": [ { "value": "", "value_permission": "bd", "resolve_type": "generated", "is_static_object": false } ],
             "ASSOCIATED_RESET": [ { "value": "", "value_permission": "bd", "resolve_type": "generated", "is_static_object": false } ],
