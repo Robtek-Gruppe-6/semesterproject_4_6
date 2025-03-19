@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x9F4449CBD6A61A2E",
+      "boundary_crc": "0x449AAE71449AAE71",
       "device": "xc7z020clg400-1",
       "name": "design_motor_encoders",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -11,7 +11,7 @@
     },
     "design_tree": {
       "motor_encoders_0": "",
-      "system_ila_1": ""
+      "sim_clk_gen_0": ""
     },
     "ports": {
       "b_0": {
@@ -20,31 +20,10 @@
       "a_0": {
         "direction": "I"
       },
-      "clk_0": {
-        "type": "clk",
-        "direction": "I",
-        "parameters": {
-          "CLK_DOMAIN": {
-            "value": "design_motor_encoders_clk_0",
-            "value_src": "default"
-          },
-          "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.0",
-            "value_src": "default"
-          }
-        }
+      "vel_0": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
       }
     },
     "components": {
@@ -66,31 +45,33 @@
           "b": {
             "direction": "I"
           },
-          "pulse": {
-            "direction": "O"
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_motor_encoders_sim_clk_gen_0_0_clk",
+                "value_src": "default_prop"
+              }
+            }
           },
-          "dir": {
-            "direction": "O"
+          "vel": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
           }
         }
       },
-      "system_ila_1": {
-        "vlnv": "xilinx.com:ip:system_ila:1.1",
-        "ip_revision": "19",
-        "xci_name": "design_motor_encoders_system_ila_1_0",
-        "xci_path": "ip\\design_motor_encoders_system_ila_1_0\\design_motor_encoders_system_ila_1_0.xci",
-        "inst_hier_path": "system_ila_1",
-        "parameters": {
-          "C_MON_TYPE": {
-            "value": "NATIVE"
-          },
-          "C_NUM_OF_PROBES": {
-            "value": "2"
-          },
-          "C_PROBE0_TYPE": {
-            "value": "0"
-          }
-        }
+      "sim_clk_gen_0": {
+        "vlnv": "xilinx.com:ip:sim_clk_gen:1.0",
+        "ip_revision": "5",
+        "xci_name": "design_motor_encoders_sim_clk_gen_0_0",
+        "xci_path": "ip\\design_motor_encoders_sim_clk_gen_0_0\\design_motor_encoders_sim_clk_gen_0_0.xci",
+        "inst_hier_path": "sim_clk_gen_0"
       }
     },
     "nets": {
@@ -106,22 +87,16 @@
           "motor_encoders_0/b"
         ]
       },
-      "clk_0_1": {
+      "motor_encoders_0_vel": {
         "ports": [
-          "clk_0",
-          "system_ila_1/clk"
+          "motor_encoders_0/vel",
+          "vel_0"
         ]
       },
-      "motor_encoders_0_dir": {
+      "sim_clk_gen_0_clk": {
         "ports": [
-          "motor_encoders_0/dir",
-          "system_ila_1/probe1"
-        ]
-      },
-      "pulse": {
-        "ports": [
-          "motor_encoders_0/pulse",
-          "system_ila_1/probe0"
+          "sim_clk_gen_0/clk",
+          "motor_encoders_0/clk"
         ]
       }
     }
