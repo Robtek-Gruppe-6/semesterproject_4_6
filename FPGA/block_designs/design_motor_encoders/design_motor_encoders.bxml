@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="43">
   <CompositeFile CompositeFileTopName="design_motor_encoders" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1742387103"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1742387103"/>
-    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1742387103"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1742387103"/>
+    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1742397728"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1742397730"/>
+    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1742397728"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1742397730"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="synth\design_motor_encoders.vhd" Type="VHDL">
         <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>

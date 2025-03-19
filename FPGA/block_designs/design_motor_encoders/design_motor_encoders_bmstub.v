@@ -6,17 +6,17 @@
 
 (* BLOCK_STUB = "true" *)
 module design_motor_encoders (
-  b_0,
   a_0,
-  vel_0
+  b_0,
+  o_0
 );
 
   (* X_INTERFACE_IGNORE = "true" *)
-  input b_0;
-  (* X_INTERFACE_IGNORE = "true" *)
   input a_0;
   (* X_INTERFACE_IGNORE = "true" *)
-  output [15:0]vel_0;
+  input b_0;
+  (* X_INTERFACE_IGNORE = "true" *)
+  output [15:0]o_0;
 
   // stub module has no contents
 
