@@ -46,53 +46,62 @@
 -- 
 -- DO NOT MODIFY THIS FILE.
 
--- IP VLNV: xilinx.com:module_ref:combiner:1.0
+-- IP VLNV: xilinx.com:module_ref:counter_nbit:1.0
 -- IP Revision: 1
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
-ENTITY design_motor_encoders_combiner_0_0 IS
+ENTITY design_motor_encoders_counter_nbit_0_0 IS
   PORT (
-    h : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    l : IN STD_LOGIC_VECTOR(14 DOWNTO 0);
-    o : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-    clk : IN STD_LOGIC
+    cnt : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+    done : OUT STD_LOGIC;
+    clk : IN STD_LOGIC;
+    en : IN STD_LOGIC;
+    dir : IN STD_LOGIC;
+    rst : IN STD_LOGIC
   );
-END design_motor_encoders_combiner_0_0;
+END design_motor_encoders_counter_nbit_0_0;
 
-ARCHITECTURE design_motor_encoders_combiner_0_0_arch OF design_motor_encoders_combiner_0_0 IS
+ARCHITECTURE design_motor_encoders_counter_nbit_0_0_arch OF design_motor_encoders_counter_nbit_0_0 IS
   ATTRIBUTE DowngradeIPIdentifiedWarnings : STRING;
-  ATTRIBUTE DowngradeIPIdentifiedWarnings OF design_motor_encoders_combiner_0_0_arch: ARCHITECTURE IS "yes";
-  COMPONENT combiner IS
+  ATTRIBUTE DowngradeIPIdentifiedWarnings OF design_motor_encoders_counter_nbit_0_0_arch: ARCHITECTURE IS "yes";
+  COMPONENT counter_nbit IS
     GENERIC (
-      lowbits : INTEGER;
-      highbits : INTEGER
+      max_cnt : INTEGER;
+      n_bits : INTEGER
     );
     PORT (
-      h : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-      l : IN STD_LOGIC_VECTOR(14 DOWNTO 0);
-      o : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-      clk : IN STD_LOGIC
+      cnt : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+      done : OUT STD_LOGIC;
+      clk : IN STD_LOGIC;
+      en : IN STD_LOGIC;
+      dir : IN STD_LOGIC;
+      rst : IN STD_LOGIC
     );
-  END COMPONENT combiner;
+  END COMPONENT counter_nbit;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
   ATTRIBUTE X_INTERFACE_MODE : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
   ATTRIBUTE X_INTERFACE_INFO OF clk: SIGNAL IS "xilinx.com:signal:clock:1.0 clk CLK";
   ATTRIBUTE X_INTERFACE_MODE OF clk: SIGNAL IS "slave clk";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF clk: SIGNAL IS "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_motor_encoders_sim_clk_gen_0_1_clk, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF clk: SIGNAL IS "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_motor_encoders_sim_clk_gen_0_1_clk, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_INFO OF rst: SIGNAL IS "xilinx.com:signal:reset:1.0 rst RST";
+  ATTRIBUTE X_INTERFACE_MODE OF rst: SIGNAL IS "slave rst";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF rst: SIGNAL IS "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0";
 BEGIN
-  U0 : combiner
+  U0 : counter_nbit
     GENERIC MAP (
-      lowbits => 15,
-      highbits => 1
+      max_cnt => 360,
+      n_bits => 16
     )
     PORT MAP (
-      h => h,
-      l => l,
-      o => o,
-      clk => clk
+      cnt => cnt,
+      done => done,
+      clk => clk,
+      en => en,
+      dir => dir,
+      rst => rst
     );
-END design_motor_encoders_combiner_0_0_arch;
+END design_motor_encoders_counter_nbit_0_0_arch;

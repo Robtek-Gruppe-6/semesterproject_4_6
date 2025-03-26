@@ -55,9 +55,11 @@ USE ieee.numeric_std.ALL;
 
 ENTITY design_motor_encoders_encoder_direction_0_0 IS
   PORT (
+    clk : IN STD_LOGIC;
+    en : IN STD_LOGIC;
     a : IN STD_LOGIC;
     b : IN STD_LOGIC;
-    clk : IN STD_LOGIC;
+    rst : IN STD_LOGIC;
     pulse : OUT STD_LOGIC;
     dir : OUT STD_LOGIC
   );
@@ -67,13 +69,12 @@ ARCHITECTURE design_motor_encoders_encoder_direction_0_0_arch OF design_motor_en
   ATTRIBUTE DowngradeIPIdentifiedWarnings : STRING;
   ATTRIBUTE DowngradeIPIdentifiedWarnings OF design_motor_encoders_encoder_direction_0_0_arch: ARCHITECTURE IS "yes";
   COMPONENT encoder_direction IS
-    GENERIC (
-      cpu_freq : INTEGER
-    );
     PORT (
+      clk : IN STD_LOGIC;
+      en : IN STD_LOGIC;
       a : IN STD_LOGIC;
       b : IN STD_LOGIC;
-      clk : IN STD_LOGIC;
+      rst : IN STD_LOGIC;
       pulse : OUT STD_LOGIC;
       dir : OUT STD_LOGIC
     );
@@ -83,16 +84,18 @@ ARCHITECTURE design_motor_encoders_encoder_direction_0_0_arch OF design_motor_en
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
   ATTRIBUTE X_INTERFACE_INFO OF clk: SIGNAL IS "xilinx.com:signal:clock:1.0 clk CLK";
   ATTRIBUTE X_INTERFACE_MODE OF clk: SIGNAL IS "slave clk";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF clk: SIGNAL IS "XIL_INTERFACENAME clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_motor_encoders_sim_clk_gen_0_1_clk, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF clk: SIGNAL IS "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN design_motor_encoders_clk_0, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_INFO OF rst: SIGNAL IS "xilinx.com:signal:reset:1.0 rst RST";
+  ATTRIBUTE X_INTERFACE_MODE OF rst: SIGNAL IS "slave rst";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF rst: SIGNAL IS "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0";
 BEGIN
   U0 : encoder_direction
-    GENERIC MAP (
-      cpu_freq => 100000000
-    )
     PORT MAP (
+      clk => clk,
+      en => en,
       a => a,
       b => b,
-      clk => clk,
+      rst => rst,
       pulse => pulse,
       dir => dir
     );
