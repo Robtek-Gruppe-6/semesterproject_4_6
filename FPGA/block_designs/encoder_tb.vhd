@@ -38,14 +38,14 @@ end encoder_tb;
 architecture test of encoder_tb is
 
     -- Component Declaration
-    component design_motor_encoders_wrapper 
-    port ( a_0 : in STD_LOGIC;
-           b_0 : in STD_LOGIC;
-           clk_0 : in STD_LOGIC;
-           rst_0 : in STD_LOGIC;
-           en_0 : in STD_LOGIC;
-           cnt_0 : out STD_LOGIC_VECTOR (15 downto 0);
-           done_0 : out STD_LOGIC
+    component FPGA_Encoder_handler_wrapper 
+    port ( a    : in STD_LOGIC;
+           b    : in STD_LOGIC;
+           clk  : in STD_LOGIC;
+           rst  : in STD_LOGIC;
+           en   : in STD_LOGIC;
+           cnt  : out STD_LOGIC_VECTOR (15 downto 0);
+           done : out STD_LOGIC
            );
     end component;
     
@@ -61,15 +61,15 @@ architecture test of encoder_tb is
 begin
     
     -- Connecting block designs
-    block_design :  design_motor_encoders_wrapper 
+    block_design :  FPGA_Encoder_handler_wrapper
     port map ( 
-           a_0 => a_tb,
-           b_0 => b_tb,
-           clk_0 => clk_tb,
-           rst_0 => rst_tb,   
-           en_0 => en_tb,
-           cnt_0 => cnt_tb,
-           done_0 => done_tb
+           a     => a_tb,
+           b     => b_tb,
+           clk   => clk_tb,
+           rst   => rst_tb,   
+           en    => en_tb,
+           cnt   => cnt_tb,
+           done  => done_tb
            );
            
     -- Clock Generation Process
