@@ -1,0 +1,431 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xCA608D9A3D07C14F",
+      "device": "xc7z020clg400-1",
+      "name": "FPGA_Main_task",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.2"
+    },
+    "design_tree": {
+      "FPGA_Encoder_handler_1": "",
+      "FPGA_Motor_handler_1": "",
+      "FPGA_Encoder_handler_2": "",
+      "FPGA_Motor_handler_2": "",
+      "n_to_m_splitter_0": "",
+      "combiner_0": ""
+    },
+    "ports": {
+      "clk": {
+        "type": "clk",
+        "direction": "I"
+      },
+      "sw_1": {
+        "direction": "I"
+      },
+      "sw_0": {
+        "type": "rst",
+        "direction": "I"
+      },
+      "encoder_1a": {
+        "direction": "I"
+      },
+      "encoder_1b": {
+        "direction": "I"
+      },
+      "encoder_2a": {
+        "direction": "I"
+      },
+      "encoder_2b": {
+        "direction": "I"
+      },
+      "motor2": {
+        "direction": "O",
+        "left": "1",
+        "right": "0"
+      },
+      "motor1": {
+        "direction": "O",
+        "left": "1",
+        "right": "0"
+      }
+    },
+    "components": {
+      "FPGA_Encoder_handler_1": {
+        "parameters": {
+          "ACTIVE_SIM_BD": {
+            "value": "FPGA_Encoder_handler.bd"
+          },
+          "ACTIVE_SYNTH_BD": {
+            "value": "FPGA_Encoder_handler.bd"
+          },
+          "ENABLE_DFX": {
+            "value": "0"
+          },
+          "LIST_SIM_BD": {
+            "value": "FPGA_Encoder_handler.bd"
+          },
+          "LIST_SYNTH_BD": {
+            "value": "FPGA_Encoder_handler.bd"
+          },
+          "LOCK_PROPAGATE": {
+            "value": "0"
+          }
+        },
+        "ports": {
+          "a": {
+            "direction": "I"
+          },
+          "b": {
+            "direction": "I"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "position": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "max": {
+            "direction": "O"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          }
+        },
+        "post_compiled_compname": "FPGA_Encoder_handler_inst_0",
+        "architecture": "zynq",
+        "variant_info": {
+          "FPGA_Encoder_handler.bd": {
+            "scoped_diagram": "FPGA_Encoder_handler_inst_0.bd",
+            "design_checksum": "0x1F69EC9F887CF396",
+            "ref_name": "FPGA_Encoder_handler",
+            "ref_subinst_path": "FPGA_Main_task_FPGA_Encoder_handler_0",
+            "ref_type": "Block Design",
+            "source_type": "all",
+            "active": "all"
+          }
+        }
+      },
+      "FPGA_Motor_handler_1": {
+        "parameters": {
+          "ACTIVE_SIM_BD": {
+            "value": "FPGA_Motor_handler.bd"
+          },
+          "ACTIVE_SYNTH_BD": {
+            "value": "FPGA_Motor_handler.bd"
+          },
+          "ENABLE_DFX": {
+            "value": "0"
+          },
+          "LIST_SIM_BD": {
+            "value": "FPGA_Motor_handler.bd"
+          },
+          "LIST_SYNTH_BD": {
+            "value": "FPGA_Motor_handler.bd"
+          },
+          "LOCK_PROPAGATE": {
+            "value": "0"
+          }
+        },
+        "ports": {
+          "i": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "o": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          },
+          "en": {
+            "direction": "I"
+          }
+        },
+        "post_compiled_compname": "FPGA_Motor_handler_inst_0",
+        "architecture": "zynq",
+        "variant_info": {
+          "FPGA_Motor_handler.bd": {
+            "scoped_diagram": "FPGA_Motor_handler_inst_0.bd",
+            "design_checksum": "0x6AC9B0AECA5E0EA8",
+            "ref_name": "FPGA_Motor_handler",
+            "ref_subinst_path": "FPGA_Main_task_FPGA_Motor_handler_0",
+            "ref_type": "Block Design",
+            "source_type": "all",
+            "active": "all"
+          }
+        }
+      },
+      "FPGA_Encoder_handler_2": {
+        "parameters": {
+          "ACTIVE_SIM_BD": {
+            "value": "FPGA_Encoder_handler.bd"
+          },
+          "ACTIVE_SYNTH_BD": {
+            "value": "FPGA_Encoder_handler.bd"
+          },
+          "ENABLE_DFX": {
+            "value": "0"
+          },
+          "LIST_SIM_BD": {
+            "value": "FPGA_Encoder_handler.bd"
+          },
+          "LIST_SYNTH_BD": {
+            "value": "FPGA_Encoder_handler.bd"
+          },
+          "LOCK_PROPAGATE": {
+            "value": "0"
+          }
+        },
+        "ports": {
+          "a": {
+            "direction": "I"
+          },
+          "b": {
+            "direction": "I"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "position": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "max": {
+            "direction": "O"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          }
+        },
+        "post_compiled_compname": "FPGA_Encoder_handler_inst_1",
+        "architecture": "zynq",
+        "variant_info": {
+          "FPGA_Encoder_handler.bd": {
+            "scoped_diagram": "FPGA_Encoder_handler_inst_1.bd",
+            "design_checksum": "0x1F69EC9F887CF396",
+            "ref_name": "FPGA_Encoder_handler",
+            "ref_subinst_path": "FPGA_Main_taskFPGA_Encoder_handler_0",
+            "ref_type": "Block Design",
+            "source_type": "all",
+            "active": "all"
+          }
+        }
+      },
+      "FPGA_Motor_handler_2": {
+        "parameters": {
+          "ACTIVE_SIM_BD": {
+            "value": "FPGA_Motor_handler.bd"
+          },
+          "ACTIVE_SYNTH_BD": {
+            "value": "FPGA_Motor_handler.bd"
+          },
+          "ENABLE_DFX": {
+            "value": "0"
+          },
+          "LIST_SIM_BD": {
+            "value": "FPGA_Motor_handler.bd"
+          },
+          "LIST_SYNTH_BD": {
+            "value": "FPGA_Motor_handler.bd"
+          },
+          "LOCK_PROPAGATE": {
+            "value": "0"
+          }
+        },
+        "ports": {
+          "i": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "o": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          }
+        },
+        "post_compiled_compname": "FPGA_Motor_handler_inst_3",
+        "architecture": "zynq",
+        "variant_info": {
+          "FPGA_Motor_handler.bd": {
+            "scoped_diagram": "FPGA_Motor_handler_inst_3.bd",
+            "design_checksum": "0x6AC9B0AECA5E0EA8",
+            "ref_name": "FPGA_Motor_handler",
+            "ref_subinst_path": "FPGA_Main_taskFPGA_Motor_handler_2",
+            "ref_type": "Block Design",
+            "source_type": "all",
+            "active": "all"
+          }
+        }
+      },
+      "n_to_m_splitter_0": {
+        "vlnv": "xilinx.com:module_ref:n_to_m_splitter:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_n_to_m_splitter_0_0",
+        "xci_path": "ip\\FPGA_Main_task_n_to_m_splitter_0_0\\FPGA_Main_task_n_to_m_splitter_0_0.xci",
+        "inst_hier_path": "n_to_m_splitter_0",
+        "parameters": {
+          "input_size": {
+            "value": "1"
+          },
+          "output_size_high": {
+            "value": "1"
+          },
+          "output_size_low": {
+            "value": "1"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "n_to_m_splitter",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "i": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "o_h": {
+            "direction": "O",
+            "left": "0",
+            "right": "0"
+          },
+          "o_l": {
+            "direction": "O",
+            "left": "0",
+            "right": "0"
+          }
+        }
+      },
+      "combiner_0": {
+        "vlnv": "xilinx.com:module_ref:combiner:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_combiner_0_0",
+        "xci_path": "ip\\FPGA_Main_task_combiner_0_0\\FPGA_Main_task_combiner_0_0.xci",
+        "inst_hier_path": "combiner_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "combiner",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "h": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "l": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "o": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "FPGA_Motor_handler_0_o": {
+        "ports": [
+          "FPGA_Motor_handler_2/o",
+          "motor2"
+        ]
+      },
+      "FPGA_Motor_handler_1_o": {
+        "ports": [
+          "FPGA_Motor_handler_1/o",
+          "motor1"
+        ]
+      },
+      "a_0_1": {
+        "ports": [
+          "encoder_1a",
+          "FPGA_Encoder_handler_1/a"
+        ]
+      },
+      "a_1_1": {
+        "ports": [
+          "encoder_2a",
+          "FPGA_Encoder_handler_2/a"
+        ]
+      },
+      "b_0_1": {
+        "ports": [
+          "encoder_1b",
+          "FPGA_Encoder_handler_1/b"
+        ]
+      },
+      "b_1_1": {
+        "ports": [
+          "encoder_2b",
+          "FPGA_Encoder_handler_2/b"
+        ]
+      },
+      "clk_0_1": {
+        "ports": [
+          "clk",
+          "FPGA_Encoder_handler_1/clk",
+          "FPGA_Motor_handler_1/clk",
+          "FPGA_Encoder_handler_2/clk",
+          "FPGA_Motor_handler_2/clk"
+        ]
+      },
+      "en_0_1": {
+        "ports": [
+          "sw_1",
+          "FPGA_Encoder_handler_1/en",
+          "FPGA_Motor_handler_1/en",
+          "FPGA_Encoder_handler_2/en",
+          "FPGA_Motor_handler_2/en"
+        ]
+      },
+      "rst_0_1": {
+        "ports": [
+          "sw_0",
+          "FPGA_Encoder_handler_1/rst",
+          "FPGA_Motor_handler_1/rst",
+          "FPGA_Encoder_handler_2/rst",
+          "FPGA_Motor_handler_2/rst"
+        ]
+      }
+    }
+  }
+}

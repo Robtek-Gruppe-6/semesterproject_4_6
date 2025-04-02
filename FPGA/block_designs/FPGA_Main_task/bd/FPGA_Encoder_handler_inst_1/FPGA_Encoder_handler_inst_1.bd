@@ -1,0 +1,335 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xC43E79CB738B70BE",
+      "design_src": "C:/Semesterprojekt/semesterproject_4_6/FPGA/block_designs/FPGA_Main_task/bd/FPGA_Encoder_handler_inst_0/FPGA_Encoder_handler_inst_0.bd",
+      "device": "xc7z020clg400-1",
+      "name": "FPGA_Encoder_handler_inst_1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.2",
+      "variant": "true"
+    },
+    "design_tree": {
+      "counter_nbit": "",
+      "encoder_direction": "",
+      "one_shot": ""
+    },
+    "ports": {
+      "a": {
+        "direction": "I"
+      },
+      "b": {
+        "direction": "I"
+      },
+      "clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "rs:rst",
+            "value_src": "strong"
+          },
+          "CLK_DOMAIN": {
+            "value": "FPGA_Encoder_handler_clk",
+            "value_src": "strong"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "strong"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "strong"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "strong"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "strong"
+          }
+        }
+      },
+      "position": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
+      },
+      "max": {
+        "direction": "O"
+      },
+      "en": {
+        "direction": "I"
+      },
+      "rst": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "strong"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "strong"
+          }
+        }
+      }
+    },
+    "components": {
+      "counter_nbit": {
+        "vlnv": "xilinx.com:module_ref:counter_nbit:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Encoder_handler_inst_1_counter_nbit_0",
+        "xci_path": "ip\\FPGA_Encoder_handler_inst_1_counter_nbit_0\\FPGA_Encoder_handler_inst_1_counter_nbit_0.xci",
+        "inst_hier_path": "counter_nbit",
+        "parameters": {
+          "max_cnt": {
+            "value": "65535"
+          },
+          "n_bits": {
+            "value": "16"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "counter_nbit",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "cnt": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "done": {
+            "direction": "O"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "FPGA_Encoder_handler_clk",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "dir": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
+          }
+        }
+      },
+      "encoder_direction": {
+        "vlnv": "xilinx.com:module_ref:encoder_direction:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Encoder_handler_inst_1_encoder_direction_0",
+        "xci_path": "ip\\FPGA_Encoder_handler_inst_1_encoder_direction_0\\FPGA_Encoder_handler_inst_1_encoder_direction_0.xci",
+        "inst_hier_path": "encoder_direction",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "encoder_direction",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "FPGA_Encoder_handler_clk",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "a": {
+            "direction": "I"
+          },
+          "b": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "pulse": {
+            "direction": "O"
+          },
+          "dir": {
+            "direction": "O"
+          }
+        }
+      },
+      "one_shot": {
+        "vlnv": "xilinx.com:module_ref:one_shot:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Encoder_handler_inst_1_one_shot_0",
+        "xci_path": "ip\\FPGA_Encoder_handler_inst_1_one_shot_0\\FPGA_Encoder_handler_inst_1_one_shot_0.xci",
+        "inst_hier_path": "one_shot",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "one_shot",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "FPGA_Encoder_handler_clk",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "i": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "o": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "a_0_1": {
+        "ports": [
+          "a",
+          "encoder_direction/a"
+        ]
+      },
+      "b_0_1": {
+        "ports": [
+          "b",
+          "encoder_direction/b"
+        ]
+      },
+      "clk_0_1": {
+        "ports": [
+          "clk",
+          "counter_nbit/clk",
+          "encoder_direction/clk",
+          "one_shot/clk"
+        ]
+      },
+      "counter_nbit_0_cnt": {
+        "ports": [
+          "counter_nbit/cnt",
+          "position"
+        ]
+      },
+      "counter_nbit_0_done": {
+        "ports": [
+          "counter_nbit/done",
+          "max"
+        ]
+      },
+      "en_0_1": {
+        "ports": [
+          "en",
+          "encoder_direction/en",
+          "one_shot/en"
+        ]
+      },
+      "encoder_direction_0_dir": {
+        "ports": [
+          "encoder_direction/dir",
+          "counter_nbit/dir"
+        ]
+      },
+      "encoder_direction_0_pulse": {
+        "ports": [
+          "encoder_direction/pulse",
+          "one_shot/i"
+        ]
+      },
+      "one_shot_0_o": {
+        "ports": [
+          "one_shot/o",
+          "counter_nbit/en"
+        ]
+      },
+      "rst_0_1": {
+        "ports": [
+          "rst",
+          "encoder_direction/rst",
+          "one_shot/rst",
+          "counter_nbit/rst"
+        ]
+      }
+    }
+  }
+}

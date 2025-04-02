@@ -1,0 +1,279 @@
+{
+    "graphjs": {
+        "version": "1.0",
+        "keys": [
+            {
+                "abrv": "VH",
+                "name": "vert_hid",
+                "type": "int",
+                "for": "node"
+            },
+            {
+                "abrv": "VM",
+                "name": "vert_name",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "VT",
+                "name": "vert_type",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "BA",
+                "name": "base_addr",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "HA",
+                "name": "high_addr",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "BP",
+                "name": "base_param",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "HP",
+                "name": "high_param",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "MA",
+                "name": "master_addrspace",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "MX",
+                "name": "master_instance",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "MI",
+                "name": "master_interface",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "MS",
+                "name": "master_segment",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "MV",
+                "name": "master_vlnv",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "SX",
+                "name": "slave_instance",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "SI",
+                "name": "slave_interface",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "MM",
+                "name": "slave_memmap",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "SS",
+                "name": "slave_segment",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "SV",
+                "name": "slave_vlnv",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "TM",
+                "name": "memory_type",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "TU",
+                "name": "usage_type",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "LT",
+                "name": "lock_type",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "BT",
+                "name": "boot_type",
+                "type": "string",
+                "for": "node"
+            },
+            {
+                "abrv": "EH",
+                "name": "edge_hid",
+                "type": "int",
+                "for": "edge"
+            }
+        ],
+        "vertice_type_order": [
+            {
+                "abrv": "BC",
+                "desc": "Block Container"
+            },
+            {
+                "abrv": "PR",
+                "desc": "Parital Reference"
+            },
+            {
+                "abrv": "VR",
+                "desc": "Variant"
+            },
+            {
+                "abrv": "PM",
+                "desc": "Variant Permutations"
+            },
+            {
+                "abrv": "CX",
+                "desc": "Boundary Connection"
+            },
+            {
+                "abrv": "AC",
+                "desc": "Assignment Coordinate"
+            },
+            {
+                "abrv": "ACE",
+                "desc": "Excluded Assign Coordinate"
+            },
+            {
+                "abrv": "APX",
+                "desc": "Boundary Aperture"
+            },
+            {
+                "abrv": "CIP",
+                "desc": "High level Processing System"
+            }
+        ],
+        "vertices": {
+            "V0": {
+                "VM": "/FPGA_Encoder_handler_1",
+                "VT": "BC"
+            },
+            "V1": {
+                "VM": "/FPGA_Encoder_handler_2",
+                "VT": "BC"
+            },
+            "V2": {
+                "VM": "/FPGA_Motor_handler_1",
+                "VT": "BC"
+            },
+            "V3": {
+                "VM": "/FPGA_Motor_handler_2",
+                "VT": "BC"
+            },
+            "V4": {
+                "VM": "FPGA_Main_task",
+                "VT": "BC"
+            },
+            "V5": {
+                "VH": "2",
+                "VM": "FPGA_Main_task",
+                "VT": "VR"
+            },
+            "V6": {
+                "VH": "3",
+                "VM": "FPGA_Encoder_handler_inst_0",
+                "VT": "VR"
+            },
+            "V7": {
+                "VH": "5",
+                "VM": "FPGA_Motor_handler_inst_0",
+                "VT": "VR"
+            },
+            "V8": {
+                "VH": "13",
+                "VM": "FPGA_Encoder_handler_inst_1",
+                "VT": "VR"
+            },
+            "V9": {
+                "VH": "17",
+                "VM": "FPGA_Motor_handler_inst_3",
+                "VT": "VR"
+            },
+            "V10": {
+                "VH": "30",
+                "VT": "PM"
+            },
+            "V11": {
+                "VH": "6630",
+                "VT": "PM",
+                "TU": "active"
+            }
+        },
+        "edges": [
+            {
+                "src": "V0",
+                "trg": "V6"
+            },
+            {
+                "src": "V1",
+                "trg": "V8"
+            },
+            {
+                "src": "V2",
+                "trg": "V7"
+            },
+            {
+                "src": "V3",
+                "trg": "V9"
+            },
+            {
+                "src": "V4",
+                "trg": "V5"
+            },
+            {
+                "src": "V5",
+                "trg": "V10"
+            },
+            {
+                "src": "V5",
+                "trg": "V11"
+            },
+            {
+                "src": "V6",
+                "trg": "V11"
+            },
+            {
+                "src": "V7",
+                "trg": "V11"
+            },
+            {
+                "src": "V8",
+                "trg": "V11"
+            },
+            {
+                "src": "V9",
+                "trg": "V11"
+            }
+        ]
+    }
+}

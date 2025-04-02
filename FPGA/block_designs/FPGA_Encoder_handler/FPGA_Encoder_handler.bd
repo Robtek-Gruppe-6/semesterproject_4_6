@@ -1,12 +1,13 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xC43E79CBC16A8B9C",
+      "boundary_crc": "0xC43E79CB738B70BE",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Encoder_handler",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2024.2"
+      "tool_version": "2024.2",
+      "validated": "true"
     },
     "design_tree": {
       "counter_nbit": "",
@@ -25,7 +26,27 @@
         "direction": "I",
         "parameters": {
           "ASSOCIATED_RESET": {
-            "value": "rst"
+            "value": "rs:rst"
+          },
+          "CLK_DOMAIN": {
+            "value": "FPGA_Encoder_handler_clk",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
           }
         }
       },
@@ -42,7 +63,17 @@
       },
       "rst": {
         "type": "rst",
-        "direction": "I"
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
       }
     },
     "components": {
@@ -83,7 +114,7 @@
                 "value_src": "constant"
               },
               "CLK_DOMAIN": {
-                "value": "FPGA_Encoder_handler_clk_0",
+                "value": "FPGA_Encoder_handler_clk",
                 "value_src": "default_prop"
               }
             }
@@ -121,7 +152,7 @@
                 "value_src": "constant"
               },
               "CLK_DOMAIN": {
-                "value": "FPGA_Encoder_handler_clk_0",
+                "value": "FPGA_Encoder_handler_clk",
                 "value_src": "default_prop"
               }
             }
@@ -168,7 +199,7 @@
                 "value_src": "constant"
               },
               "CLK_DOMAIN": {
-                "value": "FPGA_Encoder_handler_clk_0",
+                "value": "FPGA_Encoder_handler_clk",
                 "value_src": "default_prop"
               }
             }
@@ -250,9 +281,9 @@
       "rst_0_1": {
         "ports": [
           "rst",
-          "counter_nbit/rst",
           "encoder_direction/rst",
-          "one_shot/rst"
+          "one_shot/rst",
+          "counter_nbit/rst"
         ]
       }
     }

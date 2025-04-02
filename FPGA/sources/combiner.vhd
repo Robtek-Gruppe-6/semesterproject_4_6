@@ -38,17 +38,12 @@ entity combiner is
     );
     Port ( h : in STD_LOGIC_VECTOR(highbits-1 downto 0);
            l : in STD_LOGIC_VECTOR(lowbits-1 downto 0);
-           o : out STD_LOGIC_VECTOR((lowbits+highbits)-1 downto 0);
-           clk : in STD_LOGIC);
+           o : out STD_LOGIC_VECTOR((lowbits+highbits)-1 downto 0)
+           );
 end combiner;
 
 architecture Behavioral of combiner is
 
 begin
-    process(clk)
-        begin
-        if(rising_edge(clk)) then
-            o <= h & l;
-        end if;
-    end process;
+    o <= h & l;
 end Behavioral;

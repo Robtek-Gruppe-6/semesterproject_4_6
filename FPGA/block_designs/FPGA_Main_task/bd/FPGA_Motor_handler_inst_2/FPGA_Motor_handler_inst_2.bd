@@ -1,0 +1,336 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x652F0754A4669745",
+      "design_src": "C:/Semesterprojekt/semesterproject_4_6/FPGA/block_designs/FPGA_Main_task/bd/FPGA_Motor_handler_inst_0/FPGA_Motor_handler_inst_0.bd",
+      "device": "xc7z020clg400-1",
+      "name": "FPGA_Motor_handler_inst_2",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.2",
+      "validated": "true",
+      "variant": "true"
+    },
+    "design_tree": {
+      "pwm_block": "",
+      "signed_to_absolute_i_0": "",
+      "dmux_1xn_0": ""
+    },
+    "ports": {
+      "i": {
+        "direction": "I",
+        "left": "11",
+        "right": "0"
+      },
+      "clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "rst",
+            "value_src": "strong"
+          },
+          "CLK_DOMAIN": {
+            "value": "FPGA_Motor_handler_clk_0",
+            "value_src": "strong"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "strong"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "strong"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "strong"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "strong"
+          }
+        }
+      },
+      "rst": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "strong"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "strong"
+          }
+        }
+      },
+      "o": {
+        "direction": "O",
+        "left": "1",
+        "right": "0"
+      },
+      "en": {
+        "direction": "I"
+      }
+    },
+    "components": {
+      "pwm_block": {
+        "vlnv": "xilinx.com:module_ref:pwm_block:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Motor_handler_inst_2_pwm_block_0",
+        "xci_path": "ip\\FPGA_Motor_handler_inst_2_pwm_block_0\\FPGA_Motor_handler_inst_2_pwm_block_0.xci",
+        "inst_hier_path": "pwm_block",
+        "parameters": {
+          "max_cnt": {
+            "value": "1000"
+          },
+          "n_bits": {
+            "value": "11"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "pwm_block",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "FPGA_Motor_handler_clk_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "duty_cycle": {
+            "direction": "I",
+            "left": "10",
+            "right": "0"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "pwm": {
+            "direction": "O"
+          }
+        }
+      },
+      "signed_to_absolute_i_0": {
+        "vlnv": "xilinx.com:module_ref:signed_to_absolute_integer:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Motor_handler_inst_2_signed_to_absolute_i_0_0",
+        "xci_path": "ip\\FPGA_Motor_handler_inst_2_signed_to_absolute_i_0_0\\FPGA_Motor_handler_inst_2_signed_to_absolute_i_0_0.xci",
+        "inst_hier_path": "signed_to_absolute_i_0",
+        "parameters": {
+          "n_bits": {
+            "value": "12"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "signed_to_absolute_integer",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "FPGA_Motor_handler_clk_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "val": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "a_val": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "o_sign": {
+            "direction": "O"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
+          }
+        }
+      },
+      "dmux_1xn_0": {
+        "vlnv": "xilinx.com:module_ref:dmux_1xn:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Motor_handler_inst_2_dmux_1xn_0_0",
+        "xci_path": "ip\\FPGA_Motor_handler_inst_2_dmux_1xn_0_0\\FPGA_Motor_handler_inst_2_dmux_1xn_0_0.xci",
+        "inst_hier_path": "dmux_1xn_0",
+        "parameters": {
+          "n_bits": {
+            "value": "1"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "dmux_1xn",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "FPGA_Motor_handler_clk_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "i": {
+            "direction": "I"
+          },
+          "sel": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "o": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "clk_0_1": {
+        "ports": [
+          "clk",
+          "pwm_block/clk",
+          "signed_to_absolute_i_0/clk",
+          "dmux_1xn_0/clk"
+        ]
+      },
+      "dmux_1xn_0_o": {
+        "ports": [
+          "dmux_1xn_0/o",
+          "o"
+        ]
+      },
+      "en_0_1": {
+        "ports": [
+          "en",
+          "pwm_block/en",
+          "signed_to_absolute_i_0/en",
+          "dmux_1xn_0/en"
+        ]
+      },
+      "i_1": {
+        "ports": [
+          "i",
+          "signed_to_absolute_i_0/val"
+        ]
+      },
+      "pwm_block_pwm": {
+        "ports": [
+          "pwm_block/pwm",
+          "dmux_1xn_0/i"
+        ]
+      },
+      "rst_0_1": {
+        "ports": [
+          "rst",
+          "signed_to_absolute_i_0/rst",
+          "pwm_block/rst",
+          "dmux_1xn_0/rst"
+        ]
+      },
+      "signed_to_absolute_i_0_a_val": {
+        "ports": [
+          "signed_to_absolute_i_0/a_val",
+          "pwm_block/duty_cycle"
+        ]
+      },
+      "signed_to_absolute_i_0_o_sign": {
+        "ports": [
+          "signed_to_absolute_i_0/o_sign",
+          "dmux_1xn_0/sel"
+        ]
+      }
+    }
+  }
+}

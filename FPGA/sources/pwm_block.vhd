@@ -35,34 +35,37 @@ entity pwm_block is
 generic (  max_cnt : positive := 100;
            n_bits : positive := 8);
      
-    Port ( clk : in STD_LOGIC;
-           rst : in STD_LOGIC;
+    Port ( clk, en : in STD_LOGIC;
            duty_cycle : in STD_LOGIC_VECTOR (n_bits-1 downto 0);
+           rst : in STD_LOGIC;
            pwm : out STD_LOGIC);
 end pwm_block;
 
 architecture Behavioral of pwm_block is
-    signal done_sig : std_logic := '0';
+    signal done_sig, pwm_sig : std_logic := '0';
     signal cnt_sig : unsigned(n_bits-1 downto 0) := (others => '0'); -- fill with zeros
 begin
-    process (clk)
+    process (clk, rst)
     begin
-      if (rst = '1' or done_sig = '1') then -- sync reset to zero
+      if (rst = '1' or done_sig = '1') then -- async reset to zero
         cnt_sig <= (others => '0');
         done_sig <= '0';
-      elsif (rising_edge(clk) and done_sig = '0') then -- count on clk
-            cnt_sig <= cnt_sig+1 ; 
-      end if;
-      
-      if  max_cnt = TO_INTEGER(unsigned(cnt_sig)) then -- for custom cycle time
-        done_sig <= '1'; -- update done signal
-      end if;
-      
-     if cnt_sig < (TO_INTEGER(unsigned(duty_cycle))) then -- update pwm signal
-        pwm <= '1';
-     else  
-        pwm <= '0';
-     end if;
-           
+        pwm_sig <= '0';
+      else
+          if (rising_edge(clk) and done_sig = '0' and en = '1') then -- count on clk
+                cnt_sig <= cnt_sig+1 ; 
+          end if;
+          
+          if  max_cnt = TO_INTEGER(unsigned(cnt_sig)) then -- for custom cycle time
+            done_sig <= '1'; -- update done signal
+          end if;
+          
+         if cnt_sig < (TO_INTEGER(unsigned(duty_cycle))) then -- update pwm signal
+            pwm_sig <= '1';
+         else  
+            pwm_sig <= '0';
+         end if;
+      end if;     
     end process;
+    pwm <= pwm_sig;
 end Behavioral;
