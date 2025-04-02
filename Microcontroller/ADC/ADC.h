@@ -39,4 +39,18 @@ void ADC1_Init(void);
 ****************************************/
 uint16_t ADC1_Read(void);
 
+/***************************************
+*     Input      : None
+*     Output     : Signed ADC result (int16_t)
+*     Function   : Read a value from ADC0 with offset (1.65V = 0)
+****************************************/
+int16_t ADC0_Read_Offset(void);
+
+/***************************************
+*     Input      : None
+*     Output     : Signed ADC result (int16_t)
+*     Function   : Read a value from ADC1 with offset (1.65V = 0)
+****************************************/
+int16_t ADC1_Read_Offset(void);
+
 #endif /* ADC_H_ */

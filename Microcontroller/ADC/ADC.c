@@ -43,6 +43,15 @@ uint16_t ADC0_Read(void) {
 
 /***************************************
 *     Input      : None
+*     Output     : Signed ADC result (int16_t)
+*     Function   : Read a value from ADC0 with offset (1.65V = 0)
+****************************************/
+int16_t ADC0_Read_Offset(void) {
+    return (int16_t)(ADC0_Read()) - 2048;
+}
+
+/***************************************
+*     Input      : None
 *     Output     : None
 *     Function   : Initialize ADC1 on PE2
 ****************************************/
@@ -75,3 +84,11 @@ uint16_t ADC1_Read(void) {
     return result;
 }
 
+/***************************************
+*     Input      : None
+*     Output     : Signed ADC result (int16_t)
+*     Function   : Read a value from ADC1 with offset (1.65V = 0)
+****************************************/
+int16_t ADC1_Read_Offset(void) {
+    return (int16_t)(ADC1_Read()) - 2048;
+}
