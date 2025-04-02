@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xCA608D9A3D07C14F",
+      "boundary_crc": "0x49DE8ECD8199C5F5",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Main_task",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -46,6 +46,11 @@
         "right": "0"
       },
       "motor1": {
+        "direction": "O",
+        "left": "1",
+        "right": "0"
+      },
+      "motor_en": {
         "direction": "O",
         "left": "1",
         "right": "0"
@@ -138,7 +143,7 @@
         "ports": {
           "i": {
             "direction": "I",
-            "left": "11",
+            "left": "10",
             "right": "0"
           },
           "clk": {
@@ -163,7 +168,7 @@
         "variant_info": {
           "FPGA_Motor_handler.bd": {
             "scoped_diagram": "FPGA_Motor_handler_inst_0.bd",
-            "design_checksum": "0x6AC9B0AECA5E0EA8",
+            "design_checksum": "0x507B624FC513982E",
             "ref_name": "FPGA_Motor_handler",
             "ref_subinst_path": "FPGA_Main_task_FPGA_Motor_handler_0",
             "ref_type": "Block Design",
@@ -258,7 +263,7 @@
         "ports": {
           "i": {
             "direction": "I",
-            "left": "11",
+            "left": "10",
             "right": "0"
           },
           "clk": {
@@ -283,7 +288,7 @@
         "variant_info": {
           "FPGA_Motor_handler.bd": {
             "scoped_diagram": "FPGA_Motor_handler_inst_3.bd",
-            "design_checksum": "0x6AC9B0AECA5E0EA8",
+            "design_checksum": "0x507B624FC513982E",
             "ref_name": "FPGA_Motor_handler",
             "ref_subinst_path": "FPGA_Main_taskFPGA_Motor_handler_2",
             "ref_type": "Block Design",
@@ -408,13 +413,32 @@
           "FPGA_Motor_handler_2/clk"
         ]
       },
+      "combiner_0_o": {
+        "ports": [
+          "combiner_0/o",
+          "motor_en"
+        ]
+      },
       "en_0_1": {
         "ports": [
           "sw_1",
           "FPGA_Encoder_handler_1/en",
           "FPGA_Motor_handler_1/en",
           "FPGA_Encoder_handler_2/en",
-          "FPGA_Motor_handler_2/en"
+          "FPGA_Motor_handler_2/en",
+          "n_to_m_splitter_0/i"
+        ]
+      },
+      "n_to_m_splitter_0_o_h": {
+        "ports": [
+          "n_to_m_splitter_0/o_h",
+          "combiner_0/h"
+        ]
+      },
+      "n_to_m_splitter_0_o_l": {
+        "ports": [
+          "n_to_m_splitter_0/o_l",
+          "combiner_0/l"
         ]
       },
       "rst_0_1": {

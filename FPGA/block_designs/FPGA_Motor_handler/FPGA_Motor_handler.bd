@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x652F0754A4669745",
+      "boundary_crc": "0xE289CC17A5C33EF3",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Motor_handler",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -15,11 +15,6 @@
       "dmux_1xn_0": ""
     },
     "ports": {
-      "i": {
-        "direction": "I",
-        "left": "11",
-        "right": "0"
-      },
       "clk": {
         "type": "clk",
         "direction": "I",
@@ -58,6 +53,11 @@
       "en": {
         "direction": "I"
       },
+      "i": {
+        "direction": "I",
+        "left": "10",
+        "right": "0"
+      },
       "rst": {
         "type": "rst",
         "direction": "I",
@@ -85,7 +85,7 @@
             "value": "1000"
           },
           "n_bits": {
-            "value": "11"
+            "value": "10"
           }
         },
         "reference_info": {
@@ -113,7 +113,7 @@
           },
           "duty_cycle": {
             "direction": "I",
-            "left": "10",
+            "left": "9",
             "right": "0"
           },
           "rst": {
@@ -133,7 +133,7 @@
         "inst_hier_path": "signed_to_absolute_i_0",
         "parameters": {
           "n_bits": {
-            "value": "12"
+            "value": "11"
           }
         },
         "reference_info": {
@@ -161,12 +161,12 @@
           },
           "val": {
             "direction": "I",
-            "left": "11",
+            "left": "10",
             "right": "0"
           },
           "a_val": {
             "direction": "O",
-            "left": "10",
+            "left": "9",
             "right": "0"
           },
           "o_sign": {
@@ -255,19 +255,13 @@
           "dmux_1xn_0/en"
         ]
       },
-      "i_1": {
-        "ports": [
-          "i",
-          "signed_to_absolute_i_0/val"
-        ]
-      },
       "pwm_block_pwm": {
         "ports": [
           "pwm_block/pwm",
           "dmux_1xn_0/i"
         ]
       },
-      "rst_0_1": {
+      "rst_0_2": {
         "ports": [
           "rst",
           "signed_to_absolute_i_0/rst",
@@ -285,6 +279,12 @@
         "ports": [
           "signed_to_absolute_i_0/o_sign",
           "dmux_1xn_0/sel"
+        ]
+      },
+      "val_0_1": {
+        "ports": [
+          "i",
+          "signed_to_absolute_i_0/val"
         ]
       }
     }
