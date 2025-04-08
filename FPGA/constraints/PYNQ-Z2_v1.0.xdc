@@ -50,9 +50,9 @@ set_property -dict { PACKAGE_PIN U19   IOSTANDARD LVCMOS33 } [get_ports { encode
 ##PmodB
 
 set_property -dict { PACKAGE_PIN W14   IOSTANDARD LVCMOS33 } [get_ports { motor1[0] }]; #IO_L8P_T1_34 Sch=jb_p[1]
-set_property -dict { PACKAGE_PIN Y14   IOSTANDARD LVCMOS33 } [get_ports { motor2[0] }]; #IO_L8N_T1_34 Sch=jb_n[1]
+set_property -dict { PACKAGE_PIN Y14   IOSTANDARD LVCMOS33 } [get_ports { motor1[1] }]; #IO_L8N_T1_34 Sch=jb_n[1]
 set_property -dict { PACKAGE_PIN T11   IOSTANDARD LVCMOS33 } [get_ports { motor_en[0] }]; #IO_L1P_T0_34 Sch=jb_p[2]
-set_property -dict { PACKAGE_PIN T10   IOSTANDARD LVCMOS33 } [get_ports { motor1[1] }]; #IO_L1N_T0_34 Sch=jb_n[2]
+set_property -dict { PACKAGE_PIN T10   IOSTANDARD LVCMOS33 } [get_ports { motor2[0] }]; #IO_L1N_T0_34 Sch=jb_n[2]
 set_property -dict { PACKAGE_PIN V16   IOSTANDARD LVCMOS33 } [get_ports { motor2[1] }]; #IO_L18P_T2_34 Sch=jb_p[3]
 set_property -dict { PACKAGE_PIN W16   IOSTANDARD LVCMOS33 } [get_ports { motor_en[1] }]; #IO_L18N_T2_34 Sch=jb_n[3]
 #set_property -dict { PACKAGE_PIN V12   IOSTANDARD LVCMOS33 } [get_ports { jb[6] }]; #IO_L4P_T0_34 Sch=jb_p[4]
