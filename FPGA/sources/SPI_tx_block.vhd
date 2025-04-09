@@ -44,7 +44,7 @@ begin
     process(clk, rst)
     begin
         if (rst = '1') then
-            sent_bit  <= (others => '0');
+            sent_bit  <= '0';
         else
             if rising_edge(clk) then
                 if en = '1' then

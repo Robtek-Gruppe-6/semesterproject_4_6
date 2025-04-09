@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x0",
+      "boundary_crc": "0x2D8179AFCF3992B0",
       "device": "xc7z020clg400-1",
       "name": "FPGA_SPI_Handler",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -9,6 +9,460 @@
       "tool_version": "2024.2",
       "validated": "true"
     },
-    "design_tree": {}
+    "design_tree": {
+      "SPI_rx_block_0": "",
+      "SPI_tx_block_0": "",
+      "busdmux_0": "",
+      "n_to_m_splitter_0": "",
+      "dlatch_0": "",
+      "shifting_register_0": "",
+      "xlconstant_0": ""
+    },
+    "ports": {
+      "clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "rst",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "FPGA_SPI_Handler_clk_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "en": {
+        "direction": "I"
+      },
+      "rst": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
+      },
+      "SPI_tx": {
+        "direction": "O"
+      },
+      "SPI_rx": {
+        "direction": "I"
+      },
+      "motor_1": {
+        "direction": "O",
+        "left": "10",
+        "right": "0"
+      },
+      "motor_2": {
+        "direction": "O",
+        "left": "10",
+        "right": "0"
+      },
+      "latch": {
+        "direction": "I"
+      },
+      "data_to_send": {
+        "direction": "I",
+        "left": "15",
+        "right": "0"
+      }
+    },
+    "components": {
+      "SPI_rx_block_0": {
+        "vlnv": "xilinx.com:module_ref:SPI_rx_block:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_SPI_Handler_SPI_rx_block_0_0",
+        "xci_path": "ip\\FPGA_SPI_Handler_SPI_rx_block_0_0\\FPGA_SPI_Handler_SPI_rx_block_0_0.xci",
+        "inst_hier_path": "SPI_rx_block_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "SPI_rx_block",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "FPGA_SPI_Handler_clk_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "data_to_read": {
+            "direction": "I"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "received_data": {
+            "direction": "O",
+            "left": "11",
+            "right": "0"
+          }
+        }
+      },
+      "SPI_tx_block_0": {
+        "vlnv": "xilinx.com:module_ref:SPI_tx_block:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_SPI_Handler_SPI_tx_block_0_0",
+        "xci_path": "ip\\FPGA_SPI_Handler_SPI_tx_block_0_0\\FPGA_SPI_Handler_SPI_tx_block_0_0.xci",
+        "inst_hier_path": "SPI_tx_block_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "SPI_tx_block",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "FPGA_SPI_Handler_clk_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "sent_bit": {
+            "direction": "O"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "bit_to_send": {
+            "direction": "I"
+          }
+        }
+      },
+      "busdmux_0": {
+        "vlnv": "xilinx.com:module_ref:busdmux:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_SPI_Handler_busdmux_0_0",
+        "xci_path": "ip\\FPGA_SPI_Handler_busdmux_0_0\\FPGA_SPI_Handler_busdmux_0_0.xci",
+        "inst_hier_path": "busdmux_0",
+        "parameters": {
+          "BUS_WIDTH": {
+            "value": "11"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "busdmux",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "data_in": {
+            "direction": "I",
+            "left": "10",
+            "right": "0"
+          },
+          "sel": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "data_out_1": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "data_out_2": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          }
+        }
+      },
+      "n_to_m_splitter_0": {
+        "vlnv": "xilinx.com:module_ref:n_to_m_splitter:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_SPI_Handler_n_to_m_splitter_0_0",
+        "xci_path": "ip\\FPGA_SPI_Handler_n_to_m_splitter_0_0\\FPGA_SPI_Handler_n_to_m_splitter_0_0.xci",
+        "inst_hier_path": "n_to_m_splitter_0",
+        "parameters": {
+          "input_size": {
+            "value": "12"
+          },
+          "output_size_high": {
+            "value": "1"
+          },
+          "output_size_low": {
+            "value": "11"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "n_to_m_splitter",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "i": {
+            "direction": "I",
+            "left": "11",
+            "right": "0"
+          },
+          "o_h": {
+            "direction": "O",
+            "left": "0",
+            "right": "0"
+          },
+          "o_l": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          }
+        }
+      },
+      "dlatch_0": {
+        "vlnv": "xilinx.com:module_ref:dlatch:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_SPI_Handler_dlatch_0_0",
+        "xci_path": "ip\\FPGA_SPI_Handler_dlatch_0_0\\FPGA_SPI_Handler_dlatch_0_0.xci",
+        "inst_hier_path": "dlatch_0",
+        "parameters": {
+          "WIDTH": {
+            "value": "16"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "dlatch",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "FPGA_SPI_Handler_clk_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "o": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "shifting_register_0": {
+        "vlnv": "xilinx.com:module_ref:shifting_register:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_SPI_Handler_shifting_register_0_0",
+        "xci_path": "ip\\FPGA_SPI_Handler_shifting_register_0_0\\FPGA_SPI_Handler_shifting_register_0_0.xci",
+        "inst_hier_path": "shifting_register_0",
+        "parameters": {
+          "BUS_WIDTH": {
+            "value": "16"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "shifting_register",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "FPGA_SPI_Handler_clk_0",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "data_in": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "dir": {
+            "direction": "I"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "bit_out": {
+            "direction": "O"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "9",
+        "xci_name": "FPGA_SPI_Handler_xlconstant_0_0",
+        "xci_path": "ip\\FPGA_SPI_Handler_xlconstant_0_0\\FPGA_SPI_Handler_xlconstant_0_0.xci",
+        "inst_hier_path": "xlconstant_0"
+      }
+    },
+    "nets": {
+      "SPI_rx_block_0_received_data": {
+        "ports": [
+          "SPI_rx_block_0/received_data",
+          "n_to_m_splitter_0/i"
+        ]
+      },
+      "SPI_tx_block_0_sent_bit": {
+        "ports": [
+          "SPI_tx_block_0/sent_bit",
+          "SPI_tx"
+        ]
+      },
+      "busdmux_0_data_out_1": {
+        "ports": [
+          "busdmux_0/data_out_1",
+          "motor_1"
+        ]
+      },
+      "busdmux_0_data_out_2": {
+        "ports": [
+          "busdmux_0/data_out_2",
+          "motor_2"
+        ]
+      },
+      "clk_0_1": {
+        "ports": [
+          "clk",
+          "SPI_rx_block_0/clk",
+          "SPI_tx_block_0/clk",
+          "dlatch_0/clk",
+          "shifting_register_0/clk"
+        ]
+      },
+      "data_to_read_0_1": {
+        "ports": [
+          "SPI_rx",
+          "SPI_rx_block_0/data_to_read"
+        ]
+      },
+      "dlatch_0_o": {
+        "ports": [
+          "dlatch_0/o",
+          "shifting_register_0/data_in"
+        ]
+      },
+      "en_0_1": {
+        "ports": [
+          "en",
+          "SPI_rx_block_0/en",
+          "SPI_tx_block_0/en",
+          "shifting_register_0/en"
+        ]
+      },
+      "i_0_1": {
+        "ports": [
+          "data_to_send",
+          "dlatch_0/i"
+        ]
+      },
+      "n_to_m_splitter_0_o_h": {
+        "ports": [
+          "n_to_m_splitter_0/o_h",
+          "busdmux_0/sel"
+        ]
+      },
+      "n_to_m_splitter_0_o_l": {
+        "ports": [
+          "n_to_m_splitter_0/o_l",
+          "busdmux_0/data_in"
+        ]
+      },
+      "rst_0_1": {
+        "ports": [
+          "rst",
+          "SPI_rx_block_0/rst",
+          "SPI_tx_block_0/rst",
+          "dlatch_0/rst",
+          "shifting_register_0/rst"
+        ]
+      },
+      "shifting_register_0_bit_out": {
+        "ports": [
+          "shifting_register_0/bit_out",
+          "SPI_tx_block_0/bit_to_send"
+        ]
+      },
+      "store_0_1": {
+        "ports": [
+          "latch",
+          "dlatch_0/en"
+        ]
+      },
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "shifting_register_0/dir"
+        ]
+      }
+    }
   }
 }

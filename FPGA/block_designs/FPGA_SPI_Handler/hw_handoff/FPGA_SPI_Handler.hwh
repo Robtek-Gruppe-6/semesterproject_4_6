@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Apr  9 13:10:58 2025" VIVADOVERSION="2024.2">
+
+  <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="FPGA_SPI_Handler" PACKAGE="clg400" SPEEDGRADE="-1"/>
+
+  <EXTERNALPORTS>
+    <PORT DIR="I" NAME="SPI_rx" SIGIS="undef" SIGNAME="External_Ports_SPI_rx">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SPI_rx_block_0" PORT="data_to_read"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="SPI_tx" SIGIS="undef" SIGNAME="SPI_tx_block_0_sent_bit">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SPI_tx_block_0" PORT="sent_bit"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SPI_rx_block_0" PORT="clk"/>
+        <CONNECTION INSTANCE="SPI_tx_block_0" PORT="clk"/>
+        <CONNECTION INSTANCE="dlatch_0" PORT="clk"/>
+        <CONNECTION INSTANCE="shifting_register_0" PORT="clk"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="15" NAME="data_to_send" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_data_to_send">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="dlatch_0" PORT="i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="External_Ports_en">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SPI_rx_block_0" PORT="en"/>
+        <CONNECTION INSTANCE="SPI_tx_block_0" PORT="en"/>
+        <CONNECTION INSTANCE="shifting_register_0" PORT="en"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="latch" SIGIS="undef" SIGNAME="External_Ports_latch">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="dlatch_0" PORT="en"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="10" NAME="motor_1" RIGHT="0" SIGIS="undef" SIGNAME="busdmux_0_data_out_1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="busdmux_0" PORT="data_out_1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="10" NAME="motor_2" RIGHT="0" SIGIS="undef" SIGNAME="busdmux_0_data_out_2">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="busdmux_0" PORT="data_out_2"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_rst">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SPI_rx_block_0" PORT="rst"/>
+        <CONNECTION INSTANCE="SPI_tx_block_0" PORT="rst"/>
+        <CONNECTION INSTANCE="dlatch_0" PORT="rst"/>
+        <CONNECTION INSTANCE="shifting_register_0" PORT="rst"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES/>
+
+  <MODULES>
+    <MODULE COREREVISION="1" FULLNAME="/SPI_rx_block_0" HWVERSION="1.0" INSTANCE="SPI_rx_block_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="SPI_rx_block" VLNV="xilinx.com:module_ref:SPI_rx_block:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_SPI_Handler_SPI_rx_block_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="data_to_read" SIGIS="undef" SIGNAME="External_Ports_SPI_rx">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SPI_rx"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="External_Ports_en">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="en"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="11" NAME="received_data" RIGHT="0" SIGIS="undef" SIGNAME="SPI_rx_block_0_received_data">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="n_to_m_splitter_0" PORT="i"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_rst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="rst"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/SPI_tx_block_0" HWVERSION="1.0" INSTANCE="SPI_tx_block_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="SPI_tx_block" VLNV="xilinx.com:module_ref:SPI_tx_block:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_SPI_Handler_SPI_tx_block_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="bit_to_send" SIGIS="undef" SIGNAME="shifting_register_0_bit_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="shifting_register_0" PORT="bit_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="External_Ports_en">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="en"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_rst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="rst"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="sent_bit" SIGIS="undef" SIGNAME="SPI_tx_block_0_sent_bit">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="SPI_tx"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/busdmux_0" HWVERSION="1.0" INSTANCE="busdmux_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="busdmux" VLNV="xilinx.com:module_ref:busdmux:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="BUS_WIDTH" VALUE="11"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_SPI_Handler_busdmux_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="10" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="n_to_m_splitter_0_o_l">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="n_to_m_splitter_0" PORT="o_l"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="10" NAME="data_out_1" RIGHT="0" SIGIS="undef" SIGNAME="busdmux_0_data_out_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="motor_1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="10" NAME="data_out_2" RIGHT="0" SIGIS="undef" SIGNAME="busdmux_0_data_out_2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="motor_2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="sel" RIGHT="0" SIGIS="undef" SIGNAME="n_to_m_splitter_0_o_h">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="n_to_m_splitter_0" PORT="o_h"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/dlatch_0" HWVERSION="1.0" INSTANCE="dlatch_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="dlatch" VLNV="xilinx.com:module_ref:dlatch:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="WIDTH" VALUE="16"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_SPI_Handler_dlatch_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="External_Ports_latch">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="latch"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="i" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_data_to_send">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="data_to_send"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="o" RIGHT="0" SIGIS="undef" SIGNAME="dlatch_0_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="shifting_register_0" PORT="data_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_rst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="rst"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/n_to_m_splitter_0" HWVERSION="1.0" INSTANCE="n_to_m_splitter_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="n_to_m_splitter" VLNV="xilinx.com:module_ref:n_to_m_splitter:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="input_size" VALUE="12"/>
+        <PARAMETER NAME="output_size_high" VALUE="1"/>
+        <PARAMETER NAME="output_size_low" VALUE="11"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_SPI_Handler_n_to_m_splitter_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="11" NAME="i" RIGHT="0" SIGIS="undef" SIGNAME="SPI_rx_block_0_received_data">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="SPI_rx_block_0" PORT="received_data"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="o_h" RIGHT="0" SIGIS="undef" SIGNAME="n_to_m_splitter_0_o_h">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="busdmux_0" PORT="sel"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="10" NAME="o_l" RIGHT="0" SIGIS="undef" SIGNAME="n_to_m_splitter_0_o_l">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="busdmux_0" PORT="data_in"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/shifting_register_0" HWVERSION="1.0" INSTANCE="shifting_register_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="shifting_register" VLNV="xilinx.com:module_ref:shifting_register:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="BUS_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_SPI_Handler_shifting_register_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" NAME="bit_out" SIGIS="undef" SIGNAME="shifting_register_0_bit_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="SPI_tx_block_0" PORT="bit_to_send"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="dlatch_0_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="dlatch_0" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="dir" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="External_Ports_en">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="en"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_rst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="rst"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="9" FULLNAME="/xlconstant_0" HWVERSION="1.1" INSTANCE="xlconstant_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x1"/>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_SPI_Handler_xlconstant_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="shifting_register_0" PORT="dir"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

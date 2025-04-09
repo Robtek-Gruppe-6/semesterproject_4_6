@@ -57,7 +57,7 @@ ENTITY FPGA_Motor_handler_pwm_block_0_1 IS
   PORT (
     clk : IN STD_LOGIC;
     en : IN STD_LOGIC;
-    duty_cycle : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+    duty_cycle : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
     rst : IN STD_LOGIC;
     pwm : OUT STD_LOGIC
   );
@@ -74,7 +74,7 @@ ARCHITECTURE FPGA_Motor_handler_pwm_block_0_1_arch OF FPGA_Motor_handler_pwm_blo
     PORT (
       clk : IN STD_LOGIC;
       en : IN STD_LOGIC;
-      duty_cycle : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+      duty_cycle : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
       rst : IN STD_LOGIC;
       pwm : OUT STD_LOGIC
     );
@@ -92,7 +92,7 @@ BEGIN
   U0 : pwm_block
     GENERIC MAP (
       max_cnt => 1000,
-      n_bits => 11
+      n_bits => 10
     )
     PORT MAP (
       clk => clk,

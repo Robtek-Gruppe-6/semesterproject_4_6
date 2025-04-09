@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"FPGA_Motor_handler": {
+			"proto_instances": {
+			}
+		}
+	}
+}

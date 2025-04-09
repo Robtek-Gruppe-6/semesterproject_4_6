@@ -57,8 +57,8 @@ ENTITY FPGA_Motor_handler_signed_to_absolute_i_0_0 IS
   PORT (
     clk : IN STD_LOGIC;
     en : IN STD_LOGIC;
-    val : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
-    a_val : OUT STD_LOGIC_VECTOR(10 DOWNTO 0);
+    val : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+    a_val : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
     o_sign : OUT STD_LOGIC;
     rst : IN STD_LOGIC
   );
@@ -74,8 +74,8 @@ ARCHITECTURE FPGA_Motor_handler_signed_to_absolute_i_0_0_arch OF FPGA_Motor_hand
     PORT (
       clk : IN STD_LOGIC;
       en : IN STD_LOGIC;
-      val : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
-      a_val : OUT STD_LOGIC_VECTOR(10 DOWNTO 0);
+      val : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+      a_val : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
       o_sign : OUT STD_LOGIC;
       rst : IN STD_LOGIC
     );
@@ -92,7 +92,7 @@ ARCHITECTURE FPGA_Motor_handler_signed_to_absolute_i_0_0_arch OF FPGA_Motor_hand
 BEGIN
   U0 : signed_to_absolute_integer
     GENERIC MAP (
-      n_bits => 12
+      n_bits => 11
     )
     PORT MAP (
       clk => clk,
