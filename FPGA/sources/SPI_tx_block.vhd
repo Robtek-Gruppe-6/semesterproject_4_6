@@ -44,6 +44,8 @@ begin
     process(clk, rst)
     begin
         if (rst = '1') then
+            received_data <= (others => '0');
+        else
             if rising_edge(clk) then
                 if en = '1' then
                     sent_bit <= bit_to_send;
