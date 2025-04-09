@@ -43,12 +43,12 @@ uint16_t ADC0_Read(void) {
 
 /***************************************
 *     Input      : None
-*     Output     : Signed ADC result (int16_t) scaled from -1000 to 1000
+*     Output     : Signed ADC result (int16_t) scaled from -32000 to 32000
 *     Function   : Read a value from ADC0 and scale it
 ****************************************/
 int16_t ADC0_Read_Scaled(void) {
-    int16_t raw_value = ADC0_Read() - 2048; // Center around 0
-    return (raw_value * 1000) / 2048;
+    int32_t raw_value = ADC0_Read() - 2048; // Center around 0
+    return (raw_value * 32000) / 2048;
 }
 
 /***************************************
@@ -87,10 +87,10 @@ uint16_t ADC1_Read(void) {
 
 /***************************************
 *     Input      : None
-*     Output     : Signed ADC result (int16_t) scaled from -1000 to 1000
+*     Output     : Signed ADC result (int16_t) scaled from -32000 to 32000
 *     Function   : Read a value from ADC1 and scale it
 ****************************************/
 int16_t ADC1_Read_Scaled(void) {
-    int16_t raw_value = ADC1_Read() - 2048; // Center around 0
-    return (raw_value * 1000) / 2048;
+    int32_t raw_value = ADC1_Read() - 2048; // Center around 0
+    return (raw_value * 32000) / 2048;
 }
