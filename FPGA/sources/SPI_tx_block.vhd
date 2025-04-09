@@ -34,18 +34,20 @@ use IEEE.NUMERIC_STD.ALL;
 entity SPI_tx_block is
     Port ( clk : in STD_LOGIC;
            sent_bit : out STD_LOGIC;
-           en : in STD_LOGIC;
+           en, rst : in STD_LOGIC;
            bit_to_send : in STD_LOGIC);
 end SPI_tx_block;
 
 architecture Behavioral of SPI_tx_block is
 
 begin
-    process(clk)
+    process(clk, rst)
     begin
-        if rising_edge(clk) then
-            if en = '1' then
-                sent_bit <= bit_to_send;
+        if (rst = '1') then
+            if rising_edge(clk) then
+                if en = '1' then
+                    sent_bit <= bit_to_send;
+                end if;
             end if;
         end if;
     end process;
