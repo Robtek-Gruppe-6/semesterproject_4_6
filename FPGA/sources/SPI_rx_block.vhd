@@ -17,6 +17,8 @@ begin
     process(clk, rst)
     begin
         if (rst = '1') then
+            received_data <= (others => '0');
+        else
             if rising_edge(clk) then
                 if en = '1' then
                     -- Insert new bit at LSB **before shifting**
