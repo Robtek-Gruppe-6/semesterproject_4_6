@@ -236,9 +236,9 @@
       "clk_0_1": {
         "ports": [
           "clk",
-          "counter_nbit/clk",
           "encoder_direction/clk",
-          "one_shot/clk"
+          "one_shot/clk",
+          "counter_nbit/clk"
         ]
       },
       "counter_nbit_0_cnt": {

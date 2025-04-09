@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xC43E79CB4558377B",
+      "boundary_crc": "0xC43E79CB738B70BE",
       "design_src": "C:/Semesterprojekt/semesterproject_4_6/FPGA/block_designs/FPGA_Main_task/bd/FPGA_Encoder_handler_inst_0/FPGA_Encoder_handler_inst_0.bd",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Encoder_handler_inst_1",
@@ -27,16 +27,16 @@
         "direction": "I",
         "parameters": {
           "ASSOCIATED_RESET": {
-            "value": "rs:rst:sw_0",
+            "value": "rs:rst",
             "value_src": "strong"
           },
           "CLK_DOMAIN": {
-            "value": "FPGA_Main_task_clk_0",
-            "value_src": "default_prop"
+            "value": "FPGA_Encoder_handler_clk",
+            "value_src": "strong"
           },
           "FREQ_HZ": {
             "value": "100000000",
-            "value_src": "default_prop"
+            "value_src": "strong"
           },
           "FREQ_TOLERANCE_HZ": {
             "value": "0",
@@ -48,7 +48,7 @@
           },
           "PHASE": {
             "value": "0.0",
-            "value_src": "default_prop"
+            "value_src": "strong"
           }
         }
       },
@@ -73,7 +73,7 @@
           },
           "POLARITY": {
             "value": "ACTIVE_LOW",
-            "value_src": "default_prop"
+            "value_src": "strong"
           }
         }
       }
@@ -115,16 +115,8 @@
                 "value": "rst",
                 "value_src": "constant"
               },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "default_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              },
               "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_clk_0",
+                "value": "FPGA_Encoder_handler_clk",
                 "value_src": "default_prop"
               }
             }
@@ -137,13 +129,7 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           }
         }
       },
@@ -167,16 +153,8 @@
                 "value": "rst",
                 "value_src": "constant"
               },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "default_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              },
               "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_clk_0",
+                "value": "FPGA_Encoder_handler_clk",
                 "value_src": "default_prop"
               }
             }
@@ -192,13 +170,7 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           },
           "pulse": {
             "direction": "O"
@@ -228,16 +200,8 @@
                 "value": "rst",
                 "value_src": "constant"
               },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "default_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              },
               "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_clk_0",
+                "value": "FPGA_Encoder_handler_clk",
                 "value_src": "default_prop"
               }
             }
@@ -250,13 +214,7 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           },
           "o": {
             "direction": "O"
@@ -280,9 +238,9 @@
       "clk_0_1": {
         "ports": [
           "clk",
-          "counter_nbit/clk",
           "encoder_direction/clk",
-          "one_shot/clk"
+          "one_shot/clk",
+          "counter_nbit/clk"
         ]
       },
       "counter_nbit_0_cnt": {

@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "FPGA_Motor_handler_inst_0_dmux_1xn_0_0",
-    "cell_name": "FPGA_Motor_handler_1/dmux_1xn_0",
+    "cell_name": "dmux_1xn_0",
     "component_reference": "xilinx.com:module_ref:dmux_1xn:1.0",
     "ip_revision": "1",
     "gen_directory": ".",

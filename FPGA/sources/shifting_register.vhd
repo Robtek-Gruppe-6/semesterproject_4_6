@@ -24,7 +24,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -38,25 +38,44 @@ entity shifting_register is
            data_in : in STD_LOGIC_VECTOR (BUS_WIDTH-1 downto 0);
            dir, en : in STD_LOGIC;
            rst : in STD_LOGIC;
-           bit_out : out STD_LOGIC);
+           bit_out, done : out STD_LOGIC := '0');
 end shifting_register;
 
 architecture Behavioral of shifting_register is
     signal shifting_reg : STD_LOGIC_VECTOR (BUS_WIDTH-1 downto 0) := (others => '0');
+    signal shift_cnt    : UNSIGNED (BUS_WIDTH-1 downto 0) := (others => '0');
 begin
     process(clk, rst)
     begin
         if (rst = '1') then
             bit_out <= '0';
+            done <= '0';
+            shifting_reg <= (others => '0');
+            shift_cnt <= (others => '0');
         else
             if rising_edge(clk) then
                 if en = '1' then
+                    -- reset done
+                    done <= '0';
+                    
                     if (dir = '1') then
+                        -- shift left
                         bit_out <= shifting_reg(BUS_WIDTH -1);
                         shifting_reg <= shifting_reg(BUS_WIDTH - 2 downto 0) & '0';
+                        -- count for done signal
+                        shift_cnt <= shift_cnt+1;
                     else
+                        -- shift right
                         bit_out <= shifting_reg(0);     
                         shifting_reg <= '0' &shifting_reg(BUS_WIDTH - 1 downto 1);
+                        -- count for done signal
+                        shift_cnt <= shift_cnt+1;
+                    end if;
+                    
+                    if (shift_cnt >= BUS_WIDTH) then
+                        -- reset count and output done
+                        shift_cnt <= (others => '0');
+                        done <= '1';
                     end if;
                 end if;
             end if;    

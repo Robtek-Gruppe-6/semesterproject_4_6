@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x49DE8ECD8199C5F5",
+      "boundary_crc": "0x586CC0BA0BF4A0A7",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Main_task",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -14,7 +14,8 @@
       "FPGA_Encoder_handler_2": "",
       "FPGA_Motor_handler_2": "",
       "n_to_m_splitter_0": "",
-      "combiner_0": ""
+      "combiner_0": "",
+      "FPGA_SPI_Handler_0": ""
     },
     "ports": {
       "clk": {
@@ -54,6 +55,12 @@
         "direction": "O",
         "left": "1",
         "right": "0"
+      },
+      "SPI_rx_0": {
+        "direction": "I"
+      },
+      "SPI_tx_0": {
+        "direction": "O"
       }
     },
     "components": {
@@ -110,7 +117,7 @@
         "variant_info": {
           "FPGA_Encoder_handler.bd": {
             "scoped_diagram": "FPGA_Encoder_handler_inst_0.bd",
-            "design_checksum": "0x1F69EC9F887CF396",
+            "design_checksum": "0x80404C25887CF396",
             "ref_name": "FPGA_Encoder_handler",
             "ref_subinst_path": "FPGA_Main_task_FPGA_Encoder_handler_0",
             "ref_type": "Block Design",
@@ -230,7 +237,7 @@
         "variant_info": {
           "FPGA_Encoder_handler.bd": {
             "scoped_diagram": "FPGA_Encoder_handler_inst_1.bd",
-            "design_checksum": "0x1F69EC9F887CF396",
+            "design_checksum": "0x80404C25887CF396",
             "ref_name": "FPGA_Encoder_handler",
             "ref_subinst_path": "FPGA_Main_taskFPGA_Encoder_handler_0",
             "ref_type": "Block Design",
@@ -365,9 +372,89 @@
             "right": "0"
           }
         }
+      },
+      "FPGA_SPI_Handler_0": {
+        "parameters": {
+          "ACTIVE_SIM_BD": {
+            "value": "FPGA_SPI_Handler.bd"
+          },
+          "ACTIVE_SYNTH_BD": {
+            "value": "FPGA_SPI_Handler.bd"
+          },
+          "ENABLE_DFX": {
+            "value": "0"
+          },
+          "LIST_SIM_BD": {
+            "value": "FPGA_SPI_Handler.bd"
+          },
+          "LIST_SYNTH_BD": {
+            "value": "FPGA_SPI_Handler.bd"
+          },
+          "LOCK_PROPAGATE": {
+            "value": "0"
+          }
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "SPI_tx": {
+            "direction": "O"
+          },
+          "motor_1": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "motor_2": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "SPI_rx": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "encoder_1": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "encoder_2": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          }
+        },
+        "post_compiled_compname": "FPGA_SPI_Handler_inst_0",
+        "architecture": "zynq",
+        "variant_info": {
+          "FPGA_SPI_Handler.bd": {
+            "scoped_diagram": "FPGA_SPI_Handler_inst_0.bd",
+            "design_checksum": "0xE337F2B6C1C582AA",
+            "ref_name": "FPGA_SPI_Handler",
+            "ref_subinst_path": "FPGA_Main_task_FPGA_SPI_Handler_0",
+            "ref_type": "Block Design",
+            "source_type": "all",
+            "active": "all"
+          }
+        }
       }
     },
     "nets": {
+      "FPGA_Encoder_handler_2_position": {
+        "ports": [
+          "FPGA_Encoder_handler_2/position",
+          "FPGA_SPI_Handler_0/encoder_2"
+        ]
+      },
       "FPGA_Motor_handler_0_o": {
         "ports": [
           "FPGA_Motor_handler_2/o",
@@ -378,6 +465,30 @@
         "ports": [
           "FPGA_Motor_handler_1/o",
           "motor1"
+        ]
+      },
+      "FPGA_SPI_Handler_0_SPI_tx": {
+        "ports": [
+          "FPGA_SPI_Handler_0/SPI_tx",
+          "SPI_tx_0"
+        ]
+      },
+      "FPGA_SPI_Handler_0_motor_1": {
+        "ports": [
+          "FPGA_SPI_Handler_0/motor_1",
+          "FPGA_Motor_handler_1/i"
+        ]
+      },
+      "FPGA_SPI_Handler_0_motor_2": {
+        "ports": [
+          "FPGA_SPI_Handler_0/motor_2",
+          "FPGA_Motor_handler_2/i"
+        ]
+      },
+      "SPI_rx_0_1": {
+        "ports": [
+          "SPI_rx_0",
+          "FPGA_SPI_Handler_0/SPI_rx"
         ]
       },
       "a_0_1": {
@@ -410,13 +521,20 @@
           "FPGA_Encoder_handler_1/clk",
           "FPGA_Motor_handler_1/clk",
           "FPGA_Encoder_handler_2/clk",
-          "FPGA_Motor_handler_2/clk"
+          "FPGA_Motor_handler_2/clk",
+          "FPGA_SPI_Handler_0/clk"
         ]
       },
       "combiner_0_o": {
         "ports": [
           "combiner_0/o",
           "motor_en"
+        ]
+      },
+      "data_to_send_1": {
+        "ports": [
+          "FPGA_Encoder_handler_1/position",
+          "FPGA_SPI_Handler_0/encoder_1"
         ]
       },
       "en_0_1": {
@@ -426,7 +544,8 @@
           "FPGA_Motor_handler_1/en",
           "FPGA_Encoder_handler_2/en",
           "FPGA_Motor_handler_2/en",
-          "n_to_m_splitter_0/i"
+          "n_to_m_splitter_0/i",
+          "FPGA_SPI_Handler_0/en"
         ]
       },
       "n_to_m_splitter_0_o_h": {
@@ -447,7 +566,8 @@
           "FPGA_Encoder_handler_1/rst",
           "FPGA_Motor_handler_1/rst",
           "FPGA_Encoder_handler_2/rst",
-          "FPGA_Motor_handler_2/rst"
+          "FPGA_Motor_handler_2/rst",
+          "FPGA_SPI_Handler_0/rst"
         ]
       }
     }

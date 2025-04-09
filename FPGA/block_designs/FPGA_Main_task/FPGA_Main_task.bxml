@@ -2,61 +2,12 @@
 <Root MajorVersion="0" MinorVersion="43">
   <CompositeFile CompositeFileTopName="FPGA_Main_task" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1743596721"/>
-    <Generation Name="SIMULATION" State="STALE" Timestamp="1743596721"/>
-    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1743596721"/>
-    <Generation Name="HW_HANDOFF" State="STALE" Timestamp="1743596088"/>
-    <FileCollection Name="SOURCES" Type="SOURCES">
-      <File Name="synth\FPGA_Main_task.vhd" Type="VHDL">
-        <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <ProcessingOrder Val="NORMAL"/>
-      </File>
-      <File Name="sim\FPGA_Main_task.vhd" Type="VHDL">
-        <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SIMULATION"/>
-        <ProcessingOrder Val="NORMAL"/>
-      </File>
-      <File Name="FPGA_Main_task.bmj" Type="BMJ">
-        <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="PRE_SYNTHESIS"/>
-        <UsedIn Val="PRE_SIMULATION"/>
-        <ProcessingOrder Val="NORMAL"/>
-      </File>
-      <File Name="FPGA_Main_task_bmstub.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="PRE_SYNTHESIS"/>
-        <UsedIn Val="PRE_SIMULATION"/>
-        <ProcessingOrder Val="NORMAL"/>
-      </File>
-      <File Name="FPGA_Main_task_ooc.xdc" Type="XDC">
-        <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="OUT_OF_CONTEXT"/>
-        <ProcessingOrder Val="NORMAL"/>
-      </File>
-    </FileCollection>
+    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1744201226"/>
+    <Generation Name="SIMULATION" State="STALE" Timestamp="1744201226"/>
+    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1744201226"/>
+    <Generation Name="HW_HANDOFF" State="STALE" Timestamp="1744201226"/>
+    <FileCollection Name="SOURCES" Type="SOURCES"/>
     <BlockContainerCollection>
-      <BlockContainer InstPath="/FPGA_Encoder_handler_1" IsPR="false" State="Stale">
-        <ActiveVariantSynth FileName="bd\FPGA_Encoder_handler_inst_0\FPGA_Encoder_handler_inst_0.bd"/>
-        <ActiveVariantSim FileName="bd\FPGA_Encoder_handler_inst_0\FPGA_Encoder_handler_inst_0.bd"/>
-        <VariantsCollection>
-          <BDFile BDFilePath="bd\FPGA_Encoder_handler_inst_0\FPGA_Encoder_handler_inst_0.bd" BDFileset="FPGA_Encoder_handler_inst_0" BDSourceFile="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd" BDSourceFileset="sources_1" BDVariantType="ALL"/>
-        </VariantsCollection>
-      </BlockContainer>
-      <BlockContainer InstPath="/FPGA_Encoder_handler_2" IsPR="false" State="Stale">
-        <ActiveVariantSynth FileName="bd\FPGA_Encoder_handler_inst_1\FPGA_Encoder_handler_inst_1.bd"/>
-        <ActiveVariantSim FileName="bd\FPGA_Encoder_handler_inst_1\FPGA_Encoder_handler_inst_1.bd"/>
-        <VariantsCollection>
-          <BDFile BDFilePath="bd\FPGA_Encoder_handler_inst_1\FPGA_Encoder_handler_inst_1.bd" BDFileset="FPGA_Encoder_handler_inst_1" BDSourceFile="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd" BDSourceFileset="sources_1" BDVariantType="ALL"/>
-        </VariantsCollection>
-      </BlockContainer>
       <BlockContainer InstPath="/FPGA_Motor_handler_1" IsPR="false" State="Stale">
         <ActiveVariantSynth FileName="bd\FPGA_Motor_handler_inst_0\FPGA_Motor_handler_inst_0.bd"/>
         <ActiveVariantSim FileName="bd\FPGA_Motor_handler_inst_0\FPGA_Motor_handler_inst_0.bd"/>
@@ -71,9 +22,39 @@
           <BDFile BDFilePath="bd\FPGA_Motor_handler_inst_3\FPGA_Motor_handler_inst_3.bd" BDFileset="FPGA_Motor_handler_inst_3" BDSourceFile="..\FPGA_Motor_handler\FPGA_Motor_handler.bd" BDSourceFileset="sources_1" BDVariantType="ALL"/>
         </VariantsCollection>
       </BlockContainer>
+      <BlockContainer InstPath="/FPGA_Encoder_handler_1" IsPR="false" State="Stale">
+        <ActiveVariantSynth FileName="bd\FPGA_Encoder_handler_inst_0\FPGA_Encoder_handler_inst_0.bd"/>
+        <ActiveVariantSim FileName="bd\FPGA_Encoder_handler_inst_0\FPGA_Encoder_handler_inst_0.bd"/>
+        <VariantsCollection>
+          <BDFile BDFilePath="bd\FPGA_Encoder_handler_inst_0\FPGA_Encoder_handler_inst_0.bd" BDFileset="FPGA_Encoder_handler_inst_0" BDSourceFile="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd" BDSourceFileset="sources_1" BDVariantType="ALL"/>
+        </VariantsCollection>
+      </BlockContainer>
+      <BlockContainer InstPath="/FPGA_Encoder_handler_2" IsPR="false" State="Stale">
+        <ActiveVariantSynth FileName="bd\FPGA_Encoder_handler_inst_1\FPGA_Encoder_handler_inst_1.bd"/>
+        <ActiveVariantSim FileName="bd\FPGA_Encoder_handler_inst_1\FPGA_Encoder_handler_inst_1.bd"/>
+        <VariantsCollection>
+          <BDFile BDFilePath="bd\FPGA_Encoder_handler_inst_1\FPGA_Encoder_handler_inst_1.bd" BDFileset="FPGA_Encoder_handler_inst_1" BDSourceFile="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd" BDSourceFileset="sources_1" BDVariantType="ALL"/>
+        </VariantsCollection>
+      </BlockContainer>
+      <BlockContainer InstPath="/FPGA_SPI_Handler_0" IsPR="false" State="Stale">
+        <ActiveVariantSynth FileName="bd\FPGA_SPI_Handler_inst_0\FPGA_SPI_Handler_inst_0.bd"/>
+        <ActiveVariantSim FileName="bd\FPGA_SPI_Handler_inst_0\FPGA_SPI_Handler_inst_0.bd"/>
+        <VariantsCollection>
+          <BDFile BDFilePath="bd\FPGA_SPI_Handler_inst_0\FPGA_SPI_Handler_inst_0.bd" BDFileset="FPGA_SPI_Handler_inst_0" BDSourceFile="..\FPGA_SPI_Handler\FPGA_SPI_Handler.bd" BDSourceFileset="sources_1" BDVariantType="ALL"/>
+        </VariantsCollection>
+      </BlockContainer>
     </BlockContainerCollection>
     <ReferenceCollection>
       <ModuleReference TargetName="FPGA_Motor_handler" Type="Block Design" SubInstancePath="FPGA_Main_task_FPGA_Motor_handler_0">
+        <TopFile Name="..\FPGA_Motor_handler\FPGA_Motor_handler.bd"/>
+        <FileCollection>
+          <File Name="..\..\sources\pwm_block.vhd"/>
+          <File Name="..\..\sources\signed_to_unsigned_integer.vhd"/>
+          <File Name="..\..\sources\dmux_1_to_n.vhd"/>
+          <File Name="..\FPGA_Motor_handler\FPGA_Motor_handler.bd"/>
+        </FileCollection>
+      </ModuleReference>
+      <ModuleReference TargetName="FPGA_Motor_handler" Type="Block Design" SubInstancePath="FPGA_Main_taskFPGA_Motor_handler_2">
         <TopFile Name="..\FPGA_Motor_handler\FPGA_Motor_handler.bd"/>
         <FileCollection>
           <File Name="..\..\sources\pwm_block.vhd"/>
@@ -91,6 +72,19 @@
           <File Name="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd"/>
         </FileCollection>
       </ModuleReference>
+      <ModuleReference TargetName="FPGA_SPI_Handler" Type="Block Design" SubInstancePath="FPGA_Main_task_FPGA_SPI_Handler_0">
+        <TopFile Name="..\FPGA_SPI_Handler\FPGA_SPI_Handler.bd"/>
+        <FileCollection>
+          <File Name="..\..\sources\SPI_rx_block.vhd"/>
+          <File Name="..\..\sources\SPI_tx_block.vhd"/>
+          <File Name="..\..\sources\busdmux.vhd"/>
+          <File Name="..\..\sources\n_to_m_splitter.vhd"/>
+          <File Name="..\..\sources\dlatch.vhd"/>
+          <File Name="..\..\sources\shifting_register.vhd"/>
+          <File Name="..\..\sources\busmux_2x1.vhd"/>
+          <File Name="..\FPGA_SPI_Handler\FPGA_SPI_Handler.bd"/>
+        </FileCollection>
+      </ModuleReference>
       <ModuleReference TargetName="FPGA_Encoder_handler" Type="Block Design" SubInstancePath="FPGA_Main_taskFPGA_Encoder_handler_0">
         <TopFile Name="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd"/>
         <FileCollection>
@@ -98,15 +92,6 @@
           <File Name="..\..\sources\encoder_direction.vhd"/>
           <File Name="..\..\sources\one_shot.vhd"/>
           <File Name="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd"/>
-        </FileCollection>
-      </ModuleReference>
-      <ModuleReference TargetName="FPGA_Motor_handler" Type="Block Design" SubInstancePath="FPGA_Main_taskFPGA_Motor_handler_2">
-        <TopFile Name="..\FPGA_Motor_handler\FPGA_Motor_handler.bd"/>
-        <FileCollection>
-          <File Name="..\..\sources\pwm_block.vhd"/>
-          <File Name="..\..\sources\signed_to_unsigned_integer.vhd"/>
-          <File Name="..\..\sources\dmux_1_to_n.vhd"/>
-          <File Name="..\FPGA_Motor_handler\FPGA_Motor_handler.bd"/>
         </FileCollection>
       </ModuleReference>
     </ReferenceCollection>

@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "FPGA_Motor_handler_inst_0_pwm_block_0",
-    "cell_name": "FPGA_Motor_handler_1/pwm_block",
+    "cell_name": "pwm_block",
     "component_reference": "xilinx.com:module_ref:pwm_block:1.0",
     "ip_revision": "1",
     "gen_directory": ".",

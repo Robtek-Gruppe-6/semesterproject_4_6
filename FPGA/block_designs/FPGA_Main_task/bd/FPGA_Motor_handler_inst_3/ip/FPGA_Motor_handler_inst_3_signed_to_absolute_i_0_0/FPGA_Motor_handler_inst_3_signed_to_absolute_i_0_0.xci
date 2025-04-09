@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "FPGA_Motor_handler_inst_3_signed_to_absolute_i_0_0",
-    "cell_name": "FPGA_Motor_handler_2/signed_to_absolute_i_0",
+    "cell_name": "signed_to_absolute_i_0",
     "component_reference": "xilinx.com:module_ref:signed_to_absolute_integer:1.0",
     "ip_revision": "1",
     "gen_directory": ".",

@@ -191,164 +191,334 @@
                 "VT": "BC"
             },
             "V4": {
-                "VM": "FPGA_Main_task",
+                "VM": "/FPGA_SPI_Handler_0",
                 "VT": "BC"
             },
             "V5": {
+                "VM": "FPGA_Main_task",
+                "VT": "BC"
+            },
+            "V6": {
                 "VH": "2",
                 "VM": "FPGA_Main_task",
                 "VT": "VR"
             },
-            "V6": {
+            "V7": {
                 "VH": "3",
                 "VM": "FPGA_Encoder_handler_inst_0",
                 "VT": "VR"
             },
-            "V7": {
+            "V8": {
                 "VH": "5",
                 "VM": "FPGA_Motor_handler_inst_0",
                 "VT": "VR"
             },
-            "V8": {
+            "V9": {
                 "VH": "13",
                 "VM": "FPGA_Encoder_handler_inst_1",
                 "VT": "VR"
             },
-            "V9": {
+            "V10": {
                 "VH": "17",
                 "VM": "FPGA_Motor_handler_inst_3",
                 "VT": "VR"
             },
-            "V10": {
+            "V11": {
                 "VH": "19",
                 "VM": "FPGA_Motor_handler",
                 "VT": "VR"
             },
-            "V11": {
+            "V12": {
                 "VH": "23",
                 "VM": "FPGA_Motor_handler",
                 "VT": "VR"
             },
-            "V12": {
+            "V13": {
+                "VH": "29",
+                "VM": "FPGA_SPI_Handler_inst_0",
+                "VT": "VR"
+            },
+            "V14": {
+                "VH": "31",
+                "VM": "FPGA_SPI_Handler",
+                "VT": "VR"
+            },
+            "V15": {
+                "VH": "37",
+                "VM": "FPGA_Encoder_handler",
+                "VT": "VR"
+            },
+            "V16": {
+                "VH": "41",
+                "VM": "FPGA_Encoder_handler",
+                "VT": "VR"
+            },
+            "V17": {
                 "VH": "30",
                 "VT": "PM"
             },
-            "V13": {
+            "V18": {
                 "VH": "6630",
-                "VT": "PM",
-                "TU": "active"
+                "VT": "PM"
             },
-            "V14": {
+            "V19": {
                 "VH": "8970",
                 "VT": "PM"
             },
-            "V15": {
+            "V20": {
                 "VH": "25194",
+                "VT": "PM"
+            },
+            "V21": {
+                "VH": "192270",
+                "VT": "PM",
+                "TU": "active"
+            },
+            "V22": {
+                "VH": "205530",
+                "VT": "PM"
+            },
+            "V23": {
+                "VH": "606390",
+                "VT": "PM"
+            },
+            "V24": {
+                "VH": "2371330",
                 "VT": "PM"
             }
         },
         "edges": [
             {
                 "src": "V0",
-                "trg": "V6"
+                "trg": "V7"
+            },
+            {
+                "src": "V0",
+                "trg": "V15"
             },
             {
                 "src": "V1",
+                "trg": "V9"
+            },
+            {
+                "src": "V1",
+                "trg": "V16"
+            },
+            {
+                "src": "V2",
                 "trg": "V8"
             },
             {
                 "src": "V2",
-                "trg": "V7"
+                "trg": "V11"
             },
             {
-                "src": "V2",
+                "src": "V3",
                 "trg": "V10"
             },
             {
                 "src": "V3",
-                "trg": "V9"
-            },
-            {
-                "src": "V3",
-                "trg": "V11"
-            },
-            {
-                "src": "V4",
-                "trg": "V5"
-            },
-            {
-                "src": "V5",
                 "trg": "V12"
             },
             {
-                "src": "V5",
+                "src": "V4",
                 "trg": "V13"
             },
             {
-                "src": "V5",
-                "trg": "V14",
-                "EH": "8970"
+                "src": "V4",
+                "trg": "V14"
             },
             {
                 "src": "V5",
-                "trg": "V15",
+                "trg": "V6"
+            },
+            {
+                "src": "V6",
+                "trg": "V17"
+            },
+            {
+                "src": "V6",
+                "trg": "V18"
+            },
+            {
+                "src": "V6",
+                "trg": "V19",
+                "EH": "8970"
+            },
+            {
+                "src": "V6",
+                "trg": "V20",
                 "EH": "25194"
             },
             {
                 "src": "V6",
-                "trg": "V13"
+                "trg": "V21"
             },
             {
                 "src": "V6",
-                "trg": "V14",
+                "trg": "V22",
+                "EH": "205530"
+            },
+            {
+                "src": "V6",
+                "trg": "V23",
+                "EH": "606390"
+            },
+            {
+                "src": "V6",
+                "trg": "V24",
+                "EH": "2371330"
+            },
+            {
+                "src": "V7",
+                "trg": "V18"
+            },
+            {
+                "src": "V7",
+                "trg": "V19",
                 "EH": "8970"
             },
             {
-                "src": "V6",
-                "trg": "V15",
+                "src": "V7",
+                "trg": "V20",
                 "EH": "25194"
             },
             {
                 "src": "V7",
-                "trg": "V13"
+                "trg": "V21"
             },
             {
                 "src": "V7",
-                "trg": "V14",
+                "trg": "V22",
+                "EH": "205530"
+            },
+            {
+                "src": "V7",
+                "trg": "V23",
+                "EH": "606390"
+            },
+            {
+                "src": "V8",
+                "trg": "V18"
+            },
+            {
+                "src": "V8",
+                "trg": "V19",
                 "EH": "8970"
             },
             {
                 "src": "V8",
-                "trg": "V13"
+                "trg": "V21"
             },
             {
                 "src": "V8",
-                "trg": "V14",
+                "trg": "V22",
+                "EH": "205530"
+            },
+            {
+                "src": "V8",
+                "trg": "V23",
+                "EH": "606390"
+            },
+            {
+                "src": "V8",
+                "trg": "V24",
+                "EH": "2371330"
+            },
+            {
+                "src": "V9",
+                "trg": "V18"
+            },
+            {
+                "src": "V9",
+                "trg": "V19",
                 "EH": "8970"
             },
             {
-                "src": "V8",
-                "trg": "V15",
+                "src": "V9",
+                "trg": "V20",
                 "EH": "25194"
             },
             {
                 "src": "V9",
-                "trg": "V13"
+                "trg": "V21"
             },
             {
                 "src": "V9",
-                "trg": "V15",
+                "trg": "V22",
+                "EH": "205530"
+            },
+            {
+                "src": "V9",
+                "trg": "V24",
+                "EH": "2371330"
+            },
+            {
+                "src": "V10",
+                "trg": "V18"
+            },
+            {
+                "src": "V10",
+                "trg": "V20",
                 "EH": "25194"
             },
             {
                 "src": "V10",
-                "trg": "V15",
-                "EH": "25194"
+                "trg": "V21"
+            },
+            {
+                "src": "V10",
+                "trg": "V22",
+                "EH": "205530"
+            },
+            {
+                "src": "V10",
+                "trg": "V23",
+                "EH": "606390"
+            },
+            {
+                "src": "V10",
+                "trg": "V24",
+                "EH": "2371330"
             },
             {
                 "src": "V11",
-                "trg": "V14",
+                "trg": "V20",
+                "EH": "25194"
+            },
+            {
+                "src": "V12",
+                "trg": "V19",
                 "EH": "8970"
+            },
+            {
+                "src": "V13",
+                "trg": "V21"
+            },
+            {
+                "src": "V13",
+                "trg": "V23",
+                "EH": "606390"
+            },
+            {
+                "src": "V13",
+                "trg": "V24",
+                "EH": "2371330"
+            },
+            {
+                "src": "V14",
+                "trg": "V22",
+                "EH": "205530"
+            },
+            {
+                "src": "V15",
+                "trg": "V24",
+                "EH": "2371330"
+            },
+            {
+                "src": "V16",
+                "trg": "V23",
+                "EH": "606390"
             }
         ]
     }

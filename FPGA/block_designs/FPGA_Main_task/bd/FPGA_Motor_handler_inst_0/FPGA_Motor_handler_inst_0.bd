@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x652F0754A4669745",
+      "boundary_crc": "0xE289CC17A5C33EF3",
       "design_src": "C:/Semesterprojekt/semesterproject_4_6/FPGA/block_designs/FPGA_Motor_handler/FPGA_Motor_handler.bd",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Motor_handler_inst_0",
