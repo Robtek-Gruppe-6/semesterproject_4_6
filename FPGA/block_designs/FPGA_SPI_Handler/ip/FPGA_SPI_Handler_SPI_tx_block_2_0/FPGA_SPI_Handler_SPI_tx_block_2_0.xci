@@ -1,14 +1,20 @@
 {
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
-    "xci_name": "FPGA_SPI_Handler_SPI_tx_block_0_0",
+    "xci_name": "FPGA_SPI_Handler_SPI_tx_block_2_0",
     "cell_name": "SPI_tx_block_0",
     "component_reference": "xilinx.com:module_ref:SPI_tx_block:1.0",
     "ip_revision": "1",
     "gen_directory": ".",
     "parameters": {
       "component_parameters": {
-        "Component_Name": [ { "value": "FPGA_SPI_Handler_SPI_tx_block_0_0", "resolve_type": "user", "usage": "all" } ]
+        "BUS_WIDTH": [ { "value": "16", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "dir": [ { "value": "\"1\"", "value_src": "user", "resolve_type": "user", "format": "bitString", "usage": "all" } ],
+        "Component_Name": [ { "value": "FPGA_SPI_Handler_SPI_tx_block_2_0", "resolve_type": "user", "usage": "all" } ]
+      },
+      "model_parameters": {
+        "BUS_WIDTH": [ { "value": "16", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "dir": [ { "value": "\"1\"", "resolve_type": "generated", "format": "bitString", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "zynq" } ],
@@ -18,7 +24,7 @@
         "PACKAGE": [ { "value": "clg400" } ],
         "PREFHDL": [ { "value": "VHDL" } ],
         "SILICON_REVISION": [ { "value": "" } ],
-        "SIMULATOR_LANGUAGE": [ { "value": "VHDL" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "MIXED" } ],
         "SPEEDGRADE": [ { "value": "-1" } ],
         "STATIC_POWER": [ { "value": "" } ],
         "TEMPERATURE_GRADE": [ { "value": "" } ]
@@ -37,10 +43,11 @@
     "boundary": {
       "ports": {
         "clk": [ { "direction": "in" } ],
-        "sent_bit": [ { "direction": "out" } ],
+        "data_in": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
         "en": [ { "direction": "in" } ],
         "rst": [ { "direction": "in" } ],
-        "bit_to_send": [ { "direction": "in" } ]
+        "bit_out": [ { "direction": "out", "driver_value": "0x0" } ],
+        "done": [ { "direction": "out", "driver_value": "0x0" } ]
       },
       "interfaces": {
         "rst": {
