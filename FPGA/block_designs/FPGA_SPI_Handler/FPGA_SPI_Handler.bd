@@ -135,6 +135,16 @@
             "direction": "O",
             "left": "11",
             "right": "0"
+          },
+          "intr": {
+            "type": "intr",
+            "direction": "O",
+            "parameters": {
+              "SENSITIVITY": {
+                "value": "LEVEL_HIGH",
+                "value_src": "constant"
+              }
+            }
           }
         }
       },
