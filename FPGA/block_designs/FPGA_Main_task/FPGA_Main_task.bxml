@@ -45,6 +45,15 @@
       </BlockContainer>
     </BlockContainerCollection>
     <ReferenceCollection>
+      <ModuleReference TargetName="FPGA_Encoder_handler" Type="Block Design" SubInstancePath="FPGA_Main_task_FPGA_Encoder_handler_0">
+        <TopFile Name="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd"/>
+        <FileCollection>
+          <File Name="..\..\sources\counter_nbit.vhd"/>
+          <File Name="..\..\sources\encoder_direction.vhd"/>
+          <File Name="..\..\sources\one_shot.vhd"/>
+          <File Name="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd"/>
+        </FileCollection>
+      </ModuleReference>
       <ModuleReference TargetName="FPGA_Encoder_handler" Type="Block Design" SubInstancePath="FPGA_Main_taskFPGA_Encoder_handler_0">
         <TopFile Name="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd"/>
         <FileCollection>
@@ -78,20 +87,8 @@
           <File Name="..\..\sources\SPI_rx_block.vhd"/>
           <File Name="..\..\sources\busdmux.vhd"/>
           <File Name="..\..\sources\n_to_m_splitter.vhd"/>
-          <File Name="..\..\sources\dlatch.vhd"/>
-          <File Name="..\..\sources\busmux_2x1.vhd"/>
-          <File Name="..\..\sources\d_flip_flop.vhd"/>
           <File Name="..\..\sources\SPI_tx_block.vhd"/>
           <File Name="..\FPGA_SPI_Handler\FPGA_SPI_Handler.bd"/>
-        </FileCollection>
-      </ModuleReference>
-      <ModuleReference TargetName="FPGA_Encoder_handler" Type="Block Design" SubInstancePath="FPGA_Main_task_FPGA_Encoder_handler_0">
-        <TopFile Name="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd"/>
-        <FileCollection>
-          <File Name="..\..\sources\counter_nbit.vhd"/>
-          <File Name="..\..\sources\encoder_direction.vhd"/>
-          <File Name="..\..\sources\one_shot.vhd"/>
-          <File Name="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd"/>
         </FileCollection>
       </ModuleReference>
     </ReferenceCollection>

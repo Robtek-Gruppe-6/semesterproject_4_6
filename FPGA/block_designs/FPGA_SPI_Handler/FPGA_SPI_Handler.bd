@@ -484,11 +484,11 @@
       "clk_0_1": {
         "ports": [
           "clk",
-          "SPI_rx_block_0/clk",
           "dlatch_0/clk",
           "dlatch_1/clk",
           "d_flip_flop_1/clk",
-          "SPI_tx_block_0/clk"
+          "SPI_tx_block_0/clk",
+          "SPI_rx_block_0/clk"
         ]
       },
       "d_flip_flop_1_Q": {
@@ -518,9 +518,9 @@
       "en_0_1": {
         "ports": [
           "en",
-          "SPI_rx_block_0/en",
           "d_flip_flop_1/en",
-          "SPI_tx_block_0/en"
+          "SPI_tx_block_0/en",
+          "SPI_rx_block_0/en"
         ]
       },
       "i_0_1": {
@@ -551,10 +551,10 @@
         "ports": [
           "rst",
           "dlatch_0/rst",
-          "SPI_rx_block_0/rst",
           "dlatch_1/rst",
           "d_flip_flop_1/rst",
-          "SPI_tx_block_0/rst"
+          "SPI_tx_block_0/rst",
+          "SPI_rx_block_0/rst"
         ]
       },
       "shifting_register_0_done": {

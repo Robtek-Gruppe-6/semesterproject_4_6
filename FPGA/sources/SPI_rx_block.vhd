@@ -21,11 +21,8 @@ begin
         else
             if rising_edge(clk) then
                 if en = '1' then
-                    -- Insert new bit at LSB **before shifting**
-                    shift_reg(0) <= data_to_read;
-    
-                    -- Shift left (preserving the LSB that was just set)
-                    shift_reg(11 downto 1) <= shift_reg(10 downto 0);
+                    -- Shift left, insert new bit at LSB
+                    shift_reg(11 downto 1) <= shift_reg(10 downto 0) & data_to_read;
     
                     -- Increment bit counter
                     if bit_count < 11 then
