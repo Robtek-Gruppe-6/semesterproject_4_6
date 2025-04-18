@@ -22,15 +22,15 @@ begin
             if rising_edge(clk) then
                 if en = '1' then
                     -- Shift left, insert new bit at LSB
-                    shift_reg(11 downto 1) <= shift_reg(10 downto 0) & data_to_read;
+                    shift_reg(11 downto 0) <= shift_reg(10 downto 0) & data_to_read;
     
                     -- Increment bit counter
-                    if bit_count < 11 then
+                    if bit_count <= 11 then
                         bit_count <= bit_count + 1;
                     else
                         -- Once 12 bits have been received, update output and reset counter
                         received_data <= shift_reg;
-                        bit_count <= 0;
+                        bit_count <= 1;
                     end if;
                 end if;
             end if;

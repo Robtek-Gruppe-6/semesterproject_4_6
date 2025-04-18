@@ -5,15 +5,15 @@
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
-preplace port port-id_en -pg 1 -lvl 0 -x 0 -y 280 -defaultsOSRD
+preplace port port-id_clk -pg 1 -lvl 0 -x -10 -y 100 -defaultsOSRD
+preplace port port-id_en -pg 1 -lvl 0 -x -10 -y 280 -defaultsOSRD
 preplace port port-id_SPI_tx -pg 1 -lvl 4 -x 980 -y 590 -defaultsOSRD
-preplace port port-id_SPI_rx -pg 1 -lvl 0 -x 0 -y 70 -defaultsOSRD
-preplace port port-id_rst -pg 1 -lvl 0 -x 0 -y 250 -defaultsOSRD
+preplace port port-id_SPI_rx -pg 1 -lvl 0 -x -10 -y 70 -defaultsOSRD
+preplace port port-id_rst -pg 1 -lvl 0 -x -10 -y 250 -defaultsOSRD
 preplace portBus motor_1 -pg 1 -lvl 4 -x 980 -y 90 -defaultsOSRD
 preplace portBus motor_2 -pg 1 -lvl 4 -x 980 -y 120 -defaultsOSRD
-preplace portBus encoder_1 -pg 1 -lvl 0 -x 0 -y 220 -defaultsOSRD
-preplace portBus encoder_2 -pg 1 -lvl 0 -x 0 -y 600 -defaultsOSRD
+preplace portBus encoder_1 -pg 1 -lvl 0 -x -10 -y 220 -defaultsOSRD
+preplace portBus encoder_2 -pg 1 -lvl 0 -x -10 -y 600 -defaultsOSRD
 preplace inst SPI_rx_block_0 -pg 1 -lvl 1 -x 210 -y 90 -defaultsOSRD
 preplace inst busdmux_0 -pg 1 -lvl 3 -x 810 -y 110 -defaultsOSRD
 preplace inst n_to_m_splitter_0 -pg 1 -lvl 2 -x 500 -y 90 -defaultsOSRD
@@ -33,14 +33,14 @@ preplace netloc data_to_read_0_1 1 0 1 50J 70n
 preplace netloc dlatch_0_o 1 1 1 360 250n
 preplace netloc dlatch_1_o 1 1 1 360 390n
 preplace netloc en_0_1 1 0 3 40 500 NJ 500 620J
-preplace netloc i_0_1 1 0 1 20J 220n
+preplace netloc i_0_1 1 0 1 10J 220n
 preplace netloc i_0_2 1 0 1 NJ 600
 preplace netloc n_to_m_splitter_0_o_h 1 2 1 640 80n
 preplace netloc n_to_m_splitter_0_o_l 1 2 1 N 100
 preplace netloc rst_0_1 1 0 3 50 700 NJ 700 640J
 preplace netloc shifting_register_0_done 1 0 4 60 510 NJ 510 NJ 510 950
-levelinfo -pg 1 0 210 500 810 980
-pagesize -pg 1 -db -bbox -sgen -160 0 1130 710
+levelinfo -pg 1 -10 210 500 810 980
+pagesize -pg 1 -db -bbox -sgen -170 0 1130 710
 "
 }
 0

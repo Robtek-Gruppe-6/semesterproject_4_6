@@ -45,6 +45,16 @@
       </BlockContainer>
     </BlockContainerCollection>
     <ReferenceCollection>
+      <ModuleReference TargetName="FPGA_SPI_Handler" Type="Block Design" SubInstancePath="FPGA_Main_task_FPGA_SPI_Handler_0">
+        <TopFile Name="..\FPGA_SPI_Handler\FPGA_SPI_Handler.bd"/>
+        <FileCollection>
+          <File Name="..\..\sources\SPI_rx_block.vhd"/>
+          <File Name="..\..\sources\busdmux.vhd"/>
+          <File Name="..\..\sources\n_to_m_splitter.vhd"/>
+          <File Name="..\..\sources\SPI_tx_block.vhd"/>
+          <File Name="..\FPGA_SPI_Handler\FPGA_SPI_Handler.bd"/>
+        </FileCollection>
+      </ModuleReference>
       <ModuleReference TargetName="FPGA_Encoder_handler" Type="Block Design" SubInstancePath="FPGA_Main_task_FPGA_Encoder_handler_0">
         <TopFile Name="..\FPGA_Encoder_handler\FPGA_Encoder_handler.bd"/>
         <FileCollection>
@@ -79,16 +89,6 @@
           <File Name="..\..\sources\signed_to_unsigned_integer.vhd"/>
           <File Name="..\..\sources\dmux_1_to_n.vhd"/>
           <File Name="..\FPGA_Motor_handler\FPGA_Motor_handler.bd"/>
-        </FileCollection>
-      </ModuleReference>
-      <ModuleReference TargetName="FPGA_SPI_Handler" Type="Block Design" SubInstancePath="FPGA_Main_task_FPGA_SPI_Handler_0">
-        <TopFile Name="..\FPGA_SPI_Handler\FPGA_SPI_Handler.bd"/>
-        <FileCollection>
-          <File Name="..\..\sources\SPI_rx_block.vhd"/>
-          <File Name="..\..\sources\busdmux.vhd"/>
-          <File Name="..\..\sources\n_to_m_splitter.vhd"/>
-          <File Name="..\..\sources\SPI_tx_block.vhd"/>
-          <File Name="..\FPGA_SPI_Handler\FPGA_SPI_Handler.bd"/>
         </FileCollection>
       </ModuleReference>
     </ReferenceCollection>
