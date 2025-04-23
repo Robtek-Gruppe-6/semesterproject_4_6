@@ -59,7 +59,8 @@ ENTITY FPGA_SPI_Handler_SPI_rx_block_0_0 IS
     data_to_read : IN STD_LOGIC;
     en : IN STD_LOGIC;
     rst : IN STD_LOGIC;
-    received_data : OUT STD_LOGIC_VECTOR(11 DOWNTO 0)
+    received_data : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+    intr : OUT STD_LOGIC
   );
 END FPGA_SPI_Handler_SPI_rx_block_0_0;
 
@@ -72,7 +73,8 @@ ARCHITECTURE FPGA_SPI_Handler_SPI_rx_block_0_0_arch OF FPGA_SPI_Handler_SPI_rx_b
       data_to_read : IN STD_LOGIC;
       en : IN STD_LOGIC;
       rst : IN STD_LOGIC;
-      received_data : OUT STD_LOGIC_VECTOR(11 DOWNTO 0)
+      received_data : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+      intr : OUT STD_LOGIC
     );
   END COMPONENT SPI_rx_block;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
@@ -81,6 +83,9 @@ ARCHITECTURE FPGA_SPI_Handler_SPI_rx_block_0_0_arch OF FPGA_SPI_Handler_SPI_rx_b
   ATTRIBUTE X_INTERFACE_INFO OF clk: SIGNAL IS "xilinx.com:signal:clock:1.0 clk CLK";
   ATTRIBUTE X_INTERFACE_MODE OF clk: SIGNAL IS "slave clk";
   ATTRIBUTE X_INTERFACE_PARAMETER OF clk: SIGNAL IS "XIL_INTERFACENAME clk, ASSOCIATED_RESET rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN FPGA_SPI_Handler_clk_0, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_INFO OF intr: SIGNAL IS "xilinx.com:signal:interrupt:1.0 intr INTERRUPT";
+  ATTRIBUTE X_INTERFACE_MODE OF intr: SIGNAL IS "master intr";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF intr: SIGNAL IS "XIL_INTERFACENAME intr, SENSITIVITY LEVEL_HIGH, PortWidth 1";
   ATTRIBUTE X_INTERFACE_INFO OF rst: SIGNAL IS "xilinx.com:signal:reset:1.0 rst RST";
   ATTRIBUTE X_INTERFACE_MODE OF rst: SIGNAL IS "slave rst";
   ATTRIBUTE X_INTERFACE_PARAMETER OF rst: SIGNAL IS "XIL_INTERFACENAME rst, POLARITY ACTIVE_LOW, INSERT_VIP 0";
@@ -91,6 +96,7 @@ BEGIN
       data_to_read => data_to_read,
       en => en,
       rst => rst,
-      received_data => received_data
+      received_data => received_data,
+      intr => intr
     );
 END FPGA_SPI_Handler_SPI_rx_block_0_0_arch;

@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xA2DE7C454B1AA25E",
+      "boundary_crc": "0x8449B966E2246061",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Main_task",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -15,7 +15,8 @@
       "n_to_m_splitter_0": "",
       "combiner_0": "",
       "FPGA_SPI_Handler_0": "",
-      "FPGA_Motor_handler_1": ""
+      "FPGA_Motor_handler_1": "",
+      "clock_divider_0": ""
     },
     "ports": {
       "clk": {
@@ -56,13 +57,13 @@
         "left": "1",
         "right": "0"
       },
-      "SPI_rx_0": {
+      "ck_mosi": {
         "direction": "I"
       },
-      "SPI_tx_0": {
+      "ck_miso": {
         "direction": "O"
       },
-      "SPI_clk": {
+      "ck_sck": {
         "type": "clk",
         "direction": "I"
       }
@@ -454,6 +455,45 @@
             "active": "all"
           }
         }
+      },
+      "clock_divider_0": {
+        "vlnv": "xilinx.com:module_ref:clock_divider:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_clock_divider_0_0",
+        "xci_path": "ip\\FPGA_Main_task_clock_divider_0_0\\FPGA_Main_task_clock_divider_0_0.xci",
+        "inst_hier_path": "clock_divider_0",
+        "parameters": {
+          "clock_out": {
+            "value": "1000000"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "clock_divider",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "en": {
+            "direction": "I"
+          },
+          "clk_out": {
+            "direction": "O"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          }
+        }
       }
     },
     "nets": {
@@ -478,7 +518,7 @@
       "FPGA_SPI_Handler_0_SPI_tx": {
         "ports": [
           "FPGA_SPI_Handler_0/SPI_tx",
-          "SPI_tx_0"
+          "ck_miso"
         ]
       },
       "FPGA_SPI_Handler_0_motor_1": {
@@ -495,7 +535,7 @@
       },
       "SPI_rx_0_1": {
         "ports": [
-          "SPI_rx_0",
+          "ck_mosi",
           "FPGA_SPI_Handler_0/SPI_rx"
         ]
       },
@@ -525,7 +565,7 @@
       },
       "clk_0_1": {
         "ports": [
-          "clk",
+          "clock_divider_0/clk_out",
           "FPGA_Encoder_handler_1/clk",
           "FPGA_Encoder_handler_2/clk",
           "FPGA_Motor_handler_2/clk",
@@ -534,8 +574,14 @@
       },
       "clk_0_2": {
         "ports": [
-          "SPI_clk",
+          "ck_sck",
           "FPGA_SPI_Handler_0/clk"
+        ]
+      },
+      "clk_1": {
+        "ports": [
+          "clk",
+          "clock_divider_0/clk"
         ]
       },
       "combiner_0_o": {
@@ -558,7 +604,8 @@
           "FPGA_Motor_handler_2/en",
           "n_to_m_splitter_0/i",
           "FPGA_SPI_Handler_0/en",
-          "FPGA_Motor_handler_1/en"
+          "FPGA_Motor_handler_1/en",
+          "clock_divider_0/en"
         ]
       },
       "n_to_m_splitter_0_o_h": {
@@ -580,7 +627,8 @@
           "FPGA_Encoder_handler_2/rst",
           "FPGA_Motor_handler_2/rst",
           "FPGA_SPI_Handler_0/rst",
-          "FPGA_Motor_handler_1/rst"
+          "FPGA_Motor_handler_1/rst",
+          "clock_divider_0/rst"
         ]
       }
     }

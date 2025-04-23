@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xE289CC17A5C33EF3",
+      "boundary_crc": "0xE289CC1706ED7698",
       "design_src": "C:/Semesterprojekt/semesterproject_4_6/FPGA/block_designs/FPGA_Motor_handler/FPGA_Motor_handler.bd",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Motor_handler_inst_3",
@@ -26,11 +26,11 @@
         "direction": "I",
         "parameters": {
           "ASSOCIATED_RESET": {
-            "value": "rst",
+            "value": "rst:sw_0",
             "value_src": "strong"
           },
           "CLK_DOMAIN": {
-            "value": "FPGA_Motor_handler_clk_0",
+            "value": "FPGA_Main_task_clk",
             "value_src": "strong"
           },
           "FREQ_HZ": {
@@ -103,8 +103,16 @@
                 "value": "rst",
                 "value_src": "constant"
               },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
               "CLK_DOMAIN": {
-                "value": "FPGA_Motor_handler_clk_0",
+                "value": "FPGA_Main_task_clk",
                 "value_src": "default_prop"
               }
             }
@@ -119,7 +127,13 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
           },
           "pwm": {
             "direction": "O"
@@ -151,8 +165,16 @@
                 "value": "rst",
                 "value_src": "constant"
               },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
               "CLK_DOMAIN": {
-                "value": "FPGA_Motor_handler_clk_0",
+                "value": "FPGA_Main_task_clk",
                 "value_src": "default_prop"
               }
             }
@@ -175,7 +197,13 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
           }
         }
       },
@@ -204,8 +232,16 @@
                 "value": "rst",
                 "value_src": "constant"
               },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
               "CLK_DOMAIN": {
-                "value": "FPGA_Motor_handler_clk_0",
+                "value": "FPGA_Main_task_clk",
                 "value_src": "default_prop"
               }
             }
@@ -223,7 +259,13 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
           },
           "o": {
             "direction": "O",

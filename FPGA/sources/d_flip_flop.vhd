@@ -47,7 +47,7 @@ begin
     process (clk, rst)
     begin
         if (rst ='1') then
-            Q <= '0';
+            Q_sig <= '0';
             latch <= '0';
         else
             if (rising_edge(clk)) then
