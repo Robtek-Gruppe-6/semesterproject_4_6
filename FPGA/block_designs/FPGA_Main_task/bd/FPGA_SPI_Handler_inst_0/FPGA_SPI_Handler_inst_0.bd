@@ -1,13 +1,14 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x1E5E35423A35DE46",
+      "boundary_crc": "0x1E5E3542FF594E75",
       "design_src": "C:/Users/Bluex/Desktop/FPGA_Programming/Semesterprojekt/FPGA/block_designs/FPGA_SPI_Handler/FPGA_SPI_Handler.bd",
       "device": "xc7z020clg400-1",
       "name": "FPGA_SPI_Handler_inst_0",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
       "tool_version": "2024.2",
+      "validated": "true",
       "variant": "true"
     },
     "design_tree": {
@@ -27,16 +28,16 @@
         "direction": "I",
         "parameters": {
           "ASSOCIATED_RESET": {
-            "value": "rst",
+            "value": "rst:sw_0",
             "value_src": "strong"
           },
           "CLK_DOMAIN": {
-            "value": "FPGA_SPI_Handler_clk_0",
-            "value_src": "strong"
+            "value": "FPGA_Main_task_ck_sck",
+            "value_src": "default_prop"
           },
           "FREQ_HZ": {
             "value": "100000000",
-            "value_src": "strong"
+            "value_src": "default_prop"
           },
           "FREQ_TOLERANCE_HZ": {
             "value": "0",
@@ -48,7 +49,7 @@
           },
           "PHASE": {
             "value": "0.0",
-            "value_src": "strong"
+            "value_src": "default_prop"
           }
         }
       },
@@ -81,7 +82,7 @@
           },
           "POLARITY": {
             "value": "ACTIVE_LOW",
-            "value_src": "strong"
+            "value_src": "default_prop"
           }
         }
       },
@@ -101,11 +102,11 @@
         "parameters": {
           "PortWidth": {
             "value": "1",
-            "value_src": "default"
+            "value_src": "strong"
           },
           "SENSITIVITY": {
             "value": "LEVEL_HIGH",
-            "value_src": "default"
+            "value_src": "const_prop"
           }
         }
       }
@@ -131,8 +132,16 @@
                 "value": "rst",
                 "value_src": "constant"
               },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
               "CLK_DOMAIN": {
-                "value": "FPGA_SPI_Handler_clk_0",
+                "value": "FPGA_Main_task_ck_sck",
                 "value_src": "default_prop"
               }
             }
@@ -145,7 +154,13 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
           },
           "received_data": {
             "direction": "O",
@@ -159,6 +174,10 @@
               "SENSITIVITY": {
                 "value": "LEVEL_HIGH",
                 "value_src": "constant"
+              },
+              "PortWidth": {
+                "value": "1",
+                "value_src": "default_prop"
               }
             }
           }
@@ -268,8 +287,16 @@
                 "value": "rst",
                 "value_src": "constant"
               },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
               "CLK_DOMAIN": {
-                "value": "FPGA_SPI_Handler_clk_0",
+                "value": "FPGA_Main_task_ck_sck",
                 "value_src": "default_prop"
               }
             }
@@ -284,7 +311,13 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
           },
           "o": {
             "direction": "O",
@@ -318,8 +351,16 @@
                 "value": "rst",
                 "value_src": "constant"
               },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
               "CLK_DOMAIN": {
-                "value": "FPGA_SPI_Handler_clk_0",
+                "value": "FPGA_Main_task_ck_sck",
                 "value_src": "default_prop"
               }
             }
@@ -334,7 +375,13 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
           },
           "o": {
             "direction": "O",
@@ -400,8 +447,16 @@
                 "value": "rst",
                 "value_src": "constant"
               },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
               "CLK_DOMAIN": {
-                "value": "FPGA_SPI_Handler_clk_0",
+                "value": "FPGA_Main_task_ck_sck",
                 "value_src": "default_prop"
               }
             }
@@ -417,7 +472,13 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
           }
         }
       },
@@ -449,8 +510,16 @@
                 "value": "rst",
                 "value_src": "constant"
               },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "default_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "default_prop"
+              },
               "CLK_DOMAIN": {
-                "value": "FPGA_SPI_Handler_clk_0",
+                "value": "FPGA_Main_task_ck_sck",
                 "value_src": "default_prop"
               }
             }
@@ -465,7 +534,13 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "default_prop"
+              }
+            }
           },
           "bit_out": {
             "direction": "O"

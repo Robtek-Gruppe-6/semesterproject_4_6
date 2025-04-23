@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "FPGA_SPI_Handler_inst_0_busdmux_0_0",
-    "cell_name": "FPGA_SPI_Handler_0/busdmux_0",
+    "cell_name": "busdmux_0",
     "component_reference": "xilinx.com:module_ref:busdmux:1.0",
     "ip_revision": "1",
     "gen_directory": ".",

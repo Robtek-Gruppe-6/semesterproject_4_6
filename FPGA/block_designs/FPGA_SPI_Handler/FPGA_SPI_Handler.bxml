@@ -2,13 +2,6 @@
 <Root MajorVersion="0" MinorVersion="43">
   <CompositeFile CompositeFileTopName="FPGA_SPI_Handler" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-<<<<<<< Updated upstream
-    <Generation Name="SYNTHESIS" State="RESET" Timestamp="1745396374"/>
-    <Generation Name="SIMULATION" State="RESET" Timestamp="1745396374"/>
-    <Generation Name="IMPLEMENTATION" State="RESET" Timestamp="1745396374"/>
-    <Generation Name="HW_HANDOFF" State="RESET" Timestamp="1745396374"/>
-    <FileCollection Name="SOURCES" Type="SOURCES"/>
-=======
     <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1745399509"/>
     <Generation Name="SIMULATION" State="GENERATED" Timestamp="1745399509"/>
     <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1745399509"/>
@@ -73,6 +66,5 @@
         <ProcessingOrder Val="NORMAL"/>
       </File>
     </FileCollection>
->>>>>>> Stashed changes
   </CompositeFile>
 </Root>

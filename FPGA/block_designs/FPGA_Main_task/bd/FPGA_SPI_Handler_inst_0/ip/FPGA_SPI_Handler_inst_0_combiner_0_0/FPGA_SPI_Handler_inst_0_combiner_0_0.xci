@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "FPGA_SPI_Handler_inst_0_combiner_0_0",
-    "cell_name": "FPGA_SPI_Handler_0/combiner_0",
+    "cell_name": "combiner_0",
     "component_reference": "xilinx.com:module_ref:combiner:1.0",
     "ip_revision": "1",
     "gen_directory": ".",

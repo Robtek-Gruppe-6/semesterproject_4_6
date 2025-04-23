@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "FPGA_SPI_Handler_inst_0_n_to_m_splitter_0_0",
-    "cell_name": "FPGA_SPI_Handler_0/n_to_m_splitter_0",
+    "cell_name": "n_to_m_splitter_0",
     "component_reference": "xilinx.com:module_ref:n_to_m_splitter:1.0",
     "ip_revision": "1",
     "gen_directory": ".",
