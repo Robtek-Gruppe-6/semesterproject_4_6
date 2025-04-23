@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x60E2C155EE8E622C",
+      "boundary_crc": "0x1E5E35423A35DE46",
       "device": "xc7z020clg400-1",
       "name": "FPGA_SPI_Handler",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -17,7 +17,8 @@
       "dlatch_1": "",
       "busmux_2x1_0": "",
       "d_flip_flop_1": "",
-      "SPI_tx_block_0": ""
+      "SPI_tx_block_0": "",
+      "combiner_0": ""
     },
     "ports": {
       "clk": {
@@ -90,6 +91,20 @@
           "POLARITY": {
             "value": "ACTIVE_LOW",
             "value_src": "default"
+          }
+        }
+      },
+      "SPI_rx_intr": {
+        "type": "intr",
+        "direction": "O",
+        "parameters": {
+          "PortWidth": {
+            "value": "1",
+            "value_src": "default"
+          },
+          "SENSITIVITY": {
+            "value": "LEVEL_HIGH",
+            "value_src": "const_prop"
           }
         }
       }
@@ -413,7 +428,7 @@
         "inst_hier_path": "SPI_tx_block_0",
         "parameters": {
           "BUS_WIDTH": {
-            "value": "16"
+            "value": "17"
           },
           "dir": {
             "value": "\"1\""
@@ -441,7 +456,7 @@
           },
           "data_in": {
             "direction": "I",
-            "left": "15",
+            "left": "16",
             "right": "0"
           },
           "en": {
@@ -458,9 +473,49 @@
             "direction": "O"
           }
         }
+      },
+      "combiner_0": {
+        "vlnv": "xilinx.com:module_ref:combiner:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_SPI_Handler_combiner_0_0",
+        "xci_path": "ip\\FPGA_SPI_Handler_combiner_0_0\\FPGA_SPI_Handler_combiner_0_0.xci",
+        "inst_hier_path": "combiner_0",
+        "parameters": {
+          "lowbits": {
+            "value": "16"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "combiner",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "h": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "l": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "o": {
+            "direction": "O",
+            "left": "16",
+            "right": "0"
+          }
+        }
       }
     },
     "nets": {
+      "SPI_rx_block_0_intr": {
+        "ports": [
+          "SPI_rx_block_0/intr",
+          "SPI_rx_intr"
+        ]
+      },
       "SPI_rx_block_0_received_data": {
         "ports": [
           "SPI_rx_block_0/received_data",
@@ -488,7 +543,7 @@
       "busmux_2x1_0_o": {
         "ports": [
           "busmux_2x1_0/o",
-          "SPI_tx_block_0/data_in"
+          "combiner_0/l"
         ]
       },
       "clk_0_1": {
@@ -501,10 +556,17 @@
           "SPI_rx_block_0/clk"
         ]
       },
+      "combiner_0_o": {
+        "ports": [
+          "combiner_0/o",
+          "SPI_tx_block_0/data_in"
+        ]
+      },
       "d_flip_flop_1_Q": {
         "ports": [
           "d_flip_flop_1/Q",
-          "busmux_2x1_0/s"
+          "busmux_2x1_0/s",
+          "combiner_0/h"
         ]
       },
       "data_to_read_0_1": {

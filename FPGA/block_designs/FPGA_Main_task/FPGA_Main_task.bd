@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x586CC0BA0BF4A0A7",
+      "boundary_crc": "0xA2DE7C454B1AA25E",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Main_task",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
@@ -61,6 +61,10 @@
       },
       "SPI_tx_0": {
         "direction": "O"
+      },
+      "SPI_clk": {
+        "type": "clk",
+        "direction": "I"
       }
     },
     "components": {
@@ -373,6 +377,10 @@
             "direction": "I",
             "left": "15",
             "right": "0"
+          },
+          "SPI_rx_intr": {
+            "type": "intr",
+            "direction": "O"
           }
         },
         "post_compiled_compname": "FPGA_SPI_Handler_inst_0",
@@ -380,7 +388,7 @@
         "variant_info": {
           "FPGA_SPI_Handler.bd": {
             "scoped_diagram": "FPGA_SPI_Handler_inst_0.bd",
-            "design_checksum": "0xB773449CC1C582AA",
+            "design_checksum": "0xE552DC7C3CBC6A84",
             "ref_name": "FPGA_SPI_Handler",
             "ref_subinst_path": "FPGA_Main_task_FPGA_SPI_Handler_0",
             "ref_type": "Block Design",
@@ -521,8 +529,13 @@
           "FPGA_Encoder_handler_1/clk",
           "FPGA_Encoder_handler_2/clk",
           "FPGA_Motor_handler_2/clk",
-          "FPGA_SPI_Handler_0/clk",
           "FPGA_Motor_handler_1/clk"
+        ]
+      },
+      "clk_0_2": {
+        "ports": [
+          "SPI_clk",
+          "FPGA_SPI_Handler_0/clk"
         ]
       },
       "combiner_0_o": {
