@@ -25,11 +25,20 @@
 
 /*****************************    Defines    ********************************/
 
+#define INITIAL_STATE 0
+#define THRESHOLD_STATE 1
+#define SCALING_STATE 2
+#define FINAL 3
+
 /*****************************   Constants   ********************************/
+const INT16U THRESHOLD = 1000; // Threshold value for data processing
+const INT16U CUTOFF = 2000;    // Cutoff value for data processing
+const INT16U SCALE = 1;        // Scale factor for data processing
 
 /*****************************   Variables   ********************************/
-uint16_t adc0_value = 0; // Variable to store ADC0 value
-uint16_t adc1_value = 0; // Variable to store ADC1 value
+INT16S adc0_value = 0; // Variable to store ADC0 value
+INT16S adc1_value = 0; // Variable to store ADC1 value
+INT8U state = 0;       // State variable for data processing
 
 /*****************************   Functions   ********************************/
 
@@ -69,32 +78,6 @@ void ADC0_Init(void)
     ADC0_ACTSS_R |= 0x08;   // Enable SS3
 }
 
-uint16_t ADC0_Read(void)
-/***************************************
- *     Input      : None
- *     Output     : ADC result (uint16_t)
- *     Function   : Read a value from ADC0
- ****************************************/
-{
-    ADC0_PSSI_R = 0x08; // Start conversion on SS3
-    while ((ADC0_RIS_R & 0x08) == 0)
-        ;                             // Wait for conversion to complete
-    uint16_t result = ADC0_SSFIFO3_R; // Read result
-    ADC0_ISC_R = 0x08;                // Clear completion flag
-    return result;
-}
-
-int16_t ADC0_Read_Scaled(void)
-/***************************************
- *     Input      : None
- *     Output     : Signed ADC result (int16_t) scaled from -32000 to 32000
- *     Function   : Read a value from ADC0 and scale it
- ****************************************/
-{
-    int32_t raw_value = ADC0_Read() - 2048; // Center around 0
-    return (raw_value * 32000) / 2048;
-}
-
 void ADC1_Init(void)
 /***************************************
  *     Input      : None
@@ -119,30 +102,103 @@ void ADC1_Init(void)
     ADC1_ACTSS_R |= 0x08;   // Enable SS3
 }
 
-uint16_t ADC1_Read(void)
+INT16U ADC0_Read(void)
 /***************************************
  *     Input      : None
- *     Output     : ADC result (uint16_t)
+ *     Output     : ADC result (INT16U)
+ *     Function   : Read a value from ADC0
+ ****************************************/
+{
+    ADC0_PSSI_R = 0x08; // Start conversion on SS3
+    while ((ADC0_RIS_R & 0x08) == 0)
+        ;                           // Wait for conversion to complete
+    INT16U result = ADC0_SSFIFO3_R; // Read result
+    ADC0_ISC_R = 0x08;              // Clear completion flag
+    return result;
+}
+
+INT16U ADC1_Read(void)
+/***************************************
+ *     Input      : None
+ *     Output     : ADC result (INT16U)
  *     Function   : Read a value from ADC1
  ****************************************/
 {
     ADC1_PSSI_R = 0x08; // Start conversion on SS3
     while ((ADC1_RIS_R & 0x08) == 0)
-        ;                             // Wait for conversion to complete
-    uint16_t result = ADC1_SSFIFO3_R; // Read result
-    ADC1_ISC_R = 0x08;                // Clear completion flag
+        ;                           // Wait for conversion to complete
+    INT16U result = ADC1_SSFIFO3_R; // Read result
+    ADC1_ISC_R = 0x08;              // Clear completion flag
     return result;
 }
 
-int16_t ADC1_Read_Scaled(void)
+INT16S ADC_Read_Scaled(INT16U data)
 /***************************************
- *     Input      : None
- *     Output     : Signed ADC result (int16_t) scaled from -32000 to 32000
- *     Function   : Read a value from ADC1 and scale it
+ *     Input      : data (INT16U)
+ *     Output     : Signed ADC result (INT16S) scaled from -32000 to 32000
+ *     Function   : Read a value from ADC and scale it
  ****************************************/
 {
-    int32_t raw_value = ADC1_Read() - 2048; // Center around 0
+    INT16S raw_value = data - 2048; // Center around 0
     return (raw_value * 32000) / 2048;
+}
+
+INT16S data_wrapper(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale)
+/***************************************
+ *     Input      : data, threshold, cutoff, scale
+ *     Output     : Scaled data (INT16S)
+ *     Function   : Wrapper function to scale data based on threshold and cutoff
+ ****************************************/
+{
+    switch (state)
+    {
+    case INITIAL_STATE: // Initial state
+        if (data > cutoff)
+        {
+            data = cutoff;
+            state = SCALING_STATE; // Move to scaling state
+        }
+        else if (data < -cutoff)
+        {
+            data = -cutoff;
+            state = SCALING_STATE; // Move to scaling state
+        }
+        else
+        {
+            state = THRESHOLD_STATE; // Move to threshold state
+        }
+        break;
+
+    case THRESHOLD_STATE: //
+        if (data < threshold)
+        {
+            data = 0;      // Find out what to set it to
+            state = FINAL; // Move to final state
+        }
+        else if (data > -threshold)
+        {
+            data = 0;      // Find out what to set it to
+            state = FINAL; // Move to final state
+        }
+        else
+        {
+            state = SCALING_STATE; // Move to scaling state
+        }
+        break;
+
+    case SCALING_STATE:      // Scaling state
+        data = data * scale; // Scale the data (1 for no scaling)
+        state = FINAL;       // Move to final state
+        break;
+
+    case FINAL:                // Final state
+        state = INITIAL_STATE; // Reset state to initial
+        return data;           // Return the wrapped data
+        break;
+
+    default:
+        break;
+    }
 }
 
 void adc_task(void *pvParameters)
@@ -155,8 +211,8 @@ void adc_task(void *pvParameters)
     while (1)
     {
         // Read ADC values and process them as needed
-        adc0_value = ADC0_Read_Scaled();
-        adc1_value = ADC1_Read_Scaled();
+        adc0_value = data_wrapper(ADC_Read_Scaled(ADC0_Read()), THRESHOLD, CUTOFF, SCALE);
+        adc1_value = data_wrapper(ADC_Read_Scaled(ADC1_Read()), THRESHOLD, CUTOFF, SCALE);
 
         vTaskDelay(100 / portTICK_RATE_MS); // Delay for 100 ms
     }

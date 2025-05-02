@@ -23,6 +23,7 @@
 /***************************** Include files ********************************/
 #include <stdint.h>
 #include "tm4c123gh6pm.h"
+#include "emp_type.h"
 
 /*****************************    Defines    ********************************/
 
@@ -44,20 +45,6 @@ void ADC0_Init(void);
  *     Function   : Initialize ADC0 on PE3
  ****************************************/
 
-uint16_t ADC0_Read(void);
-/***************************************
- *     Input      : None
- *     Output     : ADC result (uint16_t)
- *     Function   : Read a value from ADC0
- ****************************************/
-
-int16_t ADC0_Read_Scaled(void);
-/***************************************
- *     Input      : None
- *     Output     : Signed ADC result (int16_t) scaled from -1000 to 1000
- *     Function   : Read a value from ADC0 and scale it
- ****************************************/
-
 void ADC1_Init(void);
 /***************************************
  *     Input      : None
@@ -65,18 +52,32 @@ void ADC1_Init(void);
  *     Function   : Initialize ADC1 on PE2
  ****************************************/
 
-uint16_t ADC1_Read(void);
+INT16U ADC0_Read(void);
 /***************************************
  *     Input      : None
- *     Output     : ADC result (uint16_t)
+ *     Output     : ADC result (INT16U)
+ *     Function   : Read a value from ADC0
+ ****************************************/
+
+INT16U ADC1_Read(void);
+/***************************************
+ *     Input      : None
+ *     Output     : ADC result (INT16U)
  *     Function   : Read a value from ADC1
  ****************************************/
 
-int16_t ADC1_Read_Scaled(void);
+INT16S ADC_Read_Scaled(INT16U data);
 /***************************************
  *     Input      : None
- *     Output     : Signed ADC result (int16_t) scaled from -1000 to 1000
- *     Function   : Read a value from ADC1 and scale it
+ *     Output     : Signed ADC result (INT16U) scaled from -1000 to 1000
+ *     Function   : Read a value from ADC0 and scale it
+ ****************************************/
+
+INT16S data_wrapper(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale);
+/***************************************
+ *     Input      : data, threshold, cutoff, scale
+ *     Output     : Scaled data (INT16S)
+ *     Function   : Wrapper function to scale data based on threshold and cutoff
  ****************************************/
 
 void adc_task(void *pvParameters);
