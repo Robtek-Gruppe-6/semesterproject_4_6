@@ -30,6 +30,7 @@
 
 #include "status_led.h"
 #include "adc.h"
+#include "spi.h"
 
 /*****************************    Defines    ********************************/
 #define USERTASK_STACK_SIZE configMINIMAL_STACK_SIZE
@@ -55,6 +56,7 @@ static void setupHardware(void)
     init_systick();    // Initialize the systick timer
     status_led_init(); // Initialize the status LED
     adc_init();        // Initialize the ADCs
+    SPI0_init();       // Initialize the SPI interface
     // OTHER INITIALIZATIONS HERE
 }
 
@@ -69,6 +71,8 @@ int main(void)
     setupHardware(); // Set up the hardware
     xTaskCreate(status_led_task, "Status LED", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
     xTaskCreate(adc_task, "ADC Task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+    xTaskCreate(spi_task_read, "SPI Task Read", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+    xTaskCreate(spi_task_write, "SPI Task Write", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
 
     vTaskStartScheduler(); // Start the FreeRTOS scheduler
     // The scheduler should never return, but if it does, we can handle it here
