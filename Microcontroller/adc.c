@@ -18,7 +18,7 @@
  *****************************************************************************/
 
 /***************************** Include files ********************************/
-#include "ADC.h"
+#include "adc.h"
 #include "emp_type.h"
 #include "tm4c123gh6pm.h"
 #include "FreeRTOS.h"
