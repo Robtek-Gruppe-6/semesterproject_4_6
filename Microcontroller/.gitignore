@@ -1,1 +1,20 @@
+# Ignore build output folders
+Debug/
+Release/
 
+# Ignore settings that are local
+.settings/
+.launches/
+
+# Ignore system files
+*.log
+*.exe
+*.out
+*.obj
+*.o
+
+# CCS specfic
+*.d
+*.dep
+.cproject
+/.vscode
