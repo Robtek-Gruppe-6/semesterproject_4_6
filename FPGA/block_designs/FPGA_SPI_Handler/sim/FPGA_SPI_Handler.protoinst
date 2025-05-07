@@ -1,9 +1,0 @@
-{
-	"version": "1.0",
-	"modules": {
-		"FPGA_SPI_Handler": {
-			"proto_instances": {
-			}
-		}
-	}
-}
