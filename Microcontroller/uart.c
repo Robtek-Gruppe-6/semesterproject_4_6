@@ -18,26 +18,31 @@
  *****************************************************************************/
 
 /***************************** Include files ********************************/
-#include <stdint.h>
-#include "tm4c123gh6pm.h"
-#include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
+// #include <stdint.h>
+// #include "tm4c123gh6pm.h"
+// #include "FreeRTOS.h"
+// #include "task.h"
+// #include "queue.h"
+// #include "semphr.h"
+// #include "emp_type.h"
+// #include "uart.h"
+
 #include "semphr.h"
-#include "emp_type.h"
-#include "uart.h"
 
 /*****************************    Defines    ********************************/
 
-#define UART_QUEUE_LENGTH 10              // Length of the UART queue
-#define UART_QUEUE_ITEM_SIZE sizeof(char) // Size of each item in the queue
+// #define UART_QUEUE_LENGTH 10              // Length of the UART queue
+// #define UART_QUEUE_ITEM_SIZE sizeof(char) // Size of each item in the queue
 
-QueueHandle_t uartQueue; // Queue handle for UART
+// QueueHandle_t uartQueue; // Queue handle for UART
+
+static SemaphoreHandle_t uartMutex; // Declare a mutex for UART
 /*****************************   Constants   ********************************/
 
 /*****************************   Variables   ********************************/
 
 /*****************************   Functions   ********************************/
+
 void UART0_Init(void)
 /***************************************
  *     Input      : None
@@ -60,6 +65,9 @@ void UART0_Init(void)
     UART0_FBRD_R = 11;                                              // Fractional part of baud rate
     UART0_LCRH_R = (UART_LCRH_WLEN_8 | UART_LCRH_FEN);              // 8 data bits, no parity, one stop bit, enable FIFO
     UART0_CTL_R |= (UART_CTL_UARTEN | UART_CTL_TXE | UART_CTL_RXE); // Enable UART, TX, RX
+
+    // Create the mutex for UART
+    uartMutex = xSemaphoreCreateMutex();
 }
 
 void UART0_Write(char data)
@@ -87,20 +95,17 @@ void UART0_Write_String(char *str)
     }
 }
 
-void UART_Task(void *pvParameters)
+void UART_Debug(char *message)
 /***************************************
- *     Input      : None
+ *     Input      : Debug message string
  *     Output     : None
- *     Function   : UART task to send and receive data
+ *     Function   : Send a debug message over UART
  ****************************************/
 {
-    char receivedData;
-    while (1)
+    if (xSemaphoreTake(uartMutex, portMAX_DELAY) == pdTRUE)
     {
-        if (xQueueReceive(uartQueue, &receivedData, portMAX_DELAY) == pdTRUE)
-        {
-            UART0_Write(receivedData); // Send received data over UART0
-        }
+        UART0_Write_String(message); // Send the debug message
+        xSemaphoreGive(uartMutex);  // Release the mutex
     }
 }
 

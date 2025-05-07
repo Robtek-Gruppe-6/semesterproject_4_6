@@ -18,6 +18,7 @@
  *****************************************************************************/
 
 /***************************** Include files ********************************/
+#include <stdio.h>
 #include "adc.h"
 #include "emp_type.h"
 #include "tm4c123gh6pm.h"
@@ -39,6 +40,7 @@ const INT16U SCALE = 1;        // Scale factor for data processing
 INT16S adc0_value = 0; // Variable to store ADC0 value
 INT16S adc1_value = 0; // Variable to store ADC1 value
 INT8U state = 0;       // State variable for data processing
+char message[50]; // Buffer to hold the formatted message
 
 /*****************************   Functions   ********************************/
 
@@ -214,6 +216,12 @@ void adc_task(void *pvParameters)
         adc0_value = data_wrapper(ADC_Read_Scaled(ADC0_Read()), THRESHOLD, CUTOFF, SCALE);
         adc1_value = data_wrapper(ADC_Read_Scaled(ADC1_Read()), THRESHOLD, CUTOFF, SCALE);
 
+        // Format the ADC values into a string
+        sprintf(message, "ADC0: %d, ADC1: %d\n", adc0_value, adc1_value);
+
+        // Send the formatted string via UART
+        UART_Debug(message);
+        
         vTaskDelay(100 / portTICK_RATE_MS); // Delay for 100 ms
     }
 }
