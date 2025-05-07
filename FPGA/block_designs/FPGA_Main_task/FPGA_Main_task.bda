@@ -206,55 +206,23 @@
             },
             "V7": {
                 "VH": "5",
-                "VM": "FPGA_Motor_handler_inst_0",
-                "VT": "VR"
-            },
-            "V8": {
-                "VH": "13",
                 "VM": "FPGA_Encoder_handler_inst_1",
                 "VT": "VR"
             },
-            "V9": {
-                "VH": "17",
+            "V8": {
+                "VH": "7",
                 "VM": "FPGA_Motor_handler_inst_3",
                 "VT": "VR"
             },
+            "V9": {
+                "VH": "11",
+                "VM": "FPGA_Motor_handler_inst_0",
+                "VT": "VR"
+            },
             "V10": {
-                "VH": "19",
-                "VM": "FPGA_Motor_handler",
-                "VT": "VR"
-            },
-            "V11": {
-                "VH": "23",
-                "VM": "FPGA_Motor_handler",
-                "VT": "VR"
-            },
-            "V12": {
-                "VH": "37",
-                "VM": "FPGA_Encoder_handler",
-                "VT": "VR"
-            },
-            "V13": {
-                "VH": "41",
-                "VM": "FPGA_Encoder_handler",
-                "VT": "VR"
-            },
-            "V14": {
-                "VH": "30",
-                "VT": "PM"
-            },
-            "V15": {
-                "VH": "6630",
+                "VH": "2310",
                 "VT": "PM",
                 "TU": "active"
-            },
-            "V16": {
-                "VH": "8970",
-                "VT": "PM"
-            },
-            "V17": {
-                "VH": "25194",
-                "VT": "PM"
             }
         },
         "edges": [
@@ -263,32 +231,16 @@
                 "trg": "V6"
             },
             {
-                "src": "V0",
-                "trg": "V12"
-            },
-            {
                 "src": "V1",
-                "trg": "V8"
-            },
-            {
-                "src": "V1",
-                "trg": "V13"
-            },
-            {
-                "src": "V2",
                 "trg": "V7"
             },
             {
                 "src": "V2",
-                "trg": "V10"
-            },
-            {
-                "src": "V3",
                 "trg": "V9"
             },
             {
                 "src": "V3",
-                "trg": "V11"
+                "trg": "V8"
             },
             {
                 "src": "V4",
@@ -296,77 +248,23 @@
             },
             {
                 "src": "V5",
-                "trg": "V14"
-            },
-            {
-                "src": "V5",
-                "trg": "V15"
-            },
-            {
-                "src": "V5",
-                "trg": "V16",
-                "EH": "8970"
-            },
-            {
-                "src": "V5",
-                "trg": "V17",
-                "EH": "25194"
+                "trg": "V10"
             },
             {
                 "src": "V6",
-                "trg": "V15"
-            },
-            {
-                "src": "V6",
-                "trg": "V16",
-                "EH": "8970"
-            },
-            {
-                "src": "V6",
-                "trg": "V17",
-                "EH": "25194"
+                "trg": "V10"
             },
             {
                 "src": "V7",
-                "trg": "V15"
-            },
-            {
-                "src": "V7",
-                "trg": "V16",
-                "EH": "8970"
+                "trg": "V10"
             },
             {
                 "src": "V8",
-                "trg": "V15"
-            },
-            {
-                "src": "V8",
-                "trg": "V16",
-                "EH": "8970"
-            },
-            {
-                "src": "V8",
-                "trg": "V17",
-                "EH": "25194"
+                "trg": "V10"
             },
             {
                 "src": "V9",
-                "trg": "V15"
-            },
-            {
-                "src": "V9",
-                "trg": "V17",
-                "EH": "25194"
-            },
-            {
-                "src": "V10",
-                "trg": "V17",
-                "EH": "25194"
-            },
-            {
-                "src": "V11",
-                "trg": "V16",
-                "EH": "8970"
+                "trg": "V10"
             }
         ]
     }

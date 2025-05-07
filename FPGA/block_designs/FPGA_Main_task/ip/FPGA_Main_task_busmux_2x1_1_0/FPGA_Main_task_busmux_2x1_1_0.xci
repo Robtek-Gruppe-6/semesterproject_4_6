@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "FPGA_Main_task_busmux_2x1_1_0",
-    "cell_name": "busmux_2x1_1",
+    "cell_name": "encoder_selector_mux",
     "component_reference": "xilinx.com:module_ref:busmux_2x1:1.0",
     "ip_revision": "1",
     "gen_directory": ".",

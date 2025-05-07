@@ -2,7 +2,7 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "FPGA_Main_task_combiner_1_0",
-    "cell_name": "combiner_1",
+    "cell_name": "selector_combine",
     "component_reference": "xilinx.com:module_ref:combiner:1.0",
     "ip_revision": "1",
     "gen_directory": ".",

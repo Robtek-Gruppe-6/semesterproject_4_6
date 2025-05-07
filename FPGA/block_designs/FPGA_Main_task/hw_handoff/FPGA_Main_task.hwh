@@ -1,0 +1,833 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed May  7 17:27:22 2025" VIVADOVERSION="2024.2">
+
+  <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="FPGA_Main_task" PACKAGE="clg400" SPEEDGRADE="-1"/>
+
+  <EXTERNALPORTS>
+    <PORT DIR="I" LEFT="3" NAME="btn" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_btn">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="manuel_mode_block" PORT="btn"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="ck_miso" SIGIS="undef" SIGNAME="SPI_slave_block_miso">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SPI_slave_block" PORT="miso"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="ck_mosi" SIGIS="undef" SIGNAME="External_Ports_ck_mosi">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SPI_slave_block" PORT="mosi"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="ck_sck" SIGIS="clk" SIGNAME="External_Ports_ck_sck">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SPI_slave_block" PORT="sck"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="ck_ss" SIGIS="undef" SIGNAME="External_Ports_ck_ss">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="SPI_slave_block" PORT="ss"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="clock_divider_0" PORT="clk"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="encoder_1a" SIGIS="undef" SIGNAME="External_Ports_encoder_1a">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="FPGA_Encoder_handler_1" PORT="a"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="encoder_1b" SIGIS="undef" SIGNAME="External_Ports_encoder_1b">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="FPGA_Encoder_handler_1" PORT="b"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="encoder_2a" SIGIS="undef" SIGNAME="External_Ports_encoder_2a">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="FPGA_Encoder_handler_2" PORT="a"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="encoder_2b" SIGIS="undef" SIGNAME="External_Ports_encoder_2b">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="FPGA_Encoder_handler_2" PORT="b"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="1" NAME="motor1" RIGHT="0" SIGIS="undef" SIGNAME="FPGA_Motor_handler_1_o">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="FPGA_Motor_handler_1" PORT="o"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="1" NAME="motor2" RIGHT="0" SIGIS="undef" SIGNAME="FPGA_Motor_handler_2_o">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="FPGA_Motor_handler_2" PORT="o"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" LEFT="1" NAME="motor_en" RIGHT="0" SIGIS="undef" SIGNAME="motor_en_o">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="motor_en" PORT="o"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="sw_0" SIGIS="undef" SIGNAME="External_Ports_sw_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="FPGA_Encoder_handler_1" PORT="en"/>
+        <CONNECTION INSTANCE="FPGA_Encoder_handler_2" PORT="en"/>
+        <CONNECTION INSTANCE="encoder_selctor" PORT="en"/>
+        <CONNECTION INSTANCE="SPI_slave_block" PORT="read_en"/>
+        <CONNECTION INSTANCE="man_auto_motor1" PORT="s"/>
+        <CONNECTION INSTANCE="man_auto_motor2" PORT="s"/>
+        <CONNECTION INSTANCE="not_en" PORT="i"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="sw_1" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="FPGA_Encoder_handler_1" PORT="rst"/>
+        <CONNECTION INSTANCE="FPGA_Encoder_handler_2" PORT="rst"/>
+        <CONNECTION INSTANCE="FPGA_Motor_handler_2" PORT="rst"/>
+        <CONNECTION INSTANCE="FPGA_Motor_handler_1" PORT="rst"/>
+        <CONNECTION INSTANCE="SPI_slave_block" PORT="rst"/>
+        <CONNECTION INSTANCE="encoder_selctor" PORT="rst"/>
+        <CONNECTION INSTANCE="encoder_latch2" PORT="rst"/>
+        <CONNECTION INSTANCE="encoder_latch1" PORT="rst"/>
+        <CONNECTION INSTANCE="clock_divider_0" PORT="rst"/>
+        <CONNECTION INSTANCE="manuel_mode_block" PORT="rst"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES/>
+
+  <MODULES>
+    <MODULE BD="FPGA_Encoder_handler_inst_0" BDTYPE="BLOCK_CONTAINER" DRIVERMODE="SUBCORE" FULLNAME="/FPGA_Encoder_handler_1" INSTANCE="FPGA_Encoder_handler_1" IS_ENABLE="1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="ACTIVE_SIM_BD" VALUE="FPGA_Encoder_handler.bd"/>
+        <PARAMETER NAME="ACTIVE_SYNTH_BD" VALUE="FPGA_Encoder_handler.bd"/>
+        <PARAMETER NAME="ENABLE_DFX" VALUE="0"/>
+        <PARAMETER NAME="LIST_SIM_BD" VALUE="FPGA_Encoder_handler.bd"/>
+        <PARAMETER NAME="LIST_SYNTH_BD" VALUE="FPGA_Encoder_handler.bd"/>
+        <PARAMETER NAME="LOCK_PROPAGATE" VALUE="0"/>
+        <PARAMETER NAME="TRAINING_MODULE" VALUE="FPGA_Encoder_handler.bd"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="a" SIGIS="undef" SIGNAME="External_Ports_encoder_1a">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="encoder_1a"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="b" SIGIS="undef" SIGNAME="External_Ports_encoder_1b">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="encoder_1b"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="External_Ports_sw_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="max" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="14" NAME="position" RIGHT="0" SIGIS="undef" SIGNAME="FPGA_Encoder_handler_1_position">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_latch1" PORT="i"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE BD="FPGA_Encoder_handler_inst_1" BDTYPE="BLOCK_CONTAINER" DRIVERMODE="SUBCORE" FULLNAME="/FPGA_Encoder_handler_2" INSTANCE="FPGA_Encoder_handler_2" IS_ENABLE="1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="ACTIVE_SIM_BD" VALUE="FPGA_Encoder_handler.bd"/>
+        <PARAMETER NAME="ACTIVE_SYNTH_BD" VALUE="FPGA_Encoder_handler.bd"/>
+        <PARAMETER NAME="ENABLE_DFX" VALUE="0"/>
+        <PARAMETER NAME="LIST_SIM_BD" VALUE="FPGA_Encoder_handler.bd"/>
+        <PARAMETER NAME="LIST_SYNTH_BD" VALUE="FPGA_Encoder_handler.bd"/>
+        <PARAMETER NAME="LOCK_PROPAGATE" VALUE="0"/>
+        <PARAMETER NAME="TRAINING_MODULE" VALUE="FPGA_Encoder_handler.bd"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="a" SIGIS="undef" SIGNAME="External_Ports_encoder_2a">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="encoder_2a"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="b" SIGIS="undef" SIGNAME="External_Ports_encoder_2b">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="encoder_2b"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="External_Ports_sw_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="max" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="14" NAME="position" RIGHT="0" SIGIS="undef" SIGNAME="FPGA_Encoder_handler_2_position">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_latch2" PORT="i"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE BD="FPGA_Motor_handler_inst_0" BDTYPE="BLOCK_CONTAINER" DRIVERMODE="SUBCORE" FULLNAME="/FPGA_Motor_handler_1" INSTANCE="FPGA_Motor_handler_1" IS_ENABLE="1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="ACTIVE_SIM_BD" VALUE="FPGA_Motor_handler.bd"/>
+        <PARAMETER NAME="ACTIVE_SYNTH_BD" VALUE="FPGA_Motor_handler.bd"/>
+        <PARAMETER NAME="ENABLE_DFX" VALUE="0"/>
+        <PARAMETER NAME="LIST_SIM_BD" VALUE="FPGA_Motor_handler.bd"/>
+        <PARAMETER NAME="LIST_SYNTH_BD" VALUE="FPGA_Motor_handler.bd"/>
+        <PARAMETER NAME="LOCK_PROPAGATE" VALUE="0"/>
+        <PARAMETER NAME="TRAINING_MODULE" VALUE="FPGA_Motor_handler.bd"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="xlconstant_1_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="10" NAME="i" RIGHT="0" SIGIS="undef" SIGNAME="man_auto_motor1_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="man_auto_motor1" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="o" RIGHT="0" SIGIS="undef" SIGNAME="FPGA_Motor_handler_1_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="motor1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE BD="FPGA_Motor_handler_inst_3" BDTYPE="BLOCK_CONTAINER" DRIVERMODE="SUBCORE" FULLNAME="/FPGA_Motor_handler_2" INSTANCE="FPGA_Motor_handler_2" IS_ENABLE="1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="ACTIVE_SIM_BD" VALUE="FPGA_Motor_handler.bd"/>
+        <PARAMETER NAME="ACTIVE_SYNTH_BD" VALUE="FPGA_Motor_handler.bd"/>
+        <PARAMETER NAME="ENABLE_DFX" VALUE="0"/>
+        <PARAMETER NAME="LIST_SIM_BD" VALUE="FPGA_Motor_handler.bd"/>
+        <PARAMETER NAME="LIST_SYNTH_BD" VALUE="FPGA_Motor_handler.bd"/>
+        <PARAMETER NAME="LOCK_PROPAGATE" VALUE="0"/>
+        <PARAMETER NAME="TRAINING_MODULE" VALUE="FPGA_Motor_handler.bd"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="xlconstant_1_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="10" NAME="i" RIGHT="0" SIGIS="undef" SIGNAME="man_auto_motor2_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="man_auto_motor2" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="o" RIGHT="0" SIGIS="undef" SIGNAME="FPGA_Motor_handler_2_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="motor2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/SPI_slave_block" HWVERSION="1.0" INSTANCE="SPI_slave_block" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="SPI_slave_block" VLNV="xilinx.com:module_ref:SPI_slave_block:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="BUS_WIDTH" VALUE="16"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_SPI_slave_block_0_1"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" NAME="busy" SIGIS="undef" SIGNAME="SPI_slave_block_busy">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="not_gate_0" PORT="i"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="cpha" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="cpol" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="miso" SIGIS="undef" SIGNAME="SPI_slave_block_miso">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ck_miso"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="mosi" SIGIS="undef" SIGNAME="External_Ports_ck_mosi">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ck_mosi"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="read_en" SIGIS="undef" SIGNAME="External_Ports_sw_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="rx" RIGHT="0" SIGIS="undef" SIGNAME="SPI_slave_block_rx">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="selector_split" PORT="i"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sck" SIGIS="undef" SIGNAME="External_Ports_ck_sck">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ck_sck"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="ss" SIGIS="undef" SIGNAME="External_Ports_ck_ss">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="ck_ss"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="tx" RIGHT="0" SIGIS="undef" SIGNAME="selector_combine_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="selector_combine" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/clock_divider_0" HWVERSION="1.0" INSTANCE="clock_divider_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clock_divider" VLNV="xilinx.com:module_ref:clock_divider:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="clock_in" VALUE="125000000"/>
+        <PARAMETER NAME="clock_out" VALUE="1000000"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_clock_divider_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="External_Ports_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="clock_divider_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="FPGA_Encoder_handler_1" PORT="clk"/>
+            <CONNECTION INSTANCE="FPGA_Encoder_handler_2" PORT="clk"/>
+            <CONNECTION INSTANCE="FPGA_Motor_handler_2" PORT="clk"/>
+            <CONNECTION INSTANCE="FPGA_Motor_handler_1" PORT="clk"/>
+            <CONNECTION INSTANCE="encoder_selctor" PORT="clk"/>
+            <CONNECTION INSTANCE="encoder_latch2" PORT="clk"/>
+            <CONNECTION INSTANCE="encoder_latch1" PORT="clk"/>
+            <CONNECTION INSTANCE="manuel_mode_block" PORT="clk"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="xlconstant_2_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_2" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/encoder_latch1" HWVERSION="1.0" INSTANCE="encoder_latch1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="dlatch" VLNV="xilinx.com:module_ref:dlatch:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="WIDTH" VALUE="15"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_dlatch_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="not_gate_0_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="not_gate_0" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="14" NAME="i" RIGHT="0" SIGIS="undef" SIGNAME="FPGA_Encoder_handler_1_position">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="FPGA_Encoder_handler_1" PORT="position"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="14" NAME="o" RIGHT="0" SIGIS="undef" SIGNAME="encoder_latch1_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_selector_mux" PORT="input_1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/encoder_latch2" HWVERSION="1.0" INSTANCE="encoder_latch2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="dlatch" VLNV="xilinx.com:module_ref:dlatch:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="WIDTH" VALUE="15"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_dlatch_0_1"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="not_gate_0_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="not_gate_0" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="14" NAME="i" RIGHT="0" SIGIS="undef" SIGNAME="FPGA_Encoder_handler_2_position">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="FPGA_Encoder_handler_2" PORT="position"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="14" NAME="o" RIGHT="0" SIGIS="undef" SIGNAME="encoder_latch2_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_selector_mux" PORT="input_2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/encoder_selctor" HWVERSION="1.0" INSTANCE="encoder_selctor" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="d_flip_flop" VLNV="xilinx.com:module_ref:d_flip_flop:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="n_bits" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_d_flip_flop_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="D" SIGIS="undef" SIGNAME="not_gate_0_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="not_gate_0" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="Q" SIGIS="undef" SIGNAME="encoder_selctor_Q">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_selector_mux" PORT="s"/>
+            <CONNECTION INSTANCE="selector_combine" PORT="h"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="External_Ports_sw_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/encoder_selector_mux" HWVERSION="1.0" INSTANCE="encoder_selector_mux" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="busmux_2x1" VLNV="xilinx.com:module_ref:busmux_2x1:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="BIT_WIDTH" VALUE="15"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_busmux_2x1_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="14" NAME="input_1" RIGHT="0" SIGIS="undef" SIGNAME="encoder_latch1_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_latch1" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="14" NAME="input_2" RIGHT="0" SIGIS="undef" SIGNAME="encoder_latch2_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_latch2" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="14" NAME="o" RIGHT="0" SIGIS="undef" SIGNAME="encoder_selector_mux_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="selector_combine" PORT="l"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s" SIGIS="undef" SIGNAME="encoder_selctor_Q">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_selctor" PORT="Q"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/man_auto_motor1" HWVERSION="1.0" INSTANCE="man_auto_motor1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="busmux_2x1" VLNV="xilinx.com:module_ref:busmux_2x1:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="BIT_WIDTH" VALUE="11"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_busmux_2x1_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="10" NAME="input_1" RIGHT="0" SIGIS="undef" SIGNAME="manuel_mode_block_motor1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="manuel_mode_block" PORT="motor1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="10" NAME="input_2" RIGHT="0" SIGIS="undef" SIGNAME="motor_selector_data_out_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="motor_selector" PORT="data_out_1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="10" NAME="o" RIGHT="0" SIGIS="undef" SIGNAME="man_auto_motor1_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="FPGA_Motor_handler_1" PORT="i"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s" SIGIS="undef" SIGNAME="External_Ports_sw_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/man_auto_motor2" HWVERSION="1.0" INSTANCE="man_auto_motor2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="busmux_2x1" VLNV="xilinx.com:module_ref:busmux_2x1:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="BIT_WIDTH" VALUE="11"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_man_auto_motor1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="10" NAME="input_1" RIGHT="0" SIGIS="undef" SIGNAME="manuel_mode_block_motor2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="manuel_mode_block" PORT="motor2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="10" NAME="input_2" RIGHT="0" SIGIS="undef" SIGNAME="motor_selector_data_out_2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="motor_selector" PORT="data_out_2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="10" NAME="o" RIGHT="0" SIGIS="undef" SIGNAME="man_auto_motor2_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="FPGA_Motor_handler_2" PORT="i"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s" SIGIS="undef" SIGNAME="External_Ports_sw_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/manuel_mode_block" HWVERSION="1.0" INSTANCE="manuel_mode_block" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="manuel_mode_block" VLNV="xilinx.com:module_ref:manuel_mode_block:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_manuel_mode_block_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="3" NAME="btn" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_btn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="btn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clock_divider_0_clk_out">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clock_divider_0" PORT="clk_out"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="en" SIGIS="undef" SIGNAME="not_en_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="not_en" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="10" NAME="motor1" RIGHT="0" SIGIS="undef" SIGNAME="manuel_mode_block_motor1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="man_auto_motor1" PORT="input_1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="10" NAME="motor2" RIGHT="0" SIGIS="undef" SIGNAME="manuel_mode_block_motor2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="man_auto_motor2" PORT="input_1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_sw_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_1"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/motor_en" HWVERSION="1.0" INSTANCE="motor_en" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="combiner" VLNV="xilinx.com:module_ref:combiner:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="highbits" VALUE="1"/>
+        <PARAMETER NAME="lowbits" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_combiner_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="0" NAME="h" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_1_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="l" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_1_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="o" RIGHT="0" SIGIS="undef" SIGNAME="motor_en_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="motor_en"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/motor_selector" HWVERSION="1.0" INSTANCE="motor_selector" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="busdmux" VLNV="xilinx.com:module_ref:busdmux:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="BUS_WIDTH" VALUE="11"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_busdmux_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="10" NAME="data_in" RIGHT="0" SIGIS="undef" SIGNAME="selector_split_o_l">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="selector_split" PORT="o_l"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="10" NAME="data_out_1" RIGHT="0" SIGIS="undef" SIGNAME="motor_selector_data_out_1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="man_auto_motor1" PORT="input_2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="10" NAME="data_out_2" RIGHT="0" SIGIS="undef" SIGNAME="motor_selector_data_out_2">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="man_auto_motor2" PORT="input_2"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="sel" RIGHT="0" SIGIS="undef" SIGNAME="selector_split_o_h">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="selector_split" PORT="o_h"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/not_en" HWVERSION="1.0" INSTANCE="not_en" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="not_gate" VLNV="xilinx.com:module_ref:not_gate:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_not_gate_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="i" SIGIS="undef" SIGNAME="External_Ports_sw_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sw_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="o" SIGIS="undef" SIGNAME="not_en_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="manuel_mode_block" PORT="en"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/not_gate_0" HWVERSION="1.0" INSTANCE="not_gate_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="not_gate" VLNV="xilinx.com:module_ref:not_gate:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_not_gate_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="i" SIGIS="undef" SIGNAME="SPI_slave_block_busy">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="SPI_slave_block" PORT="busy"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="o" SIGIS="undef" SIGNAME="not_gate_0_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_selctor" PORT="D"/>
+            <CONNECTION INSTANCE="encoder_latch2" PORT="en"/>
+            <CONNECTION INSTANCE="encoder_latch1" PORT="en"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/selector_combine" HWVERSION="1.0" INSTANCE="selector_combine" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="combiner" VLNV="xilinx.com:module_ref:combiner:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="highbits" VALUE="1"/>
+        <PARAMETER NAME="lowbits" VALUE="15"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_combiner_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="0" NAME="h" RIGHT="0" SIGIS="undef" SIGNAME="encoder_selctor_Q">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_selctor" PORT="Q"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="14" NAME="l" RIGHT="0" SIGIS="undef" SIGNAME="encoder_selector_mux_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="encoder_selector_mux" PORT="o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="o" RIGHT="0" SIGIS="undef" SIGNAME="selector_combine_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="SPI_slave_block" PORT="tx"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/selector_split" HWVERSION="1.0" INSTANCE="selector_split" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="n_to_m_splitter" VLNV="xilinx.com:module_ref:n_to_m_splitter:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="input_size" VALUE="16"/>
+        <PARAMETER NAME="output_size_high" VALUE="1"/>
+        <PARAMETER NAME="output_size_low" VALUE="11"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_n_to_m_splitter_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="15" NAME="i" RIGHT="0" SIGIS="undef" SIGNAME="SPI_slave_block_rx">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="SPI_slave_block" PORT="rx"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="o_h" RIGHT="0" SIGIS="undef" SIGNAME="selector_split_o_h">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="motor_selector" PORT="sel"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="10" NAME="o_l" RIGHT="0" SIGIS="undef" SIGNAME="selector_split_o_l">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="motor_selector" PORT="data_in"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="9" FULLNAME="/xlconstant_0" HWVERSION="1.1" INSTANCE="xlconstant_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x0"/>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_xlconstant_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="SPI_slave_block" PORT="cpha"/>
+            <CONNECTION INSTANCE="SPI_slave_block" PORT="cpol"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="9" FULLNAME="/xlconstant_1" HWVERSION="1.1" INSTANCE="xlconstant_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x1"/>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_xlconstant_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_1_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="motor_en" PORT="h"/>
+            <CONNECTION INSTANCE="motor_en" PORT="l"/>
+            <CONNECTION INSTANCE="FPGA_Motor_handler_2" PORT="en"/>
+            <CONNECTION INSTANCE="FPGA_Motor_handler_1" PORT="en"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="9" FULLNAME="/xlconstant_2" HWVERSION="1.1" INSTANCE="xlconstant_2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="CONST_VAL" VALUE="0x1"/>
+        <PARAMETER NAME="CONST_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="FPGA_Main_task_xlconstant_1_1"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_2_dout">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clock_divider_0" PORT="en"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

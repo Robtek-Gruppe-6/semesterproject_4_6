@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"FPGA_Encoder_handler_inst_1": {
+			"proto_instances": {
+			}
+		}
+	}
+}

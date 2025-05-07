@@ -1,75 +1,87 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.494945",
-   "Default View_TopLeft":"-125,-269",
+   "Default View_ScaleFactor":"0.677936",
+   "Default View_TopLeft":"1053,0",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.8.0 2024-04-26 e1825d835c VDI=44 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace port port-id_clk -pg 1 -lvl 0 -x 0 -y 610 -defaultsOSRD
-preplace port port-id_sw_1 -pg 1 -lvl 0 -x 0 -y 630 -defaultsOSRD
-preplace port port-id_sw_0 -pg 1 -lvl 0 -x 0 -y 650 -defaultsOSRD
-preplace port port-id_encoder_1a -pg 1 -lvl 0 -x 0 -y 370 -defaultsOSRD
-preplace port port-id_encoder_1b -pg 1 -lvl 0 -x 0 -y 390 -defaultsOSRD
-preplace port port-id_encoder_2a -pg 1 -lvl 0 -x 0 -y 710 -defaultsOSRD
-preplace port port-id_encoder_2b -pg 1 -lvl 0 -x 0 -y 730 -defaultsOSRD
-preplace port port-id_ck_mosi -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
-preplace port port-id_ck_miso -pg 1 -lvl 10 -x 2350 -y 110 -defaultsOSRD
-preplace port port-id_ck_sck -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
-preplace port port-id_ck_ss -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
-preplace portBus motor2 -pg 1 -lvl 10 -x 2350 -y 240 -defaultsOSRD
-preplace portBus motor1 -pg 1 -lvl 10 -x 2350 -y 400 -defaultsOSRD
-preplace portBus motor_en -pg 1 -lvl 10 -x 2350 -y 540 -defaultsOSRD
-preplace inst FPGA_Encoder_handler_1 -pg 1 -lvl 2 -x 500 -y 410 -defaultsOSRD
-preplace inst FPGA_Encoder_handler_2 -pg 1 -lvl 2 -x 500 -y 750 -defaultsOSRD
-preplace inst FPGA_Motor_handler_2 -pg 1 -lvl 9 -x 2220 -y 240 -defaultsOSRD
-preplace inst n_to_m_splitter_0 -pg 1 -lvl 8 -x 1930 -y 540 -defaultsOSRD
-preplace inst combiner_0 -pg 1 -lvl 9 -x 2220 -y 540 -defaultsOSRD
-preplace inst FPGA_Motor_handler_1 -pg 1 -lvl 9 -x 2220 -y 400 -defaultsOSRD
-preplace inst clock_divider_0 -pg 1 -lvl 1 -x 270 -y 630 -defaultsOSRD
-preplace inst n_to_m_splitter_1 -pg 1 -lvl 7 -x 1670 -y 180 -defaultsOSRD
-preplace inst busmux_2x1_1 -pg 1 -lvl 4 -x 980 -y 430 -defaultsOSRD
-preplace inst busdmux_0 -pg 1 -lvl 8 -x 1930 -y 200 -defaultsOSRD
-preplace inst SPI_slave_block_0 -pg 1 -lvl 6 -x 1440 -y 130 -defaultsOSRD
-preplace inst combiner_1 -pg 1 -lvl 5 -x 1210 -y 360 -defaultsOSRD
-preplace inst d_flip_flop_0 -pg 1 -lvl 3 -x 740 -y 570 -defaultsOSRD
-preplace inst not_gate_0 -pg 1 -lvl 2 -x 500 -y 580 -defaultsOSRD
-preplace inst dlatch_0 -pg 1 -lvl 3 -x 740 -y 410 -defaultsOSRD
-preplace inst dlatch_1 -pg 1 -lvl 3 -x 740 -y 750 -defaultsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 5 -x 1210 -y 0 -defaultsOSRD
-preplace netloc FPGA_Motor_handler_0_o 1 9 1 NJ 240
-preplace netloc FPGA_Motor_handler_1_o 1 9 1 NJ 400
-preplace netloc a_0_1 1 0 2 NJ 370 NJ
-preplace netloc a_1_1 1 0 2 NJ 710 NJ
-preplace netloc b_0_1 1 0 2 NJ 390 NJ
-preplace netloc b_1_1 1 0 2 NJ 730 NJ
-preplace netloc clk_0_1 1 1 8 360 640 620 310 NJ 310 1110J 430 NJ 430 NJ 430 NJ 430 2080
-preplace netloc clk_1 1 0 1 NJ 610
-preplace netloc combiner_0_o 1 9 1 NJ 540
-preplace netloc en_0_1 1 0 9 180 720 370 650 640 660 NJ 660 NJ 660 1310 440 NJ 440 1780 440 2110
-preplace netloc n_to_m_splitter_0_o_h 1 8 1 N 530
-preplace netloc n_to_m_splitter_0_o_l 1 8 1 N 550
-preplace netloc rst_0_1 1 0 9 170 740 380 510 610 320 850J 670 NJ 670 1330 270 NJ 270 NJ 270 2100
-preplace netloc busmux_2x1_1_o 1 4 1 1100 370n
-preplace netloc d_flip_flop_0_Q 1 3 2 840 350 N
-preplace netloc not_gate_0_o 1 2 1 630 420n
-preplace netloc SPI_slave_block_0_busy 1 1 6 390 260 NJ 260 NJ 260 NJ 260 NJ 260 1550
-preplace netloc ss_0_1 1 0 6 NJ 120 NJ 120 NJ 120 NJ 120 NJ 120 NJ
-preplace netloc combiner_1_o 1 5 1 1320 180n
-preplace netloc SPI_slave_block_0_rx 1 6 1 1560 130n
-preplace netloc n_to_m_splitter_1_o_l 1 7 1 N 190
-preplace netloc n_to_m_splitter_1_o_h 1 7 1 1780 170n
-preplace netloc busdmux_0_data_out_1 1 8 1 2090 190n
-preplace netloc busdmux_0_data_out_2 1 8 1 N 210
-preplace netloc ck_mosi_1 1 0 6 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ
-preplace netloc ck_sck_1 1 0 6 NJ 100 NJ 100 NJ 100 NJ 100 NJ 100 NJ
-preplace netloc dlatch_0_o 1 3 1 N 410
-preplace netloc FPGA_Encoder_handler_1_position 1 2 1 N 400
-preplace netloc dlatch_1_o 1 3 1 860 430n
-preplace netloc FPGA_Encoder_handler_2_position 1 2 1 N 740
-preplace netloc SPI_slave_block_0_miso 1 6 4 NJ 110 NJ 110 NJ 110 NJ
-preplace netloc xlconstant_0_dout 1 5 1 1310 0n
-levelinfo -pg 1 0 270 500 740 980 1210 1440 1670 1930 2220 2350
-pagesize -pg 1 -db -bbox -sgen -130 -230 2490 850
+preplace port port-id_clk -pg 1 -lvl 0 -x -10 -y 780 -defaultsOSRD
+preplace port port-id_sw_0 -pg 1 -lvl 0 -x -10 -y 560 -defaultsOSRD
+preplace port port-id_sw_1 -pg 1 -lvl 0 -x -10 -y 900 -defaultsOSRD
+preplace port port-id_encoder_1a -pg 1 -lvl 0 -x -10 -y 730 -defaultsOSRD
+preplace port port-id_encoder_1b -pg 1 -lvl 0 -x -10 -y 750 -defaultsOSRD
+preplace port port-id_encoder_2a -pg 1 -lvl 0 -x -10 -y 520 -defaultsOSRD
+preplace port port-id_encoder_2b -pg 1 -lvl 0 -x -10 -y 540 -defaultsOSRD
+preplace port port-id_ck_mosi -pg 1 -lvl 0 -x -10 -y 160 -defaultsOSRD
+preplace port port-id_ck_miso -pg 1 -lvl 12 -x 2700 -y 130 -defaultsOSRD
+preplace port port-id_ck_sck -pg 1 -lvl 0 -x -10 -y 120 -defaultsOSRD
+preplace port port-id_ck_ss -pg 1 -lvl 0 -x -10 -y 140 -defaultsOSRD
+preplace portBus motor2 -pg 1 -lvl 12 -x 2700 -y 400 -defaultsOSRD
+preplace portBus motor1 -pg 1 -lvl 12 -x 2700 -y 240 -defaultsOSRD
+preplace portBus motor_en -pg 1 -lvl 12 -x 2700 -y 540 -defaultsOSRD
+preplace portBus btn -pg 1 -lvl 0 -x -10 -y 350 -defaultsOSRD
+preplace inst FPGA_Encoder_handler_1 -pg 1 -lvl 3 -x 500 -y 770 -defaultsOSRD
+preplace inst FPGA_Encoder_handler_2 -pg 1 -lvl 3 -x 500 -y 560 -defaultsOSRD
+preplace inst FPGA_Motor_handler_2 -pg 1 -lvl 11 -x 2570 -y 400 -defaultsOSRD
+preplace inst motor_en -pg 1 -lvl 11 -x 2570 -y 540 -defaultsOSRD
+preplace inst FPGA_Motor_handler_1 -pg 1 -lvl 11 -x 2570 -y 240 -defaultsOSRD
+preplace inst clock_divider_0 -pg 1 -lvl 2 -x 280 -y 840 -defaultsOSRD
+preplace inst selector_split -pg 1 -lvl 8 -x 1700 -y 200 -defaultsOSRD
+preplace inst encoder_selector_mux -pg 1 -lvl 5 -x 1020 -y 520 -defaultsOSRD
+preplace inst motor_selector -pg 1 -lvl 9 -x 2000 -y 200 -defaultsOSRD
+preplace inst SPI_slave_block -pg 1 -lvl 7 -x 1470 -y 150 -defaultsOSRD
+preplace inst selector_combine -pg 1 -lvl 6 -x 1240 -y 450 -defaultsOSRD
+preplace inst encoder_selctor -pg 1 -lvl 4 -x 770 -y 250 -defaultsOSRD
+preplace inst not_gate_0 -pg 1 -lvl 3 -x 500 -y 420 -defaultsOSRD
+preplace inst encoder_latch1 -pg 1 -lvl 4 -x 770 -y 680 -defaultsOSRD
+preplace inst encoder_latch2 -pg 1 -lvl 4 -x 770 -y 520 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 6 -x 1240 -y 60 -defaultsOSRD
+preplace inst man_auto_motor1 -pg 1 -lvl 10 -x 2320 -y 210 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 10 -x 2320 -y 530 -defaultsOSRD
+preplace inst man_auto_motor2 -pg 1 -lvl 10 -x 2320 -y 370 -defaultsOSRD
+preplace inst manuel_mode_block -pg 1 -lvl 9 -x 2000 -y 360 -defaultsOSRD
+preplace inst not_en -pg 1 -lvl 8 -x 1700 -y 340 -defaultsOSRD
+preplace inst xlconstant_2 -pg 1 -lvl 1 -x 100 -y 840 -defaultsOSRD
+preplace netloc FPGA_Encoder_handler_1_position 1 3 1 670 670n
+preplace netloc FPGA_Encoder_handler_2_position 1 3 1 640 510n
+preplace netloc FPGA_Motor_handler_0_o 1 11 1 NJ 400
+preplace netloc FPGA_Motor_handler_1_o 1 11 1 NJ 240
+preplace netloc SPI_slave_block_0_busy 1 2 6 390 120 NJ 120 NJ 120 NJ 120 1340J 20 1580
+preplace netloc SPI_slave_block_0_miso 1 7 5 1590J 120 NJ 120 NJ 120 NJ 120 2680J
+preplace netloc SPI_slave_block_0_rx 1 7 1 1590 150n
+preplace netloc a_0_1 1 0 3 NJ 730 NJ 730 NJ
+preplace netloc a_1_1 1 0 3 NJ 520 NJ 520 NJ
+preplace netloc b_0_1 1 0 3 NJ 750 NJ 750 NJ
+preplace netloc b_1_1 1 0 3 NJ 540 NJ 540 NJ
+preplace netloc btn_0_1 1 0 9 NJ 350 NJ 350 NJ 350 NJ 350 NJ 350 NJ 350 NJ 350 1580J 400 1810J
+preplace netloc busdmux_0_data_out_1 1 9 1 2160 190n
+preplace netloc busdmux_0_data_out_2 1 9 1 2150 210n
+preplace netloc busmux_2x1_0_o 1 10 1 N 210
+preplace netloc busmux_2x1_1_o 1 5 1 1140 460n
+preplace netloc ck_mosi_1 1 0 7 10J 150 NJ 150 NJ 150 NJ 150 NJ 150 NJ 150 1360J
+preplace netloc ck_sck_1 1 0 7 NJ 120 NJ 120 370J 130 NJ 130 NJ 130 NJ 130 1360J
+preplace netloc clk_0_1 1 2 9 380 660 630 160 NJ 160 NJ 160 1350J 10 NJ 10 1850 130 NJ 130 2450
+preplace netloc clk_1 1 0 2 NJ 780 180J
+preplace netloc combiner_0_o 1 11 1 NJ 540
+preplace netloc combiner_1_o 1 6 1 1350 200n
+preplace netloc d_flip_flop_0_Q 1 4 2 890 440 NJ
+preplace netloc dlatch_0_o 1 4 1 900 500n
+preplace netloc dlatch_1_o 1 4 1 N 520
+preplace netloc en_0_1 1 0 10 NJ 560 NJ 560 370 340 640 340 NJ 340 NJ 340 1340 340 1590 270 NJ 270 2190
+preplace netloc man_auto_motor2_o 1 10 1 N 370
+preplace netloc manuel_mode_block_0_motor1 1 9 1 2170 190n
+preplace netloc manuel_mode_block_0_motor2 1 9 1 2200 350n
+preplace netloc n_to_m_splitter_1_o_h 1 8 1 1810 190n
+preplace netloc n_to_m_splitter_1_o_l 1 8 1 1820 190n
+preplace netloc not_gate_0_o 1 3 1 650 240n
+preplace netloc not_gate_1_o 1 8 1 1810J 340n
+preplace netloc rst_0_1 1 0 11 NJ 900 190 760 390 670 660 360 NJ 360 NJ 360 1360 410 NJ 410 1850 450 NJ 450 2440
+preplace netloc ss_0_1 1 0 7 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ 140 NJ
+preplace netloc xlconstant_0_dout 1 6 1 1360 60n
+preplace netloc xlconstant_1_dout 1 10 1 2460J 270n
+preplace netloc xlconstant_2_dout 1 1 1 NJ 840
+levelinfo -pg 1 -10 100 280 500 770 1020 1240 1470 1700 2000 2320 2570 2700
+pagesize -pg 1 -db -bbox -sgen -140 0 2840 920
 "
 }
 0

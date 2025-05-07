@@ -1,13 +1,14 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xE289CC1706ED7698",
+      "boundary_crc": "0xE289CC17FB4433C0",
       "design_src": "C:/Semesterprojekt/semesterproject_4_6/FPGA/block_designs/FPGA_Motor_handler/FPGA_Motor_handler.bd",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Motor_handler_inst_0",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
       "tool_version": "2024.2",
+      "validated": "true",
       "variant": "true"
     },
     "design_tree": {
@@ -26,7 +27,7 @@
         "direction": "I",
         "parameters": {
           "ASSOCIATED_RESET": {
-            "value": "rst:sw_0",
+            "value": "rst:sw_0:sw_1",
             "value_src": "strong"
           },
           "CLK_DOMAIN": {
@@ -61,7 +62,7 @@
           },
           "POLARITY": {
             "value": "ACTIVE_LOW",
-            "value_src": "strong"
+            "value_src": "user_prop"
           }
         }
       },
@@ -131,7 +132,7 @@
             "parameters": {
               "POLARITY": {
                 "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
+                "value_src": "user_prop"
               }
             }
           },
@@ -201,7 +202,7 @@
             "parameters": {
               "POLARITY": {
                 "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
+                "value_src": "user_prop"
               }
             }
           }
@@ -263,7 +264,7 @@
             "parameters": {
               "POLARITY": {
                 "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
+                "value_src": "user_prop"
               }
             }
           },
