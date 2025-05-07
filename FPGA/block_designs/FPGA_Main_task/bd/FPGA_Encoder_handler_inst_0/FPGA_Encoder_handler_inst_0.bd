@@ -8,7 +8,6 @@
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
       "tool_version": "2024.2",
-      "validated": "true",
       "variant": "true"
     },
     "design_tree": {
@@ -74,7 +73,7 @@
           },
           "POLARITY": {
             "value": "ACTIVE_LOW",
-            "value_src": "default_prop"
+            "value_src": "strong"
           }
         }
       }
@@ -84,7 +83,7 @@
         "vlnv": "xilinx.com:module_ref:counter_nbit:1.0",
         "ip_revision": "1",
         "xci_name": "FPGA_Encoder_handler_inst_0_counter_nbit_0",
-        "xci_path": "ip\\FPGA_Encoder_handler_inst_0_counter_nbit_0\\FPGA_Encoder_handler_inst_0_counter_nbit_0.xci",
+        "xci_path": "..\\..\\..\\..\\vivado_project\\vivado_project.srcs\\FPGA_Encoder_handler_inst_0\\bd\\FPGA_Encoder_handler_inst_0\\ip\\FPGA_Encoder_handler_inst_0_counter_nbit_0\\FPGA_Encoder_handler_inst_0_counter_nbit_0.xci",
         "inst_hier_path": "counter_nbit",
         "parameters": {
           "max_cnt": {

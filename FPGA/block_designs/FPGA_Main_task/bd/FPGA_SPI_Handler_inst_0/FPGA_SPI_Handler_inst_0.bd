@@ -8,7 +8,6 @@
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
       "tool_version": "2024.2",
-      "validated": "true",
       "variant": "true"
     },
     "design_tree": {
@@ -33,11 +32,11 @@
           },
           "CLK_DOMAIN": {
             "value": "FPGA_Main_task_ck_sck",
-            "value_src": "default_prop"
+            "value_src": "strong"
           },
           "FREQ_HZ": {
             "value": "100000000",
-            "value_src": "default_prop"
+            "value_src": "strong"
           },
           "FREQ_TOLERANCE_HZ": {
             "value": "0",
@@ -49,7 +48,7 @@
           },
           "PHASE": {
             "value": "0.0",
-            "value_src": "default_prop"
+            "value_src": "strong"
           }
         }
       },
@@ -82,7 +81,7 @@
           },
           "POLARITY": {
             "value": "ACTIVE_LOW",
-            "value_src": "default_prop"
+            "value_src": "strong"
           }
         }
       },
@@ -102,11 +101,11 @@
         "parameters": {
           "PortWidth": {
             "value": "1",
-            "value_src": "strong"
+            "value_src": "default"
           },
           "SENSITIVITY": {
             "value": "LEVEL_HIGH",
-            "value_src": "const_prop"
+            "value_src": "default"
           }
         }
       }

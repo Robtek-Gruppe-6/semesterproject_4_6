@@ -5,7 +5,7 @@
     <Generation Name="SYNTHESIS" State="STALE" Timestamp="1745427749"/>
     <Generation Name="SIMULATION" State="STALE" Timestamp="1745427749"/>
     <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1745427749"/>
-    <Generation Name="HW_HANDOFF" State="RESET" Timestamp="1744208435"/>
+    <Generation Name="HW_HANDOFF" State="STALE" Timestamp="1746619701"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="synth\FPGA_Encoder_handler.vhd" Type="VHDL">
         <Properties IsEditable="false" IsVisible="true" IsNetlistSimulation="false" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>

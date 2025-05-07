@@ -8,7 +8,6 @@
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
       "tool_version": "2024.2",
-      "validated": "true",
       "variant": "true"
     },
     "design_tree": {
@@ -74,7 +73,7 @@
           },
           "POLARITY": {
             "value": "ACTIVE_LOW",
-            "value_src": "default_prop"
+            "value_src": "strong"
           }
         }
       }

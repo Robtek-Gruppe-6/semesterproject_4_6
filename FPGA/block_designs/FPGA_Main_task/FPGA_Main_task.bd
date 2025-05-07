@@ -1,13 +1,12 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x8449B96625218DB1",
+      "boundary_crc": "0xBA25DB1CFCBD930E",
       "device": "xc7z020clg400-1",
       "name": "FPGA_Main_task",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2024.2",
-      "validated": "true"
+      "tool_version": "2024.2"
     },
     "design_tree": {
       "FPGA_Encoder_handler_1": "",
@@ -15,57 +14,30 @@
       "FPGA_Motor_handler_2": "",
       "n_to_m_splitter_0": "",
       "combiner_0": "",
-      "FPGA_SPI_Handler_0": "",
       "FPGA_Motor_handler_1": "",
-      "clock_divider_0": ""
+      "clock_divider_0": "",
+      "n_to_m_splitter_1": "",
+      "busmux_2x1_1": "",
+      "busdmux_0": "",
+      "SPI_slave_block_0": "",
+      "combiner_1": "",
+      "d_flip_flop_0": "",
+      "not_gate_0": "",
+      "dlatch_0": "",
+      "dlatch_1": "",
+      "xlconstant_0": ""
     },
     "ports": {
       "clk": {
         "type": "clk",
-        "direction": "I",
-        "parameters": {
-          "ASSOCIATED_RESET": {
-            "value": "sw_0",
-            "value_src": "default"
-          },
-          "CLK_DOMAIN": {
-            "value": "FPGA_Main_task_clk",
-            "value_src": "default"
-          },
-          "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.0",
-            "value_src": "default"
-          }
-        }
+        "direction": "I"
       },
       "sw_1": {
         "direction": "I"
       },
       "sw_0": {
         "type": "rst",
-        "direction": "I",
-        "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "POLARITY": {
-            "value": "ACTIVE_LOW",
-            "value_src": "default"
-          }
-        }
+        "direction": "I"
       },
       "encoder_1a": {
         "direction": "I"
@@ -102,33 +74,10 @@
       },
       "ck_sck": {
         "type": "clk",
-        "direction": "I",
-        "parameters": {
-          "ASSOCIATED_RESET": {
-            "value": "sw_0",
-            "value_src": "default"
-          },
-          "CLK_DOMAIN": {
-            "value": "FPGA_Main_task_ck_sck",
-            "value_src": "default"
-          },
-          "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.0",
-            "value_src": "default"
-          }
-        }
+        "direction": "I"
+      },
+      "ck_ss": {
+        "direction": "I"
       }
     },
     "components": {
@@ -151,10 +100,6 @@
           },
           "LOCK_PROPAGATE": {
             "value": "0"
-          },
-          "TRAINING_MODULE": {
-            "value": "FPGA_Encoder_handler.bd",
-            "value_src": "auto"
           }
         },
         "ports": {
@@ -166,33 +111,7 @@
           },
           "clk": {
             "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rs:rst:sw_0",
-                "value_src": "strong"
-              },
-              "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_clk",
-                "value_src": "strong"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "strong"
-              },
-              "FREQ_TOLERANCE_HZ": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "strong"
-              }
-            }
+            "direction": "I"
           },
           "position": {
             "direction": "O",
@@ -207,17 +126,7 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           }
         },
         "post_compiled_compname": "FPGA_Encoder_handler_inst_0",
@@ -253,10 +162,6 @@
           },
           "LOCK_PROPAGATE": {
             "value": "0"
-          },
-          "TRAINING_MODULE": {
-            "value": "FPGA_Encoder_handler.bd",
-            "value_src": "auto"
           }
         },
         "ports": {
@@ -268,33 +173,7 @@
           },
           "clk": {
             "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rs:rst:sw_0",
-                "value_src": "strong"
-              },
-              "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_clk",
-                "value_src": "strong"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "strong"
-              },
-              "FREQ_TOLERANCE_HZ": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "strong"
-              }
-            }
+            "direction": "I"
           },
           "position": {
             "direction": "O",
@@ -309,17 +188,7 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           }
         },
         "post_compiled_compname": "FPGA_Encoder_handler_inst_1",
@@ -355,10 +224,6 @@
           },
           "LOCK_PROPAGATE": {
             "value": "0"
-          },
-          "TRAINING_MODULE": {
-            "value": "FPGA_Motor_handler.bd",
-            "value_src": "auto"
           }
         },
         "ports": {
@@ -369,33 +234,7 @@
           },
           "clk": {
             "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rst:sw_0",
-                "value_src": "strong"
-              },
-              "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_clk",
-                "value_src": "strong"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "strong"
-              },
-              "FREQ_TOLERANCE_HZ": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "strong"
-              }
-            }
+            "direction": "I"
           },
           "o": {
             "direction": "O",
@@ -407,17 +246,7 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           }
         },
         "post_compiled_compname": "FPGA_Motor_handler_inst_3",
@@ -503,134 +332,6 @@
           }
         }
       },
-      "FPGA_SPI_Handler_0": {
-        "parameters": {
-          "ACTIVE_SIM_BD": {
-            "value": "FPGA_SPI_Handler.bd"
-          },
-          "ACTIVE_SYNTH_BD": {
-            "value": "FPGA_SPI_Handler.bd"
-          },
-          "ENABLE_DFX": {
-            "value": "0"
-          },
-          "LIST_SIM_BD": {
-            "value": "FPGA_SPI_Handler.bd"
-          },
-          "LIST_SYNTH_BD": {
-            "value": "FPGA_SPI_Handler.bd"
-          },
-          "LOCK_PROPAGATE": {
-            "value": "0"
-          },
-          "TRAINING_MODULE": {
-            "value": "FPGA_SPI_Handler.bd",
-            "value_src": "auto"
-          }
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rst:sw_0",
-                "value_src": "strong"
-              },
-              "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_ck_sck",
-                "value_src": "default_prop"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "default_prop"
-              },
-              "FREQ_TOLERANCE_HZ": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "en": {
-            "direction": "I"
-          },
-          "SPI_tx": {
-            "direction": "O"
-          },
-          "motor_1": {
-            "direction": "O",
-            "left": "10",
-            "right": "0"
-          },
-          "motor_2": {
-            "direction": "O",
-            "left": "10",
-            "right": "0"
-          },
-          "SPI_rx": {
-            "direction": "I"
-          },
-          "rst": {
-            "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "encoder_1": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "encoder_2": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "SPI_rx_intr": {
-            "type": "intr",
-            "direction": "O",
-            "parameters": {
-              "PortWidth": {
-                "value": "1",
-                "value_src": "strong"
-              },
-              "SENSITIVITY": {
-                "value": "LEVEL_HIGH",
-                "value_src": "const_prop"
-              }
-            }
-          }
-        },
-        "post_compiled_compname": "FPGA_SPI_Handler_inst_0",
-        "architecture": "zynq",
-        "variant_info": {
-          "FPGA_SPI_Handler.bd": {
-            "scoped_diagram": "FPGA_SPI_Handler_inst_0.bd",
-            "design_checksum": "0x7A6B5A103CBC6A84",
-            "ref_name": "FPGA_SPI_Handler",
-            "ref_subinst_path": "FPGA_Main_task_FPGA_SPI_Handler_0",
-            "ref_type": "Block Design",
-            "source_type": "all",
-            "active": "all"
-          }
-        }
-      },
       "FPGA_Motor_handler_1": {
         "parameters": {
           "ACTIVE_SIM_BD": {
@@ -650,10 +351,6 @@
           },
           "LOCK_PROPAGATE": {
             "value": "0"
-          },
-          "TRAINING_MODULE": {
-            "value": "FPGA_Motor_handler.bd",
-            "value_src": "auto"
           }
         },
         "ports": {
@@ -664,47 +361,11 @@
           },
           "clk": {
             "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "rst:sw_0",
-                "value_src": "strong"
-              },
-              "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_clk",
-                "value_src": "strong"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "strong"
-              },
-              "FREQ_TOLERANCE_HZ": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "strong"
-              }
-            }
+            "direction": "I"
           },
           "rst": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "strong"
-              },
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           },
           "o": {
             "direction": "O",
@@ -771,13 +432,382 @@
             "direction": "I"
           }
         }
+      },
+      "n_to_m_splitter_1": {
+        "vlnv": "xilinx.com:module_ref:n_to_m_splitter:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_n_to_m_splitter_1_0",
+        "xci_path": "ip\\FPGA_Main_task_n_to_m_splitter_1_0\\FPGA_Main_task_n_to_m_splitter_1_0.xci",
+        "inst_hier_path": "n_to_m_splitter_1",
+        "parameters": {
+          "input_size": {
+            "value": "16"
+          },
+          "output_size_high": {
+            "value": "1"
+          },
+          "output_size_low": {
+            "value": "11"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "n_to_m_splitter",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "i": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "o_h": {
+            "direction": "O",
+            "left": "0",
+            "right": "0"
+          },
+          "o_l": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          }
+        }
+      },
+      "busmux_2x1_1": {
+        "vlnv": "xilinx.com:module_ref:busmux_2x1:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_busmux_2x1_1_0",
+        "xci_path": "ip\\FPGA_Main_task_busmux_2x1_1_0\\FPGA_Main_task_busmux_2x1_1_0.xci",
+        "inst_hier_path": "busmux_2x1_1",
+        "parameters": {
+          "BIT_WIDTH": {
+            "value": "15"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "busmux_2x1",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "input_1": {
+            "direction": "I",
+            "left": "14",
+            "right": "0"
+          },
+          "input_2": {
+            "direction": "I",
+            "left": "14",
+            "right": "0"
+          },
+          "s": {
+            "direction": "I"
+          },
+          "o": {
+            "direction": "O",
+            "left": "14",
+            "right": "0"
+          }
+        }
+      },
+      "busdmux_0": {
+        "vlnv": "xilinx.com:module_ref:busdmux:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_busdmux_0_0",
+        "xci_path": "ip\\FPGA_Main_task_busdmux_0_0\\FPGA_Main_task_busdmux_0_0.xci",
+        "inst_hier_path": "busdmux_0",
+        "parameters": {
+          "BUS_WIDTH": {
+            "value": "11"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "busdmux",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "data_in": {
+            "direction": "I",
+            "left": "10",
+            "right": "0"
+          },
+          "sel": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "data_out_1": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "data_out_2": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          }
+        }
+      },
+      "SPI_slave_block_0": {
+        "vlnv": "xilinx.com:module_ref:SPI_slave_block:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_SPI_slave_block_0_1",
+        "xci_path": "ip\\FPGA_Main_task_SPI_slave_block_0_1\\FPGA_Main_task_SPI_slave_block_0_1.xci",
+        "inst_hier_path": "SPI_slave_block_0",
+        "parameters": {
+          "BUS_WIDTH": {
+            "value": "16"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "SPI_slave_block",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "cpol": {
+            "direction": "I"
+          },
+          "cpha": {
+            "direction": "I"
+          },
+          "sck": {
+            "direction": "I"
+          },
+          "ss": {
+            "direction": "I"
+          },
+          "mosi": {
+            "direction": "I"
+          },
+          "miso": {
+            "direction": "O"
+          },
+          "read_en": {
+            "direction": "I"
+          },
+          "tx": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "rx": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "busy": {
+            "direction": "O"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          }
+        }
+      },
+      "combiner_1": {
+        "vlnv": "xilinx.com:module_ref:combiner:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_combiner_1_0",
+        "xci_path": "ip\\FPGA_Main_task_combiner_1_0\\FPGA_Main_task_combiner_1_0.xci",
+        "inst_hier_path": "combiner_1",
+        "parameters": {
+          "lowbits": {
+            "value": "15"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "combiner",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "h": {
+            "direction": "I",
+            "left": "0",
+            "right": "0"
+          },
+          "l": {
+            "direction": "I",
+            "left": "14",
+            "right": "0"
+          },
+          "o": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "d_flip_flop_0": {
+        "vlnv": "xilinx.com:module_ref:d_flip_flop:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_d_flip_flop_0_0",
+        "xci_path": "ip\\FPGA_Main_task_d_flip_flop_0_0\\FPGA_Main_task_d_flip_flop_0_0.xci",
+        "inst_hier_path": "d_flip_flop_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "d_flip_flop",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "D": {
+            "direction": "I"
+          },
+          "Q": {
+            "direction": "O"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          }
+        }
+      },
+      "not_gate_0": {
+        "vlnv": "xilinx.com:module_ref:not_gate:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_not_gate_0_0",
+        "xci_path": "ip\\FPGA_Main_task_not_gate_0_0\\FPGA_Main_task_not_gate_0_0.xci",
+        "inst_hier_path": "not_gate_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "not_gate",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "i": {
+            "direction": "I"
+          },
+          "o": {
+            "direction": "O"
+          }
+        }
+      },
+      "dlatch_0": {
+        "vlnv": "xilinx.com:module_ref:dlatch:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_dlatch_0_0",
+        "xci_path": "ip\\FPGA_Main_task_dlatch_0_0\\FPGA_Main_task_dlatch_0_0.xci",
+        "inst_hier_path": "dlatch_0",
+        "parameters": {
+          "WIDTH": {
+            "value": "15"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "dlatch",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "i": {
+            "direction": "I",
+            "left": "14",
+            "right": "0"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "o": {
+            "direction": "O",
+            "left": "14",
+            "right": "0"
+          }
+        }
+      },
+      "dlatch_1": {
+        "vlnv": "xilinx.com:module_ref:dlatch:1.0",
+        "ip_revision": "1",
+        "xci_name": "FPGA_Main_task_dlatch_0_1",
+        "xci_path": "ip\\FPGA_Main_task_dlatch_0_1\\FPGA_Main_task_dlatch_0_1.xci",
+        "inst_hier_path": "dlatch_1",
+        "parameters": {
+          "WIDTH": {
+            "value": "15"
+          }
+        },
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "dlatch",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              }
+            }
+          },
+          "i": {
+            "direction": "I",
+            "left": "14",
+            "right": "0"
+          },
+          "en": {
+            "direction": "I"
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "o": {
+            "direction": "O",
+            "left": "14",
+            "right": "0"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "9",
+        "xci_name": "FPGA_Main_task_xlconstant_0_0",
+        "xci_path": "ip\\FPGA_Main_task_xlconstant_0_0\\FPGA_Main_task_xlconstant_0_0.xci",
+        "inst_hier_path": "xlconstant_0"
       }
     },
     "nets": {
+      "FPGA_Encoder_handler_1_position": {
+        "ports": [
+          "FPGA_Encoder_handler_1/position",
+          "dlatch_0/i"
+        ]
+      },
       "FPGA_Encoder_handler_2_position": {
         "ports": [
           "FPGA_Encoder_handler_2/position",
-          "FPGA_SPI_Handler_0/encoder_2"
+          "dlatch_1/i"
         ]
       },
       "FPGA_Motor_handler_0_o": {
@@ -792,28 +822,22 @@
           "motor1"
         ]
       },
-      "FPGA_SPI_Handler_0_SPI_tx": {
+      "SPI_slave_block_0_busy": {
         "ports": [
-          "FPGA_SPI_Handler_0/SPI_tx",
+          "SPI_slave_block_0/busy",
+          "not_gate_0/i"
+        ]
+      },
+      "SPI_slave_block_0_miso": {
+        "ports": [
+          "SPI_slave_block_0/miso",
           "ck_miso"
         ]
       },
-      "FPGA_SPI_Handler_0_motor_1": {
+      "SPI_slave_block_0_rx": {
         "ports": [
-          "FPGA_SPI_Handler_0/motor_1",
-          "FPGA_Motor_handler_1/i"
-        ]
-      },
-      "FPGA_SPI_Handler_0_motor_2": {
-        "ports": [
-          "FPGA_SPI_Handler_0/motor_2",
-          "FPGA_Motor_handler_2/i"
-        ]
-      },
-      "SPI_rx_0_1": {
-        "ports": [
-          "ck_mosi",
-          "FPGA_SPI_Handler_0/SPI_rx"
+          "SPI_slave_block_0/rx",
+          "n_to_m_splitter_1/i"
         ]
       },
       "a_0_1": {
@@ -840,19 +864,46 @@
           "FPGA_Encoder_handler_2/b"
         ]
       },
+      "busdmux_0_data_out_1": {
+        "ports": [
+          "busdmux_0/data_out_1",
+          "FPGA_Motor_handler_1/i"
+        ]
+      },
+      "busdmux_0_data_out_2": {
+        "ports": [
+          "busdmux_0/data_out_2",
+          "FPGA_Motor_handler_2/i"
+        ]
+      },
+      "busmux_2x1_1_o": {
+        "ports": [
+          "busmux_2x1_1/o",
+          "combiner_1/l"
+        ]
+      },
+      "ck_mosi_1": {
+        "ports": [
+          "ck_mosi",
+          "SPI_slave_block_0/mosi"
+        ]
+      },
+      "ck_sck_1": {
+        "ports": [
+          "ck_sck",
+          "SPI_slave_block_0/sck"
+        ]
+      },
       "clk_0_1": {
         "ports": [
           "clock_divider_0/clk_out",
           "FPGA_Encoder_handler_1/clk",
           "FPGA_Encoder_handler_2/clk",
           "FPGA_Motor_handler_2/clk",
-          "FPGA_Motor_handler_1/clk"
-        ]
-      },
-      "clk_0_2": {
-        "ports": [
-          "ck_sck",
-          "FPGA_SPI_Handler_0/clk"
+          "FPGA_Motor_handler_1/clk",
+          "d_flip_flop_0/clk",
+          "dlatch_1/clk",
+          "dlatch_0/clk"
         ]
       },
       "clk_1": {
@@ -867,10 +918,29 @@
           "motor_en"
         ]
       },
-      "data_to_send_1": {
+      "combiner_1_o": {
         "ports": [
-          "FPGA_Encoder_handler_1/position",
-          "FPGA_SPI_Handler_0/encoder_1"
+          "combiner_1/o",
+          "SPI_slave_block_0/tx"
+        ]
+      },
+      "d_flip_flop_0_Q": {
+        "ports": [
+          "d_flip_flop_0/Q",
+          "busmux_2x1_1/s",
+          "combiner_1/h"
+        ]
+      },
+      "dlatch_0_o": {
+        "ports": [
+          "dlatch_0/o",
+          "busmux_2x1_1/input_1"
+        ]
+      },
+      "dlatch_1_o": {
+        "ports": [
+          "dlatch_1/o",
+          "busmux_2x1_1/input_2"
         ]
       },
       "en_0_1": {
@@ -880,9 +950,10 @@
           "FPGA_Encoder_handler_2/en",
           "FPGA_Motor_handler_2/en",
           "n_to_m_splitter_0/i",
-          "FPGA_SPI_Handler_0/en",
           "FPGA_Motor_handler_1/en",
-          "clock_divider_0/en"
+          "clock_divider_0/en",
+          "d_flip_flop_0/en",
+          "SPI_slave_block_0/read_en"
         ]
       },
       "n_to_m_splitter_0_o_h": {
@@ -897,15 +968,51 @@
           "combiner_0/l"
         ]
       },
+      "n_to_m_splitter_1_o_h": {
+        "ports": [
+          "n_to_m_splitter_1/o_h",
+          "busdmux_0/sel"
+        ]
+      },
+      "n_to_m_splitter_1_o_l": {
+        "ports": [
+          "n_to_m_splitter_1/o_l",
+          "busdmux_0/data_in"
+        ]
+      },
+      "not_gate_0_o": {
+        "ports": [
+          "not_gate_0/o",
+          "d_flip_flop_0/D",
+          "dlatch_1/en",
+          "dlatch_0/en"
+        ]
+      },
       "rst_0_1": {
         "ports": [
           "sw_0",
           "FPGA_Encoder_handler_1/rst",
           "FPGA_Encoder_handler_2/rst",
           "FPGA_Motor_handler_2/rst",
-          "FPGA_SPI_Handler_0/rst",
           "FPGA_Motor_handler_1/rst",
-          "clock_divider_0/rst"
+          "clock_divider_0/rst",
+          "SPI_slave_block_0/rst",
+          "d_flip_flop_0/rst",
+          "dlatch_1/rst",
+          "dlatch_0/rst"
+        ]
+      },
+      "ss_0_1": {
+        "ports": [
+          "ck_ss",
+          "SPI_slave_block_0/ss"
+        ]
+      },
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "SPI_slave_block_0/cpha",
+          "SPI_slave_block_0/cpol"
         ]
       }
     }
