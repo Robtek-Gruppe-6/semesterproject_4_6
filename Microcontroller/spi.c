@@ -32,7 +32,6 @@
 #include "spi.h"
 #include "shared_resources.h"
 
-
 /*****************************    Defines    ********************************/
 
 /*****************************   Constants   ********************************/
@@ -68,7 +67,9 @@ void SPI0_init(void)
     SSI0_CR1_R |= SSI_CR1_SSE;  // Enable SSI0
 }
 
-void SPI0_Write(unsigned char data)
+
+
+void SPI0_Write(uint16_t data)
 /***************************************
  *     Input      : Data to be transmitted
  *     Output     : None
@@ -84,7 +85,7 @@ void SPI0_Write(unsigned char data)
     GPIO_PORTA_DATA_R |= (1 << 3); /* keep selection line (PA3) high in idle condition */
 }
 
-unsigned char SPI0_Read(void)
+uint16_t SPI0_Read(void)
 /***************************************
  *     Input      : None
  *     Output     : Received data (unsigned char)
@@ -112,7 +113,7 @@ void spi_task_read(void *pvParameters)
 
     while (1)
     {
-        unsigned char receivedData = SPI0_Read(); // Receive data
+        uint16_t receivedData = SPI0_Read(); // Receive data
 
         xQueueSendToBack(spi_rx_queue, &receivedData, 0); // Send received data to queue
 
@@ -123,7 +124,7 @@ void spi_task_read(void *pvParameters)
 void spi_task_write(void *pvParameters)
 /***************************************
  *     Input      : None
- *     Output     : None
+ *     Ou   tput     : None
  *     Function   : SPI task to transmit data
  ****************************************/
 {
@@ -132,12 +133,43 @@ void spi_task_write(void *pvParameters)
 
     while (1)
     {
-        unsigned char dataToSend;
-        if (xQueueReceive(spi_tx_queue, &dataToSend, portMAX_DELAY) == pdTRUE)
+        uint16_t dataToSend = 0;
+        if (xQueueReceive(spi_tx_queue, &dataToSend, 1) == pdTRUE)
         {
-        SPI0_Write(dataToSend);             // Transmit data
+            SPI0_Write(dataToSend);             // Transmit data
         }
-        vTaskDelay(100 / portTICK_RATE_MS); // Delay for 100 ms
+        else
+        {
+            vTaskDelay(10 / portTICK_RATE_MS); // Short delay to yield CPU if no data
+        }
+    }
+}
+
+void spi_task_rw(void *pvParameters)
+/***************************************
+ *     Input      : None
+ *     Output     : None
+ *     Function   : SPI task to transmit and receive data
+ ****************************************/
+{
+    TaskResources_t* resources = (TaskResources_t*) pvParameters;
+    QueueHandle_t spi_rx_queue = resources->spi_rx_queue;
+    QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
+
+    while (1)
+    {
+        // Handle transmit
+        uint16_t dataToSend = 0;
+        if (xQueueReceive(spi_tx_queue, &dataToSend, 0) == pdTRUE)
+        {
+            SPI0_Write(dataToSend);
+        }
+
+        // Handle receive
+        uint16_t receivedData = SPI0_Read();
+        xQueueSendToBack(spi_rx_queue, &receivedData, 0);
+
+        vTaskDelay(100 / portTICK_RATE_MS); // Adjust delay as needed
     }
 }
 
