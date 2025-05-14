@@ -16,5 +16,4 @@ Release/
 # CCS specfic
 *.d
 *.dep
-.cproject
 /.vscode
