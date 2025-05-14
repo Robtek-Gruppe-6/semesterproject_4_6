@@ -58,6 +58,8 @@ void spi_task_rw(void *pvParameters);
 
 void spi_task_rw(void *pvParameters);
 
+void SPI_test_task(void *pvParameters);
+
 // void Delay_ms(int time_ms);
 
 #endif /* SPI_H_ */

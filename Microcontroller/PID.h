@@ -24,14 +24,19 @@
 #include <stdint.h>
 
 /*****************************    Defines    ********************************/
+typedef struct
+{
+    float Kp;
+    float Ki;
+    float Kd;
 
+    float integral_sum;
+    float prev_error;
+    float output;
+} pid_t;
 /*****************************   Constants   ********************************/
 
 /*****************************   Functions   ********************************/
-
-/* Example function prototype:
-void PID_Init(void);
-*/
 
 /****************************** End Of Module ********************************/
 #endif /* PID_H_ */
