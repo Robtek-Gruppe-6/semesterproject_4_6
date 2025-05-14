@@ -158,20 +158,37 @@ void spi_task_rw(void *pvParameters)
 
     while (1)
     {
-        // Handle transmit
         uint16_t dataToSend = 0;
+        uint16_t receivedData = 0;
+
+        // If there is data to send, transmit and read response
         if (xQueueReceive(spi_tx_queue, &dataToSend, 0) == pdTRUE)
         {
             SPI0_Write(dataToSend);
+            receivedData = SPI0_Read(); // Read response after write
+            xQueueSendToBack(spi_rx_queue, &receivedData, 0);
         }
-
-        // Handle receive
-        uint16_t receivedData = SPI0_Read();
-        xQueueSendToBack(spi_rx_queue, &receivedData, 0);
-
-        vTaskDelay(100 / portTICK_RATE_MS); // Adjust delay as needed
+        else
+        {
+            // Optionally, you can skip reading if nothing to send
+            vTaskDelay(10 / portTICK_RATE_MS);
+        }
     }
 }
+
+void SPI_test_task(void *pvParameters)
+{
+    TaskResources_t* resources = (TaskResources_t*) pvParameters;
+    QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
+    uint16_t testData = 0x5555; // Example test value
+
+    while (1)
+    {
+        xQueueSendToBack(spi_tx_queue, &testData, 0);
+        vTaskDelay(500 / portTICK_RATE_MS); // Send every 500 ms
+    }
+}
+
 
 // /* This function generates delay in ms */
 // /* calculations are based on 16MHz system clock frequency */
