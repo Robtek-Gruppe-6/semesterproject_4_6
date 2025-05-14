@@ -31,6 +31,7 @@
 #include "status_led.h"
 #include "adc.h"
 #include "spi.h"
+#include "shared_resources.h"
 
 /*****************************    Defines    ********************************/
 #define USERTASK_STACK_SIZE configMINIMAL_STACK_SIZE
@@ -69,6 +70,14 @@ int main(void)
 {
 
     setupHardware(); // Set up the hardware
+
+    TaskResources_t* resources = pvPortMalloc(sizeof(TaskResources_t));
+
+    resources->spi_rx_queue = xQueueCreate(32, sizeof(uint16_t));
+    resources->spi_tx_queue = xQueueCreate(32, sizeof(uint16_t));
+    resources->adc0_queue = xQueueCreate(8, sizeof(uint16_t));
+    resources->adc1_queue = xQueueCreate(8, sizeof(uint16_t));
+
     xTaskCreate(status_led_task, "Status LED", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
     xTaskCreate(adc_task, "ADC Task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
     xTaskCreate(spi_task_read, "SPI Task Read", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);

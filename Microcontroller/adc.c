@@ -220,8 +220,8 @@ void adc_task(void *pvParameters)
         sprintf(message, "ADC0: %d, ADC1: %d\n", adc0_value, adc1_value);
 
         // Send the formatted string via UART
-        UART_Debug(message);
-        
+        //UART_Debug(message);
+
         vTaskDelay(100 / portTICK_RATE_MS); // Delay for 100 ms
     }
 }
