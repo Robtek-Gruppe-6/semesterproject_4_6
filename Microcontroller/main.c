@@ -69,7 +69,7 @@ int main(void)
  * *  Output   :    -
  * *  Function :  Main function for the project.
  * ******************************************************************************/
-{
+    {
 
     setupHardware(); // Set up the hardware
 
@@ -81,7 +81,7 @@ int main(void)
     resources->adc1_queue =     xQueueCreate(8 , sizeof(uint16_t));
 
     xTaskCreate(status_led_task, "Status LED",      USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
-    xTaskCreate(adc_task, "ADC Task",             USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
+    xTaskCreate(adc_task, "ADC Task",               USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
     //xTaskCreate(spi_task_read, "SPI Task Read",     USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
     //xTaskCreate(spi_task_write, "SPI Task Write",   USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
     xTaskCreate(spi_task_rw, "SPI Task RW",         USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
