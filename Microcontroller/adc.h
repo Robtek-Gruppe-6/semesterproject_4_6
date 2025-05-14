@@ -80,6 +80,13 @@ INT16S data_wrapper(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale);
  *     Function   : Wrapper function to scale data based on threshold and cutoff
  ****************************************/
 
+void int_to_str(INT16S value, char* str);
+/***************************************
+ *     Input      : value, str
+ *     Output     : None
+ *     Function   : Convert integer to string (supports negative numbers)
+ ****************************************/
+
 void adc_task(void *pvParameters);
 /***************************************
  *     Input      : None

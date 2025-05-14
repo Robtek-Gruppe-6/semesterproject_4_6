@@ -31,6 +31,7 @@
 #include "status_led.h"
 #include "adc.h"
 #include "spi.h"
+#include "uart.h"
 #include "shared_resources.h"
 
 /*****************************    Defines    ********************************/
@@ -58,6 +59,7 @@ static void setupHardware(void)
     status_led_init(); // Initialize the status LED
     adc_init();        // Initialize the ADCs
     SPI0_init();       // Initialize the SPI interface
+    UART0_Init();      // Initialize the UART interface
     // OTHER INITIALIZATIONS HERE
 }
 
