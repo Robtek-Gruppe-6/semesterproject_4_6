@@ -18,11 +18,20 @@
  *****************************************************************************/
 
 /***************************** Include files ********************************/
+
 #include <stdint.h>
+#include <stdlib.h>
+
 #include "tm4c123gh6pm.h"
-#include "FreeRTOS.h"
-#include "spi.h"
 #include "emp_type.h"
+#include "systick_frt.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "semphr.h"
+#include "spi.h"
+#include "shared_resources.h"
+
 
 /*****************************    Defines    ********************************/
 
@@ -98,9 +107,15 @@ void spi_task_read(void *pvParameters)
  *     Function   : SPI task to transmit and receive data
  ****************************************/
 {
+    TaskResources_t* resources = (TaskResources_t*) pvParameters;
+    QueueHandle_t spi_rx_queue = resources->spi_rx_queue;
+
     while (1)
     {
         unsigned char receivedData = SPI0_Read(); // Receive data
+
+        xQueueSendToBack(spi_rx_queue, &receivedData, 0); // Send received data to queue
+
         vTaskDelay(100 / portTICK_RATE_MS);       // Delay for 100 ms
     }
 }
@@ -112,10 +127,16 @@ void spi_task_write(void *pvParameters)
  *     Function   : SPI task to transmit data
  ****************************************/
 {
+    TaskResources_t* resources = (TaskResources_t*) pvParameters;
+    QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
+
     while (1)
     {
-        unsigned char dataToSend = 0xAA;    // Example data to send
+        unsigned char dataToSend;
+        if (xQueueReceive(spi_tx_queue, &dataToSend, portMAX_DELAY) == pdTRUE)
+        {
         SPI0_Write(dataToSend);             // Transmit data
+        }
         vTaskDelay(100 / portTICK_RATE_MS); // Delay for 100 ms
     }
 }
