@@ -79,9 +79,9 @@ int main(void)
     resources->adc1_queue = xQueueCreate(8, sizeof(uint16_t));
 
     xTaskCreate(status_led_task, "Status LED", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-    xTaskCreate(adc_task, "ADC Task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-    xTaskCreate(spi_task_read, "SPI Task Read", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
-    xTaskCreate(spi_task_write, "SPI Task Write", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+    //xTaskCreate(adc_task, "ADC Task", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+    //xTaskCreate(spi_task_read, "SPI Task Read", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
+    //xTaskCreate(spi_task_write, "SPI Task Write", USERTASK_STACK_SIZE, NULL, LOW_PRIO, NULL);
 
     vTaskStartScheduler(); // Start the FreeRTOS scheduler
     // The scheduler should never return, but if it does, we can handle it here
