@@ -29,14 +29,28 @@ typedef struct
     float Kp;
     float Ki;
     float Kd;
-
     float integral_sum;
     float prev_error;
     float output;
 } pid_t;
+
 /*****************************   Constants   ********************************/
 
 /*****************************   Functions   ********************************/
+
+void PID_Init(pid_t* pid, float Kp, float Ki, float Kd);
+/***************************************
+ *     Input      : PID struct pointer, Kp, Ki, Kd
+ *     Output     : None
+ *     Function   : Initialize PID controller
+ ****************************************/
+
+float pid_controller(float measured_value, pid_t *pid);
+/***************************************
+ *     Input      : measured_value, PID struct pointer
+ *     Output     : PID output
+ *     Function   : Calculate PID output (error = measured_value)
+ ****************************************/
 
 /****************************** End Of Module ********************************/
 #endif /* PID_H_ */

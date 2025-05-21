@@ -60,7 +60,7 @@ static void setupHardware(void)
     UART0_Init();
     adc_init();        // Initialize the ADCs
     SPI0_init();       // Initialize the SPI interface
-    // OTHER INITIALIZATIONS HERE
+
 }
 
 int main(void)
@@ -79,12 +79,13 @@ int main(void)
     resources->spi_tx_queue =   xQueueCreate(32, sizeof(uint16_t));
     resources->adc0_queue =     xQueueCreate(8 , sizeof(uint16_t));
     resources->adc1_queue =     xQueueCreate(8 , sizeof(uint16_t));
+    resources->spi_mutex = xSemaphoreCreateMutex();
 
     xTaskCreate(status_led_task, "Status LED",      USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
     xTaskCreate(adc_task, "ADC Task",               USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
     //xTaskCreate(spi_task_read, "SPI Task Read",     USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
-    //xTaskCreate(spi_task_write, "SPI Task Write",   USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
-    xTaskCreate(spi_task_rw, "SPI Task RW",         USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
+    xTaskCreate(spi_task_write, "SPI Task Write",   USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
+    //xTaskCreate(spi_task_rw, "SPI Task RW",         USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
     //xTaskCreate(SPI_test_task, "SPI Test Task",     USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
 
 
