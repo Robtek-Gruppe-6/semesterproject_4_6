@@ -7,8 +7,7 @@
       "name": "FPGA_SPI_Handler_inst_0",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2024.2",
-      "variant": "true"
+      "tool_version": "2024.2"
     },
     "design_tree": {
       "SPI_rx_block_0": "",
@@ -24,33 +23,7 @@
     "ports": {
       "clk": {
         "type": "clk",
-        "direction": "I",
-        "parameters": {
-          "ASSOCIATED_RESET": {
-            "value": "rst:sw_0",
-            "value_src": "strong"
-          },
-          "CLK_DOMAIN": {
-            "value": "FPGA_Main_task_ck_sck",
-            "value_src": "strong"
-          },
-          "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "strong"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "strong"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "strong"
-          },
-          "PHASE": {
-            "value": "0.0",
-            "value_src": "strong"
-          }
-        }
+        "direction": "I"
       },
       "en": {
         "direction": "I"
@@ -73,17 +46,7 @@
       },
       "rst": {
         "type": "rst",
-        "direction": "I",
-        "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "strong"
-          },
-          "POLARITY": {
-            "value": "ACTIVE_LOW",
-            "value_src": "strong"
-          }
-        }
+        "direction": "I"
       },
       "encoder_1": {
         "direction": "I",
@@ -97,17 +60,7 @@
       },
       "SPI_rx_intr": {
         "type": "intr",
-        "direction": "O",
-        "parameters": {
-          "PortWidth": {
-            "value": "1",
-            "value_src": "default"
-          },
-          "SENSITIVITY": {
-            "value": "LEVEL_HIGH",
-            "value_src": "default"
-          }
-        }
+        "direction": "O"
       }
     },
     "components": {
@@ -285,18 +238,6 @@
               "ASSOCIATED_RESET": {
                 "value": "rst",
                 "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "default_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_ck_sck",
-                "value_src": "default_prop"
               }
             }
           },
@@ -310,13 +251,7 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           },
           "o": {
             "direction": "O",
@@ -349,18 +284,6 @@
               "ASSOCIATED_RESET": {
                 "value": "rst",
                 "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "default_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_ck_sck",
-                "value_src": "default_prop"
               }
             }
           },
@@ -374,13 +297,7 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           },
           "o": {
             "direction": "O",
@@ -445,18 +362,6 @@
               "ASSOCIATED_RESET": {
                 "value": "rst",
                 "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "default_prop"
-              },
-              "PHASE": {
-                "value": "0.0",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "FPGA_Main_task_ck_sck",
-                "value_src": "default_prop"
               }
             }
           },
@@ -471,13 +376,7 @@
           },
           "rst": {
             "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "default_prop"
-              }
-            }
+            "direction": "I"
           }
         }
       },
@@ -624,11 +523,11 @@
       "clk_0_1": {
         "ports": [
           "clk",
-          "dlatch_0/clk",
-          "dlatch_1/clk",
-          "d_flip_flop_1/clk",
           "SPI_tx_block_0/clk",
-          "SPI_rx_block_0/clk"
+          "SPI_rx_block_0/clk",
+          "d_flip_flop_1/clk",
+          "dlatch_0/clk",
+          "dlatch_1/clk"
         ]
       },
       "combiner_0_o": {
@@ -665,9 +564,9 @@
       "en_0_1": {
         "ports": [
           "en",
-          "d_flip_flop_1/en",
           "SPI_tx_block_0/en",
-          "SPI_rx_block_0/en"
+          "SPI_rx_block_0/en",
+          "d_flip_flop_1/en"
         ]
       },
       "i_0_1": {
@@ -697,19 +596,19 @@
       "rst_0_1": {
         "ports": [
           "rst",
-          "dlatch_0/rst",
-          "dlatch_1/rst",
-          "d_flip_flop_1/rst",
           "SPI_tx_block_0/rst",
-          "SPI_rx_block_0/rst"
+          "SPI_rx_block_0/rst",
+          "d_flip_flop_1/rst",
+          "dlatch_0/rst",
+          "dlatch_1/rst"
         ]
       },
       "shifting_register_0_done": {
         "ports": [
           "SPI_tx_block_0/done",
+          "d_flip_flop_1/D",
           "dlatch_0/en",
-          "dlatch_1/en",
-          "d_flip_flop_1/D"
+          "dlatch_1/en"
         ]
       }
     }
