@@ -73,17 +73,15 @@ void SPI0_init(void)
 
 void SPI0_Write(uint16_t data)
 {
-    xSemaphoreTake(spi_mutex, portMAX_DELAY); // Lock mutex
+    //xSemaphoreTake(spi_mutex, portMAX_DELAY); // Lock mutex
 
-    GPIO_PORTA_DATA_R &= ~(1 << 3); /* Make PA3 Selection line (SS) low */
     while ((SSI0_SR_R & (1 << 1)) == 0)
         ;             /* wait untill Tx FIFO is not full */
     SSI0_DR_R = data; /* transmit byte over SSI0Tx line */
     while (SSI0_SR_R & (1 << 4))
-        ;                          /* wait until transmit complete */
-    GPIO_PORTA_DATA_R |= (1 << 3); /* keep selection line (PA3) high in idle condition */
+        ;
 
-    xSemaphoreGive(spi_mutex); // Unlock mutex
+    //xSemaphoreGive(spi_mutex); // Unlock mutex
 }
 
 uint16_t SPI0_Read(void)
@@ -133,15 +131,16 @@ void spi_task_write(void *pvParameters)
 
     while (1)
     {
-        uint16_t dataToSend = 0;
-        if (xQueueReceive(resources->spi_tx_queue, &dataToSend, 1) == pdTRUE)
+        uint16_t dataToSend = 0x9;
+        SPI0_Write(dataToSend);
+        /*if (xQueueReceive(resources->spi_tx_queue, &dataToSend, 1) == pdTRUE)
         {
             SPI0_Write(dataToSend);             // Transmit data
         }
         else
         {
             vTaskDelay(10 / portTICK_RATE_MS); // Short delay to yield CPU if no data
-        }
+        }*/
     }
 }
 
