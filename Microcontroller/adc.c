@@ -23,6 +23,7 @@
 #include "emp_type.h"
 #include "tm4c123gh6pm.h"
 #include "FreeRTOS.h"
+#include "PID.h"
 
 /*****************************    Defines    ********************************/
 
@@ -30,8 +31,6 @@
 #define THRESHOLD_STATE 1
 #define SCALING_STATE 2
 #define FINAL 3
-
-
 
 /*****************************   Constants   ********************************/
 const INT16U THRESHOLD = 1000; // Threshold value for data processing
@@ -45,6 +44,8 @@ INT16S adc0_value = 0; // Variable to store ADC0 value
 INT16S adc1_value = 0; // Variable to store ADC1 value
 INT8U state = 0;       // State variable for data processing
 char message[50]; // Buffer to hold the formatted message
+static pid_t pid0;
+static pid_t pid1;
 
 /*****************************   Functions   ********************************/
 
@@ -58,6 +59,10 @@ void adc_init(void)
     // Initialize ADC0 and ADC1
     ADC0_Init();
     ADC1_Init();
+
+    // Initialize PID controllers (tune Kp, Ki, Kd as needed)
+    PID_Init(&pid0, 1.0f, 0.05f, 0.01f);
+    PID_Init(&pid1, 1.0f, 0.05f, 0.01f);
 }
 
 void ADC0_Init(void)
@@ -296,13 +301,25 @@ void adc_task(void *pvParameters)
 
     while (1)
     {
-        // Read ADC values and process them as needed
-        adc0_value = data_wrapper2(ADC_Read_Scaled(ADC0_Read()), THRESHOLD, CUTOFF, SCALE);
-        adc1_value = data_wrapper2(ADC_Read_Scaled(ADC1_Read()), THRESHOLD, CUTOFF, SCALE);
+        INT16S raw0 = data_wrapper2(ADC_Read_Scaled(ADC0_Read()), THRESHOLD, CUTOFF, SCALE);
+        INT16S raw1 = data_wrapper2(ADC_Read_Scaled(ADC1_Read()), THRESHOLD, CUTOFF, SCALE);
 
-        // Format the ADC values into a string
-        //sprintf(message, "ADC0: %d, ADC1: %d\n", adc0_value, adc1_value);
-        
+        // Scale to -255..255
+        //float scaled_raw0 = ((float)raw0 * 255.0f) / 32000.0f;
+        //float scaled_raw1 = ((float)raw1 * 255.0f) / 32000.0f;
+
+        float setpoint0 = 0.0f; // Center
+        float setpoint1 = 0.0f; // Center
+
+        adc0_value = (INT16S)pid_controller(raw0, &pid0); // PID controller for ADC0
+        adc1_value = (INT16S)pid_controller(raw1, &pid1); // PID controller for ADC1
+
+        // Clamp to -255..255 if needed
+        /*if(adc0_value < -255) adc0_value = -255;
+        if(adc0_value > 255) adc0_value = 255;
+        if(adc1_value < -255) adc1_value = -255;
+        if(adc1_value > 255) adc1_value = 255;*/
+
         // Convert integers to strings
         int_to_str(adc0_value, adc0_str);
         int_to_str(adc1_value, adc1_str);

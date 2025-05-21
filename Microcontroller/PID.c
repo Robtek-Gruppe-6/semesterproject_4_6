@@ -31,8 +31,27 @@
 
 /*****************************   Functions   ********************************/
 
-float pid_controller(float measured_value, pid_t *pid)
+void PID_Init(pid_t* pid, float Kp, float Ki, float Kd)
+/***************************************
+ *     Input      : PID struct pointer, Kp, Ki, Kd
+ *     Output     : None
+ *     Function   : Initialize PID controller
+ ****************************************/
+{
+    pid->Kp = Kp;
+    pid->Ki = Ki;
+    pid->Kd = Kd;
+    pid->integral_sum = 0.0f;
+    pid->prev_error = 0.0f;
+    pid->output = 0.0f;
+}
 
+float pid_controller(float measured_value, pid_t *pid)
+/***************************************
+ *     Input      : measured_value, PID struct pointer
+ *     Output     : PID output
+ *     Function   : Calculate PID output (error = measured_value)
+ ****************************************/
 {
     float error = measured_value;
 
