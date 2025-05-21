@@ -38,6 +38,8 @@
 
 /*****************************   Variables   ********************************/
 
+ SemaphoreHandle_t spi_mutex; // Add this at the top, after includes
+
 /*****************************   Functions   ********************************/
 void SPI0_init(void)
 /***************************************
@@ -70,12 +72,9 @@ void SPI0_init(void)
 
 
 void SPI0_Write(uint16_t data)
-/***************************************
- *     Input      : Data to be transmitted
- *     Output     : None
- *     Function   : Transmit data over SPI0 (SSI0)
- ****************************************/
 {
+    xSemaphoreTake(spi_mutex, portMAX_DELAY); // Lock mutex
+
     GPIO_PORTA_DATA_R &= ~(1 << 3); /* Make PA3 Selection line (SS) low */
     while ((SSI0_SR_R & (1 << 1)) == 0)
         ;             /* wait untill Tx FIFO is not full */
@@ -83,21 +82,22 @@ void SPI0_Write(uint16_t data)
     while (SSI0_SR_R & (1 << 4))
         ;                          /* wait until transmit complete */
     GPIO_PORTA_DATA_R |= (1 << 3); /* keep selection line (PA3) high in idle condition */
+
+    xSemaphoreGive(spi_mutex); // Unlock mutex
 }
 
 uint16_t SPI0_Read(void)
-/***************************************
- *     Input      : None
- *     Output     : Received data (unsigned char)
- *     Function   : Receive data over SPI0 (SSI0)
- ****************************************/
 {
+    xSemaphoreTake(spi_mutex, portMAX_DELAY); // Lock mutex
+
     unsigned char receivedData;
     GPIO_PORTA_DATA_R &= ~(1 << 3); /* Make PA3 Selection line (SS) low */
     while ((SSI0_SR_R & (1 << 2)) == 0)
         ;                          /* Wait until Rx FIFO is not empty */
     receivedData = SSI0_DR_R;      /* Read received data from SSI0Rx line */
     GPIO_PORTA_DATA_R |= (1 << 3); /* Keep selection line (PA3) high in idle condition */
+
+    xSemaphoreGive(spi_mutex); // Unlock mutex
     return receivedData;
 }
 
@@ -129,12 +129,12 @@ void spi_task_write(void *pvParameters)
  ****************************************/
 {
     TaskResources_t* resources = (TaskResources_t*) pvParameters;
-    QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
+    //QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
 
     while (1)
     {
         uint16_t dataToSend = 0;
-        if (xQueueReceive(spi_tx_queue, &dataToSend, 1) == pdTRUE)
+        if (xQueueReceive(resources->spi_tx_queue, &dataToSend, 1) == pdTRUE)
         {
             SPI0_Write(dataToSend);             // Transmit data
         }
@@ -162,11 +162,12 @@ void spi_task_rw(void *pvParameters)
         uint16_t receivedData = 0;
 
         // If there is data to send, transmit and read response
-        if (xQueueReceive(spi_tx_queue, &dataToSend, 0) == pdTRUE)
+        if (xQueueReceive(spi_tx_queue, &dataToSend, 10) == pdTRUE)
         {
             SPI0_Write(dataToSend);
-            receivedData = SPI0_Read(); // Read response after write
-            xQueueSendToBack(spi_rx_queue, &receivedData, 0);
+            //receivedData = SPI0_Read(); // Read response after write
+            //xQueueSendToBack(spi_rx_queue, &receivedData, 0);
+            vTaskDelay(10 / portTICK_RATE_MS);
         }
         else
         {
@@ -179,12 +180,12 @@ void spi_task_rw(void *pvParameters)
 void SPI_test_task(void *pvParameters)
 {
     TaskResources_t* resources = (TaskResources_t*) pvParameters;
-    QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
+    //QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
     uint16_t testData = 0x5555; // Example test value
 
     while (1)
     {
-        xQueueSendToBack(spi_tx_queue, &testData, 0);
+        xQueueSend(resources->spi_tx_queue, &testData, 10);
         vTaskDelay(500 / portTICK_RATE_MS); // Send every 500 ms
     }
 }

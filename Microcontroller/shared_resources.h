@@ -19,6 +19,7 @@ typedef struct {
     // SPI
     QueueHandle_t spi_rx_queue;                       // Queue for spi receive data
     QueueHandle_t spi_tx_queue;                       // Queue for spi transmit data
+    SemaphoreHandle_t spi_mutex;
 
     // ADC
     QueueHandle_t adc0_queue;                    // Queue for ADC0
