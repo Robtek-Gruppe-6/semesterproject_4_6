@@ -86,7 +86,7 @@ int main(void)
     //xTaskCreate(spi_task_read, "SPI Task Read",     USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
     xTaskCreate(spi_task_write, "SPI Task Write",   USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
     //xTaskCreate(spi_task_rw, "SPI Task RW",         USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
-    //xTaskCreate(SPI_test_task, "SPI Test Task",     USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
+    xTaskCreate(SPI_test_task, "SPI Test Task",     USERTASK_STACK_SIZE, (void *) resources, LOW_PRIO, NULL);
 
 
     vTaskStartScheduler(); // Start the FreeRTOS scheduler
