@@ -25,6 +25,7 @@
 #include "FreeRTOS.h"
 #include "PID.h"
 #include "uart.h"
+#include "shared_resources.h"
 
 /*****************************    Defines    ********************************/
 
@@ -254,7 +255,7 @@ void adc_task(void *pvParameters)
         framed_data1 = data_framer(raw1, 1); // Frame data for motor 1
 
         // Convert integers to strings
-        int_to_str(framed_data0, adc0_str);
+        /*int_to_str(framed_data0, adc0_str);
         int_to_str(framed_data1, adc1_str);
 
         // Build the message manually
@@ -271,10 +272,9 @@ void adc_task(void *pvParameters)
         msg[idx] = '\0';
 
         // Send the formatted string via UART
-        UART0_Write_String(msg);
+        UART0_Write_String(msg);*/
 
-        // Send the formatted string via UART
-        // UART0_Write_String("Test");
+        xQueueSend(((TaskResources_t *)pvParameters)->spi_tx_queue, &framed_data0, 10);
 
         vTaskDelay(100 / portTICK_RATE_MS); // Delay for 1000 ms //normalt 100ms
     }
