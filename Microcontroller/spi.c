@@ -131,16 +131,16 @@ void spi_task_write(void *pvParameters)
 
     while (1)
     {
-        uint16_t dataToSend = 0x9;
-        SPI0_Write(dataToSend);
-        /*if (xQueueReceive(resources->spi_tx_queue, &dataToSend, 1) == pdTRUE)
+        uint16_t dataToSend = 0;
+        //SPI0_Write(dataToSend);
+        if (xQueueReceive(resources->spi_tx_queue, &dataToSend, 1) == pdTRUE)
         {
             SPI0_Write(dataToSend);             // Transmit data
         }
         else
         {
             vTaskDelay(10 / portTICK_RATE_MS); // Short delay to yield CPU if no data
-        }*/
+        }
     }
 }
 
