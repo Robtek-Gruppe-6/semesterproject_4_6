@@ -65,7 +65,7 @@ void SPI0_init(void)
     SSI0_CR1_R = 0x00000000;    // Set SSI0 as master
     SSI0_CC_R = 0x0;            // Use system clock
     SSI0_CPSR_R = 0x08;         // Set clock divider (0x10=16 0x80=128)
-    SSI0_CR0_R = 0x07;          // 8-bit data, Freescale SPI mode
+    SSI0_CR0_R = 0x0F;          // 8-bit data, Freescale SPI mode
     SSI0_CR1_R |= SSI_CR1_SSE;  // Enable SSI0
 }
 
@@ -180,7 +180,7 @@ void SPI_test_task(void *pvParameters)
 {
     TaskResources_t* resources = (TaskResources_t*) pvParameters;
     //QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
-    uint16_t testData = 0b1000010011001000; // Example test value
+    uint16_t testData = 0x3000; // Example test value
 
     while (1)
     {
