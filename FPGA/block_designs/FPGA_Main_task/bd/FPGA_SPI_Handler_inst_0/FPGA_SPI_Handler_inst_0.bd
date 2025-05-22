@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x1E5E3542FF594E75",
+      "boundary_crc": "0x1E5E35428AFBC951",
       "design_src": "C:/Users/Bluex/Desktop/FPGA_Programming/Semesterprojekt/FPGA/block_designs/FPGA_SPI_Handler/FPGA_SPI_Handler.bd",
       "device": "xc7z020clg400-1",
       "name": "FPGA_SPI_Handler_inst_0",

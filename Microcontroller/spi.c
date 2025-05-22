@@ -180,7 +180,7 @@ void SPI_test_task(void *pvParameters)
 {
     TaskResources_t* resources = (TaskResources_t*) pvParameters;
     //QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
-    uint16_t testData = 0x5555; // Example test value
+    uint16_t testData = 0b1000010011001000; // Example test value
 
     while (1)
     {
