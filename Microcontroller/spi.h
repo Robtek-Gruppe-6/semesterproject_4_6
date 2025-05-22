@@ -49,6 +49,8 @@ uint16_t SPI0_Read(void);
  *     Function   : Read data from SPI0 (SSI0)
  ****************************************/
 
+void spi_task_write(void *pvParameters);
+
 void spi_task_rw(void *pvParameters);
 /***************************************
  *     Input      : None
