@@ -178,28 +178,22 @@ void SPI_test_task(void *pvParameters)
 {
     TaskResources_t* resources = (TaskResources_t*) pvParameters;
     //QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
-    uint16_t testData = 0x1034; // Example test value
+    uint16_t testData = 0b0000000000000000; // Example test value 0b1000010011001000
+    // Clear all bits
+    testData &= ~(0xFFFF << 0);
 
+    // Set bit 15 (motor select = 1)
+    testData |= (0 << 15); //0 is pan 1 is tilt
+
+    // Set bit 10 (sign)
+    testData |= (0 << 10); //0 is not complemented 1 is twos complemented
+
+    // Set duty cycle (bits 9–0)
+    testData |= 224; //first 24 is ignored range from 24-1024 is 100.0%
     while (1)
     {
         xQueueSend(resources->spi_tx_queue, &testData, 10);
         vTaskDelay(500 / portTICK_RATE_MS); // Send every 500 ms
-        testData=0x44;
-        xQueueSend(resources->spi_tx_queue, &testData, 10);
-        vTaskDelay(500 / portTICK_RATE_MS); // Send every 500 ms
-        testData=0x69;
-        xQueueSend(resources->spi_tx_queue, &testData, 10);
-        vTaskDelay(500 / portTICK_RATE_MS); // Send every 500 ms
-        testData=0x6C;
-        xQueueSend(resources->spi_tx_queue, &testData, 10);
-        vTaskDelay(500 / portTICK_RATE_MS); // Send every 500 ms
-        testData=0x6C;
-        xQueueSend(resources->spi_tx_queue, &testData, 10);
-        vTaskDelay(500 / portTICK_RATE_MS); // Send every 500 ms
-        testData=0x65;
-        xQueueSend(resources->spi_tx_queue, &testData, 10);
-        vTaskDelay(500 / portTICK_RATE_MS); // Send every 500 ms
-        testData=0x72;
     }
 }
 
