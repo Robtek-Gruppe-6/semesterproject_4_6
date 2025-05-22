@@ -33,17 +33,17 @@
 #define FINAL 3
 
 /*****************************   Constants   ********************************/
-const INT16U THRESHOLD = 1000; // Threshold value for data processing
-const INT16U CUTOFF = 2000;    // Cutoff value for data processing
-const INT16U SCALE = 1;        // Scale factor for data processing
-const INT16S MAX_VALUE = 32000; // Maximum value for scaling
+const INT16U THRESHOLD = 1000;   // Threshold value for data processing
+const INT16U CUTOFF = 2000;      // Cutoff value for data processing
+const INT16U SCALE = 1;          // Scale factor for data processing
+const INT16S MAX_VALUE = 32000;  // Maximum value for scaling
 const INT16S MIN_VALUE = -32000; // Minimum value for scaling
 
 /*****************************   Variables   ********************************/
 INT16S adc0_value = 0; // Variable to store ADC0 value
 INT16S adc1_value = 0; // Variable to store ADC1 value
 INT8U state = 0;       // State variable for data processing
-char message[50]; // Buffer to hold the formatted message
+char message[50];      // Buffer to hold the formatted message
 static pid_t pid0;
 static pid_t pid1;
 
@@ -162,22 +162,22 @@ INT16S data_wrapper2(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale)
  ****************************************/
 {
     if (data > MAX_VALUE - cutoff)
-        {
-            // Send the formatted string via UART
-            //UART0_Write_String("INITIAL STATE\r\n");
-            data = MAX_VALUE; // Set to max value
-            return data; // Return the wrapped data
-        }
+    {
+        // Send the formatted string via UART
+        // UART0_Write_String("INITIAL STATE\r\n");
+        data = MAX_VALUE; // Set to max value
+        return data;      // Return the wrapped data
+    }
 
     else if (data < MIN_VALUE + cutoff)
     {
         data = MIN_VALUE; // Set to min value
-        return data; // Return the wrapped data
+        return data;      // Return the wrapped data
     }
-    
+
     if (data < threshold && data > -threshold)
     {
-        data = 0; // Set to 0 if below threshold
+        data = 0;    // Set to 0 if below threshold
         return data; // Return the wrapped data
     }
 
@@ -187,101 +187,40 @@ INT16S data_wrapper2(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale)
     }
 }
 
-INT16S data_wrapper(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale)
-/***************************************
- *     Input      : data, threshold, cutoff, scale
- *     Output     : Scaled data (INT16S)
- *     Function   : Wrapper function to scale data based on threshold and cutoff
- ****************************************/
-{
-    switch (state)
-    {
-    case INITIAL_STATE: // Initial state
-        if (data > MAX_VALUE - cutoff)
-        {
-            // Send the formatted string via UART
-            //UART0_Write_String("INITIAL STATE\r\n");
-            data = MAX_VALUE; // Set to max value
-            state = FINAL; // Move to scaling state
-        }
-        else if (data < MIN_VALUE + cutoff)
-        {
-            data = MIN_VALUE; // Set to min value
-            state = FINAL; // Move to scaling state
-        }
-        else
-        {
-            state = FINAL; // Move to threshold state
-        }
-        
-        break;
-
-    case THRESHOLD_STATE: //
-        // Send the formatted string via UART
-        UART0_Write_String("THRESHOLD STATE\r\n");
-        if (data < threshold)
-        {
-            data = 0;      // Find out what to set it to
-            state = FINAL; // Move to final state
-        }
-        else if (data > -threshold)
-        {
-            data = 0;      // Find out what to set it to
-            state = FINAL; // Move to final state
-        }
-        else
-        {
-            state = SCALING_STATE; // Move to scaling state
-        }
-        break;
-
-    case SCALING_STATE:      // Scaling state
-        // Send the formatted string via UART
-        UART0_Write_String("SCALING STATE\r\n");
-        data = data * scale; // Scale the data (1 for no scaling)
-        state = FINAL;       // Move to final state
-        break;
-
-    case FINAL:                // Final state
-        // Send the formatted string via UART
-        state = INITIAL_STATE; // Reset state to initial
-        return data;           // Return the wrapped data
-        break;
-
-    default:
-        break;
-    }
-}
-
 // Helper function to convert integer to string (supports negative numbers)
-void int_to_str(INT16S value, char* str)
- {
+void int_to_str(INT16S value, char *str)
+{
     char buf[16];
     int k = 0, j = 0;
     int is_negative = 0;
 
-    if (value == 0) {
+    if (value == 0)
+    {
         str[0] = '0';
         str[1] = '\0';
         return;
     }
 
-    if (value < 0) {
+    if (value < 0)
+    {
         is_negative = 1;
         value = -value;
     }
 
-    while (value > 0) {
+    while (value > 0)
+    {
         buf[k++] = (value % 10) + '0';
         value /= 10;
     }
 
-    if (is_negative) {
+    if (is_negative)
+    {
         buf[k++] = '-';
     }
 
     // Reverse the string
-    while (k > 0) {
+    while (k > 0)
+    {
         str[j++] = buf[--k];
     }
     str[j] = '\0';
@@ -305,14 +244,16 @@ void adc_task(void *pvParameters)
         INT16S raw1 = data_wrapper2(ADC_Read_Scaled(ADC1_Read()), THRESHOLD, CUTOFF, SCALE);
 
         // Scale to -255..255
-        //float scaled_raw0 = ((float)raw0 * 255.0f) / 32000.0f;
-        //float scaled_raw1 = ((float)raw1 * 255.0f) / 32000.0f;
+        // float scaled_raw0 = ((float)raw0 * 255.0f) / 32000.0f;
+        // float scaled_raw1 = ((float)raw1 * 255.0f) / 32000.0f;
 
         float setpoint0 = 0.0f; // Center
         float setpoint1 = 0.0f; // Center
 
         adc0_value = (INT16S)pid_controller(raw0, &pid0); // PID controller for ADC0
         adc1_value = (INT16S)pid_controller(raw1, &pid1); // PID controller for ADC1
+
+        // INT16S rawADC = ADC0_Read(); //testing
 
         // Clamp to -255..255 if needed
         /*if(adc0_value < -255) adc0_value = -255;
@@ -326,12 +267,13 @@ void adc_task(void *pvParameters)
 
         // Build the message manually
         int idx = 0;
-        const char* prefix0 = "ADC0: ";
-        const char* prefix1 = ", ADC1: ";
-        for (k = 0; prefix0[k]; ++k) msg[idx++] = prefix0[k];
-        for (k = 0; adc0_str[k]; ++k) msg[idx++] = adc0_str[k];
-        for (k = 0; prefix1[k]; ++k) msg[idx++] = prefix1[k];
-        for (k = 0; adc1_str[k]; ++k) msg[idx++] = adc1_str[k];
+        // const char* prefix0 = "ADC0: ";
+        // const char* prefix1 = ", ADC1: ";
+        // for (k = 0; prefix0[k]; ++k) msg[idx++] = prefix0[k];
+        for (k = 0; adc0_str[k]; ++k)
+            msg[idx++] = adc0_str[k];
+        // for (k = 0; prefix1[k]; ++k) msg[idx++] = prefix1[k];
+        // for (k = 0; adc1_str[k]; ++k) msg[idx++] = adc1_str[k];
         msg[idx++] = '\r';
         msg[idx++] = '\n';
         msg[idx] = '\0';
@@ -342,7 +284,7 @@ void adc_task(void *pvParameters)
         // Send the formatted string via UART
         // UART0_Write_String("Test");
 
-        vTaskDelay(100 / portTICK_RATE_MS); // Delay for 100 ms
+        vTaskDelay(100 / portTICK_RATE_MS); // Delay for 1000 ms //normalt 100ms
     }
 }
 
