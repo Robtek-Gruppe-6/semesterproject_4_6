@@ -80,11 +80,18 @@ INT16S data_wrapper(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale);
  *     Function   : Wrapper function to scale data based on threshold and cutoff
  ****************************************/
 
-void int_to_str(INT16S value, char* str);
+INT16U signed11_to_unsigned16(INT16S value);
 /***************************************
- *     Input      : value, str
- *     Output     : None
- *     Function   : Convert integer to string (supports negative numbers)
+ *     Input      : value (INT16S)
+ *     Output     : Unsigned 16-bit representation
+ *     Function   : Convert signed 11-bit value to unsigned 16-bit
+ ****************************************/
+
+INT16U data_framer(INT16U data, INT8U motor);
+/***************************************
+ *     Input      : data, motor
+ *     Output     : Framed data (INT16S)
+ *     Function   : Frame data for transmission
  ****************************************/
 
 void adc_task(void *pvParameters);

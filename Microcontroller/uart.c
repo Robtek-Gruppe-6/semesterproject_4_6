@@ -68,6 +68,37 @@ void UART0_Init(void)
     uartMutex = xSemaphoreCreateMutex();
 }
 
+void int_to_str(INT16U value, char *str)
+/***************************************
+ *     Input      : value (INT16U), str (char*)
+ *     Output     : str (char*) containing the string representation of value
+ *     Function   : Convert an integer to a string
+ ****************************************/
+{
+    char buf[16];
+    int k = 0, j = 0;
+
+    if (value == 0)
+    {
+        str[0] = '0';
+        str[1] = '\0';
+        return;
+    }
+
+    while (value > 0)
+    {
+        buf[k++] = (value % 10) + '0';
+        value /= 10;
+    }
+
+    // Reverse the string
+    while (k > 0)
+    {
+        str[j++] = buf[--k];
+    }
+    str[j] = '\0';
+}
+
 void UART0_Write(char data)
 /***************************************
  *     Input      : data to be sent

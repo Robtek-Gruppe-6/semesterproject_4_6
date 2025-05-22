@@ -24,6 +24,7 @@
 #include "tm4c123gh6pm.h"
 #include "FreeRTOS.h"
 #include "PID.h"
+#include "uart.h"
 
 /*****************************    Defines    ********************************/
 
@@ -33,11 +34,12 @@
 #define FINAL 3
 
 /*****************************   Constants   ********************************/
-const INT16U THRESHOLD = 1000;   // Threshold value for data processing
-const INT16U CUTOFF = 2000;      // Cutoff value for data processing
+const INT16U THRESHOLD = 30;   // Threshold value for data processing
+const INT16U CUTOFF = 60;      // Cutoff value for data processing
 const INT16U SCALE = 1;          // Scale factor for data processing
-const INT16S MAX_VALUE = 32000;  // Maximum value for scaling
-const INT16S MIN_VALUE = -32000; // Minimum value for scaling
+const INT16S MAX_VALUE = 1000;  // Maximum value for scaling
+const INT16S MIN_VALUE = -1000; // Minimum value for scaling
+const INT16U CENTERING = 1023; // Centering value for scaling
 
 /*****************************   Variables   ********************************/
 INT16S adc0_value = 0; // Variable to store ADC0 value
@@ -46,6 +48,9 @@ INT8U state = 0;       // State variable for data processing
 char message[50];      // Buffer to hold the formatted message
 static pid_t pid0;
 static pid_t pid1;
+INT8U motor = 0; // Motor variable for data processing
+INT16U framed_data0 = 0; // Variable to hold framed data for motor 0
+INT16U framed_data1 = 0; // Variable to hold framed data for motor 1
 
 /*****************************   Functions   ********************************/
 
@@ -146,15 +151,14 @@ INT16U ADC1_Read(void)
 INT16S ADC_Read_Scaled(INT16U data)
 /***************************************
  *     Input      : data (INT16U)
- *     Output     : Signed ADC result (INT16S) scaled from -32000 to 32000
+ *     Output     : Signed 11-bit ADC result
  *     Function   : Read a value from ADC and scale it
  ****************************************/
 {
-    INT16S raw_value = data - 2048; // Center around 0
-    return (raw_value * 32000) / 2048;
+    return (data >> 1) - CENTERING; // Scale the ADC value to signed 11-bit
 }
 
-INT16S data_wrapper2(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale)
+INT16S data_wrapper(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale)
 /***************************************
  *     Input      : data, threshold, cutoff, scale
  *     Output     : Scaled data (INT16S)
@@ -187,43 +191,39 @@ INT16S data_wrapper2(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale)
     }
 }
 
-// Helper function to convert integer to string (supports negative numbers)
-void int_to_str(INT16S value, char *str)
+INT16U signed11_to_unsigned16(INT16S value)
+/***************************************
+ *     Input      : value (INT16S)
+ *     Output     : Unsigned 16-bit representation
+ *     Function   : Convert signed 11-bit value to unsigned 16-bit
+ ****************************************/
 {
-    char buf[16];
-    int k = 0, j = 0;
-    int is_negative = 0;
-
-    if (value == 0)
-    {
-        str[0] = '0';
-        str[1] = '\0';
-        return;
-    }
-
+    INT16U result;
     if (value < 0)
     {
-        is_negative = 1;
-        value = -value;
+        // Set sign bit (bit 10), store magnitude in bits 0-9
+        result = (1 << 10) | ((-value) & 0x3FF);
     }
-
-    while (value > 0)
+    else
     {
-        buf[k++] = (value % 10) + '0';
-        value /= 10;
+        // Sign bit 0, magnitude in bits 0-9
+        result = value & 0x3FF;
     }
+    return result;
+}
 
-    if (is_negative)
+INT16U data_framer(INT16U data, INT8U motor)
+/***************************************
+ *     Input      : data, motor
+ *     Output     : Framed data (INT16S)
+ *     Function   : Frame data for transmission
+ ****************************************/
+{
+    if (motor == 1)
     {
-        buf[k++] = '-';
+        data |= 0x8000; // Set the MSB for motor 1
     }
-
-    // Reverse the string
-    while (k > 0)
-    {
-        str[j++] = buf[--k];
-    }
-    str[j] = '\0';
+    return data;
 }
 
 void adc_task(void *pvParameters)
@@ -240,30 +240,22 @@ void adc_task(void *pvParameters)
 
     while (1)
     {
-        INT16S raw0 = data_wrapper2(ADC_Read_Scaled(ADC0_Read()), THRESHOLD, CUTOFF, SCALE);
-        INT16S raw1 = data_wrapper2(ADC_Read_Scaled(ADC1_Read()), THRESHOLD, CUTOFF, SCALE);
-
-        // Scale to -255..255
-        // float scaled_raw0 = ((float)raw0 * 255.0f) / 32000.0f;
-        // float scaled_raw1 = ((float)raw1 * 255.0f) / 32000.0f;
-
-        float setpoint0 = 0.0f; // Center
-        float setpoint1 = 0.0f; // Center
+        INT16S raw0 = data_wrapper(ADC_Read_Scaled(ADC0_Read()), THRESHOLD, CUTOFF, SCALE);
+        INT16S raw1 = data_wrapper(ADC_Read_Scaled(ADC1_Read()), THRESHOLD, CUTOFF, SCALE);
 
         adc0_value = (INT16S)pid_controller(raw0, &pid0); // PID controller for ADC0
         adc1_value = (INT16S)pid_controller(raw1, &pid1); // PID controller for ADC1
 
-        // INT16S rawADC = ADC0_Read(); //testing
+        raw0 = signed11_to_unsigned16(raw0); // Convert to unsigned 16-bit
+        raw1 = signed11_to_unsigned16(raw1); // Convert to unsigned 16-bit
 
-        // Clamp to -255..255 if needed
-        /*if(adc0_value < -255) adc0_value = -255;
-        if(adc0_value > 255) adc0_value = 255;
-        if(adc1_value < -255) adc1_value = -255;
-        if(adc1_value > 255) adc1_value = 255;*/
+        // Apply data framing
+        framed_data0 = data_framer(raw0, 1); // Frame data for motor 0
+        framed_data1 = data_framer(raw1, 1); // Frame data for motor 1
 
         // Convert integers to strings
-        int_to_str(adc0_value, adc0_str);
-        int_to_str(adc1_value, adc1_str);
+        int_to_str(framed_data0, adc0_str);
+        int_to_str(framed_data1, adc1_str);
 
         // Build the message manually
         int idx = 0;
