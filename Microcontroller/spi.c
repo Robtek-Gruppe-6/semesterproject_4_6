@@ -183,13 +183,23 @@ void SPI_test_task(void *pvParameters)
     testData &= ~(0xFFFF << 0);
 
     // Set bit 15 (motor select = 1)
-    testData |= (0 << 15); //0 is pan 1 is tilt
+    testData |= (1 << 15); //0 is pan 1 is tilt
 
     // Set bit 10 (sign)
-    testData |= (0 << 10); //0 is not complemented 1 is twos complemented
+    int sign = 0;
+    testData |= (sign << 10); //CW OR CCW 0 is not complemented 1 is twos complemented
 
-    // Set duty cycle (bits 9–0)
-    testData |= 224; //first 24 is ignored range from 24-1024 is 100.0%
+    int duty = 200; //duty in 0.0%
+
+    if(sign){
+        // Set duty cycle (bits 9–0)
+        testData |= 1024-duty; //first 24 is ignored range from 24-1024 is 100.0%
+    }
+    else
+    {
+        testData |= duty;
+    }
+
     while (1)
     {
         xQueueSend(resources->spi_tx_queue, &testData, 10);
