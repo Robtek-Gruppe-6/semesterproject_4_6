@@ -35,12 +35,12 @@
 #define FINAL 3
 
 /*****************************   Constants   ********************************/
-const INT16U THRESHOLD = 300;   // Threshold value for data processing
+const INT16U THRESHOLD = 70;    // Threshold value for data processing
 const INT16U CUTOFF = 60;       // Cutoff value for data processing
 const INT16U SCALE = 1;         // Scale factor for data processing
-const INT16S MAX_VALUE = 1000;  // Maximum value for scaling
-const INT16S MIN_VALUE = -1000; // Minimum value for scaling
-const INT16U CENTERING = 1023;  // Centering value for scaling
+const INT16S MAX_VALUE = 150;  // Maximum value for scaling
+const INT16S MIN_VALUE = -150; // Minimum value for scaling
+const INT16U CENTERING = 1024;  // Centering value for scaling
 
 /*****************************   Variables   ********************************/
 INT16S adc0_value = 0; // Variable to store ADC0 value
@@ -156,6 +156,22 @@ INT16S ADC_Read_Scaled(INT16U data)
  *     Function   : Read a value from ADC and scale it
  ****************************************/
 {
+    if (data > MAX_VALUE - cutoff)
+        {
+            // Send the formatted string via UART
+            // UART0_Write_String("INITIAL STATE\r\n");
+            data = MAX_VALUE; // Set to max value
+        }
+
+        else if (data < MIN_VALUE + cutoff)
+        {
+            data = MIN_VALUE; // Set to min value
+        }
+
+        if (data < threshold && data > -threshold)
+        {
+            data = 0; // Set to 0 if below threshold
+        }
     return (data >> 1) - CENTERING; // Scale the ADC value to signed 11-bit
 }
 
@@ -192,18 +208,12 @@ INT16U signed11_to_unsigned16(INT16S value)
  *     Function   : Convert signed 11-bit value to unsigned 16-bit
  ****************************************/
 {
-    INT16U result;
     if (value < 0)
     {
-        // Set sign bit (bit 10), store magnitude in bits 0-9
-        result = (1 << 10) | ((-value) & 0x3FF);
+        value -= 22; // blanket fix on all negative values
     }
-    else
-    {
-        // Sign bit 0, magnitude in bits 0-9
-        result = value & 0x3FF;
-    }
-    return result;
+
+    return ((value&0x8000) >> 5) | (value&0x03FF); // move sign to bit 11
 }
 
 INT16U data_framer(INT16U data, INT8U motor)
@@ -214,7 +224,7 @@ INT16U data_framer(INT16U data, INT8U motor)
  ****************************************/
 {
     // data *= -1;
-    data &= ~(1 << 15); // gg
+    //data &= ~(1 << 15);
     if (motor == 1)
     {
         data |= (1 << 15); // 0 is pan, 1 is tilt
@@ -233,52 +243,51 @@ void adc_task(void *pvParameters)
  *     Function   : ADC task to read values from ADC0 and ADC1
  ****************************************/
 {
-//    char adc0_str[16];
-//    char adc1_str[16];
-//    char msg[40];
-//    int k = 0;
-//
+    //    char adc0_str[16];
+    //    char adc1_str[16];
+    //    char msg[40];
+    //    int k = 0;
+    //
     while (1)
     {
-        INT16S raw0 = data_wrapper(ADC_Read_Scaled(ADC0_Read()), THRESHOLD, CUTOFF, SCALE);
-        INT16S raw1 = data_wrapper(ADC_Read_Scaled(ADC1_Read()), THRESHOLD, CUTOFF, SCALE);
+        INT16S raw0 = ADC_Read_Scaled(ADC0_Read());
+        INT16S raw1 = ADC_Read_Scaled(ADC1_Read());
 
         adc0_value = (INT16S)pid_controller(raw0, &pid0); // PID controller for ADC0
         adc1_value = (INT16S)pid_controller(raw1, &pid1); // PID controller for ADC1
 
-        int rawraw = ADC0_Read();
-
-        raw0 = signed11_to_unsigned16(raw0); // Convert to unsigned 16-bit
-        raw1 = signed11_to_unsigned16(raw1); // Convert to unsigned 16-bit
+        // inverted for direction
+        raw0 = signed11_to_unsigned16(data_wrapper(-adc0_value, THRESHOLD, CUTOFF, SCALE)); // Convert to unsigned 16-bit
+        raw1 = signed11_to_unsigned16(data_wrapper(-adc1_value, THRESHOLD, CUTOFF, SCALE)); // Convert to unsigned 16-bit
 
         // Apply data framing
         framed_data0 = data_framer(raw0, 1); // Frame data for motor 0
         framed_data1 = data_framer(raw1, 0); // Frame data for motor 1
-//
-//        // Convert integers to strings
-//        int_to_str(rawraw, adc0_str);
-//        int_to_str(framed_data1, adc1_str);
-//
-//        // Build the message manually
-//        int idx = 0;
-//        // const char* prefix0 = "ADC0: ";
-//        // const char* prefix1 = ", ADC1: ";
-//        // for (k = 0; prefix0[k]; ++k) msg[idx++] = prefix0[k];
-//        for (k = 0; adc0_str[k]; ++k)
-//            msg[idx++] = adc0_str[k];
-//        // for (k = 0; prefix1[k]; ++k) msg[idx++] = prefix1[k];
-//        // for (k = 0; adc1_str[k]; ++k) msg[idx++] = adc1_str[k];
-//        msg[idx++] = '\r';
-//        msg[idx++] = '\n';
-//        msg[idx] = '\0';
-//
-//        // Send the formatted string via UART
-//        UART0_Write_String(msg);
+
+        //        // Convert integers to strings
+        //        int_to_str(rawraw, adc0_str);
+        //        int_to_str(framed_data1, adc1_str);
+        //
+        //        // Build the message manually
+        //        int idx = 0;
+        //        // const char* prefix0 = "ADC0: ";
+        //        // const char* prefix1 = ", ADC1: ";
+        //        // for (k = 0; prefix0[k]; ++k) msg[idx++] = prefix0[k];
+        //        for (k = 0; adc0_str[k]; ++k)
+        //            msg[idx++] = adc0_str[k];
+        //        // for (k = 0; prefix1[k]; ++k) msg[idx++] = prefix1[k];
+        //        // for (k = 0; adc1_str[k]; ++k) msg[idx++] = adc1_str[k];
+        //        msg[idx++] = '\r';
+        //        msg[idx++] = '\n';
+        //        msg[idx] = '\0';
+        //
+        //        // Send the formatted string via UART
+        //        UART0_Write_String(msg);
 
         xQueueSendToBack(((TaskResources_t *)pvParameters)->spi_tx_queue, &framed_data0, 10);
         xQueueSendToBack(((TaskResources_t *)pvParameters)->spi_tx_queue, &framed_data1, 10);
 
-        vTaskDelay(200 / portTICK_RATE_MS); // Delay for 1000 ms //normalt 100ms
+        vTaskDelay(100 / portTICK_RATE_MS); // Delay for 1000 ms //normalt 100ms
     }
 }
 

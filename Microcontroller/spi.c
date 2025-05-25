@@ -65,7 +65,7 @@ void SPI0_init(void)
     SSI0_CR1_R &= ~SSI_CR1_SSE; // Disable SSI0 before configuration
     SSI0_CR1_R = 0x00000000;    // Set SSI0 as master
     SSI0_CC_R = 0x0;            // Use system clock
-    SSI0_CPSR_R = 0x08;         // Set clock divider (0x10=16 0x80=128)
+    SSI0_CPSR_R = 0x10;         // Set clock divider (0x10=16 0x80=128)
     SSI0_CR0_R = 0x0F;          // 16-bit data, Freescale SPI mode
     SSI0_CR1_R |= SSI_CR1_SSE;  // Enable SSI0
 }
@@ -132,7 +132,7 @@ void spi_task_write(void *pvParameters)
     {
         uint16_t dataToSend = 0;
         //SPI0_Write(dataToSend);
-        if (xQueueReceive(resources->spi_tx_queue, &dataToSend, 1) == pdTRUE)
+        while (xQueueReceive(resources->spi_tx_queue, &dataToSend, 1) == pdTRUE)
         {
             SPI0_Write(dataToSend);             // Transmit data
 
@@ -151,11 +151,10 @@ void spi_task_write(void *pvParameters)
 
             // Send the formatted string via UART
             UART0_Write_String(msg);
+
+
         }
-        else
-        {
-            vTaskDelay(100 / portTICK_RATE_MS); // Short delay to yield CPU if no data
-        }
+        vTaskDelay(50 / portTICK_RATE_MS); // Short delay
     }
 }
 
