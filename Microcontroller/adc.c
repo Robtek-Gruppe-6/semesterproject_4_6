@@ -35,11 +35,11 @@
 #define FINAL 3
 
 /*****************************   Constants   ********************************/
-const INT16U THRESHOLD = 70;    // Threshold value for data processing
+const INT16U THRESHOLD = 40;    // Threshold value for data processing
 const INT16U CUTOFF = 60;       // Cutoff value for data processing
 const INT16U SCALE = 1;         // Scale factor for data processing
-const INT16S MAX_VALUE = 150;  // Maximum value for scaling
-const INT16S MIN_VALUE = -150; // Minimum value for scaling
+const INT16S MAX_VALUE = 300;  // Maximum value for scaling
+const INT16S MIN_VALUE = -300; // Minimum value for scaling
 const INT16U CENTERING = 1024;  // Centering value for scaling
 
 /*****************************   Variables   ********************************/
@@ -67,8 +67,8 @@ void adc_init(void)
     ADC1_Init();
 
     // Initialize PID controllers (tune Kp, Ki, Kd as needed)
-    PID_Init(&pid0, 1.0f, 0.05f, 0.01f);
-    PID_Init(&pid1, 1.0f, 0.05f, 0.01f);
+    PID_Init(&pid0, 0.5f, 0.0f, 0.0005f); //Tilt P=0.5 I=0.0 D=0.0005
+    PID_Init(&pid1, 1.0f, 0.0f, 0.02f); //Pan P=1 I=0 D=0.02
 }
 
 void ADC0_Init(void)
@@ -149,30 +149,19 @@ INT16U ADC1_Read(void)
     return result;
 }
 
-INT16S ADC_Read_Scaled(INT16U data)
+INT16S ADC_Read_Scaled(INT16S data)
 /***************************************
  *     Input      : data (INT16U)
  *     Output     : Signed 11-bit ADC result
  *     Function   : Read a value from ADC and scale it
  ****************************************/
 {
-    if (data > MAX_VALUE - cutoff)
-        {
-            // Send the formatted string via UART
-            // UART0_Write_String("INITIAL STATE\r\n");
-            data = MAX_VALUE; // Set to max value
-        }
-
-        else if (data < MIN_VALUE + cutoff)
-        {
-            data = MIN_VALUE; // Set to min value
-        }
-
-        if (data < threshold && data > -threshold)
+    data = (data >> 1) - CENTERING; // Scale the ADC value to signed 11-bit
+        if (data < THRESHOLD && data > -THRESHOLD)
         {
             data = 0; // Set to 0 if below threshold
         }
-    return (data >> 1) - CENTERING; // Scale the ADC value to signed 11-bit
+   return data;
 }
 
 INT16S data_wrapper(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale)
@@ -284,10 +273,10 @@ void adc_task(void *pvParameters)
         //        // Send the formatted string via UART
         //        UART0_Write_String(msg);
 
-        xQueueSendToBack(((TaskResources_t *)pvParameters)->spi_tx_queue, &framed_data0, 10);
         xQueueSendToBack(((TaskResources_t *)pvParameters)->spi_tx_queue, &framed_data1, 10);
+        xQueueSendToBack(((TaskResources_t *)pvParameters)->spi_tx_queue, &framed_data0, 10);
 
-        vTaskDelay(100 / portTICK_RATE_MS); // Delay for 1000 ms //normalt 100ms
+        vTaskDelay(20 / portTICK_RATE_MS); // Delay for 1000 ms //normalt 100ms
     }
 }
 

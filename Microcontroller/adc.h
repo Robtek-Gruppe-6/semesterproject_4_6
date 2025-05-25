@@ -66,7 +66,7 @@ INT16U ADC1_Read(void);
  *     Function   : Read a value from ADC1
  ****************************************/
 
-INT16S ADC_Read_Scaled(INT16U data);
+INT16S ADC_Read_Scaled(INT16S data);
 /***************************************
  *     Input      : None
  *     Output     : Signed ADC result (INT16U) scaled from -1000 to 1000

@@ -132,7 +132,7 @@ void spi_task_write(void *pvParameters)
     {
         uint16_t dataToSend = 0;
         //SPI0_Write(dataToSend);
-        while (xQueueReceive(resources->spi_tx_queue, &dataToSend, 1) == pdTRUE)
+        if (xQueueReceive(resources->spi_tx_queue, &dataToSend, 1) == pdTRUE)
         {
             SPI0_Write(dataToSend);             // Transmit data
 
@@ -151,10 +151,8 @@ void spi_task_write(void *pvParameters)
 
             // Send the formatted string via UART
             UART0_Write_String(msg);
-
-
         }
-        vTaskDelay(50 / portTICK_RATE_MS); // Short delay
+        vTaskDelay(1 / portTICK_RATE_MS); // Short delay
     }
 }
 
