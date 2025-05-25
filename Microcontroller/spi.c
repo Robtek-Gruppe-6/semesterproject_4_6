@@ -31,6 +31,7 @@
 #include "semphr.h"
 #include "spi.h"
 #include "shared_resources.h"
+#include "uart.h"
 
 /*****************************    Defines    ********************************/
 
@@ -38,7 +39,7 @@
 
 /*****************************   Variables   ********************************/
 
- SemaphoreHandle_t spi_mutex; // Add this at the top, after includes
+SemaphoreHandle_t spi_mutex; // Add this at the top, after includes
 
 /*****************************   Functions   ********************************/
 void SPI0_init(void)
@@ -134,10 +135,26 @@ void spi_task_write(void *pvParameters)
         if (xQueueReceive(resources->spi_tx_queue, &dataToSend, 1) == pdTRUE)
         {
             SPI0_Write(dataToSend);             // Transmit data
+
+            char data_str[16];
+            char msg[40];
+
+            int_to_str(dataToSend, data_str);
+
+            // Build the message manually
+            int k, idx = 0;
+            for (k = 0; data_str[k]; ++k)
+                msg[idx++] = data_str[k];
+            msg[idx++] = '\r';
+            msg[idx++] = '\n';
+            msg[idx] = '\0';
+
+            // Send the formatted string via UART
+            UART0_Write_String(msg);
         }
         else
         {
-            vTaskDelay(10 / portTICK_RATE_MS); // Short delay to yield CPU if no data
+            vTaskDelay(100 / portTICK_RATE_MS); // Short delay to yield CPU if no data
         }
     }
 }
@@ -150,13 +167,13 @@ void spi_task_rw(void *pvParameters)
  ****************************************/
 {
     TaskResources_t* resources = (TaskResources_t*) pvParameters;
-    QueueHandle_t spi_rx_queue = resources->spi_rx_queue;
+    //QueueHandle_t spi_rx_queue = resources->spi_rx_queue;
     QueueHandle_t spi_tx_queue = resources->spi_tx_queue;
 
     while (1)
     {
         uint16_t dataToSend = 0;
-        uint16_t receivedData = 0;
+        //uint16_t receivedData = 0;
 
         // If there is data to send, transmit and read response
         if (xQueueReceive(spi_tx_queue, &dataToSend, 10) == pdTRUE)

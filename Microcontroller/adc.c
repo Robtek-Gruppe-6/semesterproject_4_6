@@ -35,12 +35,12 @@
 #define FINAL 3
 
 /*****************************   Constants   ********************************/
-const INT16U THRESHOLD = 30;   // Threshold value for data processing
-const INT16U CUTOFF = 60;      // Cutoff value for data processing
-const INT16U SCALE = 1;          // Scale factor for data processing
+const INT16U THRESHOLD = 300;   // Threshold value for data processing
+const INT16U CUTOFF = 60;       // Cutoff value for data processing
+const INT16U SCALE = 1;         // Scale factor for data processing
 const INT16S MAX_VALUE = 1000;  // Maximum value for scaling
 const INT16S MIN_VALUE = -1000; // Minimum value for scaling
-const INT16U CENTERING = 1023; // Centering value for scaling
+const INT16U CENTERING = 1023;  // Centering value for scaling
 
 /*****************************   Variables   ********************************/
 INT16S adc0_value = 0; // Variable to store ADC0 value
@@ -49,7 +49,7 @@ INT8U state = 0;       // State variable for data processing
 char message[50];      // Buffer to hold the formatted message
 static pid_t pid0;
 static pid_t pid1;
-INT8U motor = 0; // Motor variable for data processing
+INT8U motor = 0;         // Motor variable for data processing
 INT16U framed_data0 = 0; // Variable to hold framed data for motor 0
 INT16U framed_data1 = 0; // Variable to hold framed data for motor 1
 
@@ -171,25 +171,18 @@ INT16S data_wrapper(INT16S data, INT16U threshold, INT16U cutoff, INT16U scale)
         // Send the formatted string via UART
         // UART0_Write_String("INITIAL STATE\r\n");
         data = MAX_VALUE; // Set to max value
-        return data;      // Return the wrapped data
     }
 
     else if (data < MIN_VALUE + cutoff)
     {
         data = MIN_VALUE; // Set to min value
-        return data;      // Return the wrapped data
     }
 
     if (data < threshold && data > -threshold)
     {
-        data = 0;    // Set to 0 if below threshold
-        return data; // Return the wrapped data
+        data = 0; // Set to 0 if below threshold
     }
-
-    else
-    {
-        return data; // Return the wrapped data
-    }
+    return data; // Return the wrapped data
 }
 
 INT16U signed11_to_unsigned16(INT16S value)
@@ -220,9 +213,15 @@ INT16U data_framer(INT16U data, INT8U motor)
  *     Function   : Frame data for transmission
  ****************************************/
 {
+    // data *= -1;
+    data &= ~(1 << 15); // gg
     if (motor == 1)
     {
-        data |= 0x8000; // Set the MSB for motor 1
+        data |= (1 << 15); // 0 is pan, 1 is tilt
+    }
+    else
+    {
+        data |= (0 << 15); // 0 is pan, 1 is tilt
     }
     return data;
 }
@@ -234,11 +233,11 @@ void adc_task(void *pvParameters)
  *     Function   : ADC task to read values from ADC0 and ADC1
  ****************************************/
 {
-    char adc0_str[16];
-    char adc1_str[16];
-    char msg[40];
-    int k = 0;
-
+//    char adc0_str[16];
+//    char adc1_str[16];
+//    char msg[40];
+//    int k = 0;
+//
     while (1)
     {
         INT16S raw0 = data_wrapper(ADC_Read_Scaled(ADC0_Read()), THRESHOLD, CUTOFF, SCALE);
@@ -247,36 +246,39 @@ void adc_task(void *pvParameters)
         adc0_value = (INT16S)pid_controller(raw0, &pid0); // PID controller for ADC0
         adc1_value = (INT16S)pid_controller(raw1, &pid1); // PID controller for ADC1
 
+        int rawraw = ADC0_Read();
+
         raw0 = signed11_to_unsigned16(raw0); // Convert to unsigned 16-bit
         raw1 = signed11_to_unsigned16(raw1); // Convert to unsigned 16-bit
 
         // Apply data framing
         framed_data0 = data_framer(raw0, 1); // Frame data for motor 0
-        framed_data1 = data_framer(raw1, 1); // Frame data for motor 1
+        framed_data1 = data_framer(raw1, 0); // Frame data for motor 1
+//
+//        // Convert integers to strings
+//        int_to_str(rawraw, adc0_str);
+//        int_to_str(framed_data1, adc1_str);
+//
+//        // Build the message manually
+//        int idx = 0;
+//        // const char* prefix0 = "ADC0: ";
+//        // const char* prefix1 = ", ADC1: ";
+//        // for (k = 0; prefix0[k]; ++k) msg[idx++] = prefix0[k];
+//        for (k = 0; adc0_str[k]; ++k)
+//            msg[idx++] = adc0_str[k];
+//        // for (k = 0; prefix1[k]; ++k) msg[idx++] = prefix1[k];
+//        // for (k = 0; adc1_str[k]; ++k) msg[idx++] = adc1_str[k];
+//        msg[idx++] = '\r';
+//        msg[idx++] = '\n';
+//        msg[idx] = '\0';
+//
+//        // Send the formatted string via UART
+//        UART0_Write_String(msg);
 
-        // Convert integers to strings
-        /*int_to_str(framed_data0, adc0_str);
-        int_to_str(framed_data1, adc1_str);
+        xQueueSendToBack(((TaskResources_t *)pvParameters)->spi_tx_queue, &framed_data0, 10);
+        xQueueSendToBack(((TaskResources_t *)pvParameters)->spi_tx_queue, &framed_data1, 10);
 
-        // Build the message manually
-        int idx = 0;
-        // const char* prefix0 = "ADC0: ";
-        // const char* prefix1 = ", ADC1: ";
-        // for (k = 0; prefix0[k]; ++k) msg[idx++] = prefix0[k];
-        for (k = 0; adc0_str[k]; ++k)
-            msg[idx++] = adc0_str[k];
-        // for (k = 0; prefix1[k]; ++k) msg[idx++] = prefix1[k];
-        // for (k = 0; adc1_str[k]; ++k) msg[idx++] = adc1_str[k];
-        msg[idx++] = '\r';
-        msg[idx++] = '\n';
-        msg[idx] = '\0';
-
-        // Send the formatted string via UART
-        UART0_Write_String(msg);*/
-
-        xQueueSend(((TaskResources_t *)pvParameters)->spi_tx_queue, &framed_data0, 10);
-
-        vTaskDelay(100 / portTICK_RATE_MS); // Delay for 1000 ms //normalt 100ms
+        vTaskDelay(200 / portTICK_RATE_MS); // Delay for 1000 ms //normalt 100ms
     }
 }
 
