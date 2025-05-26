@@ -68,7 +68,7 @@ void UART0_Init(void)
     uartMutex = xSemaphoreCreateMutex();
 }
 
-void int_to_str(INT16U value, char *str)
+void int_to_str(INT16S value, char *str)
 /***************************************
  *     Input      : value (INT16U), str (char*)
  *     Output     : str (char*) containing the string representation of value
@@ -85,10 +85,20 @@ void int_to_str(INT16U value, char *str)
         return;
     }
 
-    while (value > 0)
-    {
-        buf[k++] = (value % 10) + '0';
-        value /= 10;
+    if(value >= 0){
+        while (value > 0)
+        {
+            buf[k++] = (value % 10) + '0';
+            value /= 10;
+        }
+    } else if(value < 0) {
+        value *= -1;
+        while (value > 0)
+        {
+            buf[k++] = (value % 10) + '0';
+            value /= 10;
+        }
+        buf[k++] = '-';
     }
 
     // Reverse the string

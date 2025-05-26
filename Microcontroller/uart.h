@@ -36,7 +36,7 @@ void UART0_Init(void);
  *     Function   : Initialize UART0 on PA0 and PA1
  ****************************************/
 
-void int_to_str(INT16U value, char *str);
+void int_to_str(INT16S value, char *str);
 /***************************************
  *     Input      : value (INT16U), str (char*)
  *     Output     : str (char*) containing the string representation of value

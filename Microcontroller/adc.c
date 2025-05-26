@@ -67,8 +67,19 @@ void adc_init(void)
     ADC1_Init();
 
     // Initialize PID controllers (tune Kp, Ki, Kd as needed)
-    PID_Init(&pid0, 0.5f, 0.0f, 0.0005f); //Tilt P=0.5 I=0.0 D=0.0005
-    PID_Init(&pid1, 1.0f, 0.0f, 0.02f); //Pan P=1 I=0 D=0.02
+    PID_Init(&pid0, 0.36f, 0.26f, 0.001215f); //Tilt
+    // 0.36 0.26 0.001215
+    //K_U = 0.6 T_U = 0.270
+    //K_p = 0.6*K_U = 0.36 K_I/10 = 1.2*(K_U/T_U) = 2.6 K_D/10 = 0.075*K_U*_T_U = 0.01215
+
+    PID_Init(&pid1, 2.4f, 0.16f, 0.009f); //Pan P=1 I=0 D=0.02
+    //K_U*0.10 = 40.0 T_U = 0.300
+
+    //PD K_p = 0.8*K_U = 32 K_D = 0.10*K_u*T_U = 1.2
+
+    //PI K_p = 18 K_i*0.1 = 7.2
+
+    //PID what we went with K_P = 0.6*k_U = 2,4 K_I*0.10 = 1.2*K_u/T_U = 16 K_d*0.10 = 0.075*K_U*T_u = 0.9
 }
 
 void ADC0_Init(void)
