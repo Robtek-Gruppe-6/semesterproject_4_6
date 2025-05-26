@@ -136,8 +136,8 @@ void spi_task_write(void *pvParameters)
             char data_str[16];
             char msg[40];
 
-            //int_to_str(dataToSend, data_str);
-            int_to_str(SPI0_Read(), data_str);
+            //int_to_str(dataToSend, data_str);     //Send spi_tx_queue value
+            int_to_str(SPI0_Read(), data_str);      //Send read
 
             // Build the message manually
             int k, idx = 0;
