@@ -76,8 +76,8 @@ void SPI0_Write(uint16_t data)
 {
     //xSemaphoreTake(spi_mutex, portMAX_DELAY); // Lock mutex
 
-    while ((SSI0_SR_R & (1 << 1)) == 0);             /* wait untill Tx FIFO is not full */
-    SSI0_DR_R = data; /* transmit byte over SSI0Tx line */
+    while ((SSI0_SR_R & (1 << 1)) == 0);    /* wait untill Tx FIFO is not full */
+    SSI0_DR_R = data;                       /* transmit byte over SSI0Tx line */
     while (SSI0_SR_R & (1 << 4));
 
     //xSemaphoreGive(spi_mutex); // Unlock mutex
@@ -85,16 +85,13 @@ void SPI0_Write(uint16_t data)
 
 uint16_t SPI0_Read(void)
 {
-    xSemaphoreTake(spi_mutex, portMAX_DELAY); // Lock mutex
+    //xSemaphoreTake(spi_mutex, portMAX_DELAY); // Lock mutex
 
     unsigned char receivedData;
-    GPIO_PORTA_DATA_R &= ~(1 << 3); /* Make PA3 Selection line (SS) low */
-    while ((SSI0_SR_R & (1 << 2)) == 0)
-        ;                          /* Wait until Rx FIFO is not empty */
-    receivedData = SSI0_DR_R;      /* Read received data from SSI0Rx line */
-    GPIO_PORTA_DATA_R |= (1 << 3); /* Keep selection line (PA3) high in idle condition */
-
-    xSemaphoreGive(spi_mutex); // Unlock mutex
+    while ((SSI0_SR_R & (1 << 2)) == 0);    /* Wait until Rx FIFO is not empty */
+    receivedData = SSI0_DR_R;               /* Read received data from SSI0Rx line */
+    while (SSI0_SR_R & (1 << 4));           // Wait until the transfer is complete
+    //xSemaphoreGive(spi_mutex); // Unlock mutex
     return receivedData;
 }
 
@@ -139,7 +136,8 @@ void spi_task_write(void *pvParameters)
             char data_str[16];
             char msg[40];
 
-            int_to_str(dataToSend, data_str);
+            //int_to_str(dataToSend, data_str);
+            int_to_str(SPI0_Read(), data_str);
 
             // Build the message manually
             int k, idx = 0;
@@ -151,6 +149,7 @@ void spi_task_write(void *pvParameters)
 
             // Send the formatted string via UART
             UART0_Write_String(msg);
+
         }
         vTaskDelay(1 / portTICK_RATE_MS); // Short delay
     }
@@ -206,7 +205,7 @@ void SPI_test_task(void *pvParameters)
     int duty = 200; //duty in 0.0%
 
     if(sign){
-        // Set duty cycle (bits 9–0)
+        // Set duty cycle (bits 9ï¿½0)
         testData |= 1024-duty; //first 24 is ignored range from 24-1024 is 100.0%
     }
     else
